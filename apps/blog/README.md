@@ -1,7 +1,41 @@
-## Blog
+# Blog
 
+## 기술스택
+- NextJs
+- typescript
+- redux
+- swr
+- scss
+- emotion
+- supabase
+- jest, react-testing-library
+- cypress
+- next-0auth
+- cloudflare
+- self-font
+- framer
+- centry
+- [datadog](https://www.datadoghq.com/)
 
-- TODO
+## 폴더 구조
+```
+├── src
+│   ├── pages
+│   ├── components
+│   ├── modules
+│   ├── styles
+│   ├── types
+│   ├── constants
+│   ├── utils
+│   ├── hooks
+│   ├── api
+│   ├── images
+│   ├── services
+│   ├── lib
+```
+  
+
+## TODO
 - [ ] 헤더 UI 제작
   - [ ] 로고
   - [ ] 버튼
