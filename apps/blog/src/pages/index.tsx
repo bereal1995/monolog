@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import {useAuth} from '@/components/auth/AuthProvider';
-import {Button} from 'ui/Button';
+import {Button} from "ui";
 
 export default function Home() {
   const {user, signInWithGithub, signOut} = useAuth();
