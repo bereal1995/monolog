@@ -12,7 +12,7 @@ export default function Home () {
       <img src={user?.photoUrl} alt=""/>
       <h2>{user?.name}</h2>
       <Button onClick={signInWithGithub}>github 로그인</Button>
-      <Button onClick={signOut}>로그아웃!</Button>
+      <Button onClick={signOut}>로그아웃!!</Button>
     </Container>
   )
 }
