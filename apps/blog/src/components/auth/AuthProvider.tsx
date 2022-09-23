@@ -1,8 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {supabase} from "@/src/lib/supabaseClient";
-import {AuthSession, User as RawUser} from "@supabase/supabase-js";
+import React, { useContext, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+import { AuthSession, User as RawUser } from '@supabase/supabase-js'
 
-interface User {
+import { supabase } from '@/src/lib/supabaseClient'
+
+export interface UserProps {
   id: string
   email: string | undefined
   name: string
@@ -11,23 +13,27 @@ interface User {
 }
 
 interface AuthContextType {
-  user: User | null;
-  signInWithGithub: () => void;
+  user: UserProps | null;
+  signUp: (email: string, password: string) => Promise<void>
+  signInWithGithub: () => Promise<void>
+  signInWithEmail: (email: string, password: string) => Promise<void>
   signOut: () => void;
 }
 
 const AuthContext = React.createContext<AuthContextType>({
   user: null,
+  signUp: () => Promise.resolve(undefined),
   signInWithGithub: () => Promise.resolve(undefined),
-  signOut: () => Promise.resolve(undefined),
-});
+  signInWithEmail: () => Promise.resolve(undefined),
+  signOut: () => Promise.resolve(undefined)
+})
 
 interface Props {
   children: React.ReactNode;
 }
 
-export default function AuthProvider({children}: Props) {
-  const value = useAuthProvider();
+export default function AuthProvider ({ children }: Props) {
+  const value = useAuthProvider()
 
   return (
     <AuthContext.Provider value={value}>
@@ -37,28 +43,33 @@ export default function AuthProvider({children}: Props) {
 }
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 const useAuthProvider = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserProps | null>(null)
 
   const handleUser = (rawUser: RawUser | null | undefined) => {
     if (rawUser) {
       const user = formatUser(rawUser)
       setUser(user)
+      Cookies.set('monolog-auth', 'true', {
+        expires: 1
+      })
       return user
     } else {
       setUser(null)
+      Cookies.remove('monolog-auth')
       return false
     }
   }
 
   useEffect(() => {
-    const session = supabase.auth.session();
+    const session = supabase.auth.session()
+    console.log('@@ session ', session)
     handleUser(session?.user)
 
-    const {data} = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
+    const { data } = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
       handleUser(session?.user)
     })
 
@@ -67,20 +78,37 @@ const useAuthProvider = () => {
     }
   }, [])
 
+  const signUp = async (email: string, password: string) => {
+    await supabase.auth.signUp({
+      email,
+      password
+    })
+  }
+
   const signInWithGithub = async () => {
     await supabase.auth.signIn({
-      provider: 'github',
+      provider: 'github'
+    })
+  }
+
+  const signInWithEmail = async (email: string, password: string) => {
+    await supabase.auth.signIn({
+      email,
+      password
     })
   }
 
   const signOut = async () => {
-    const {error} = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut()
+    Cookies.remove('monolog-auth')
     console.log('@@ error ', error)
   }
 
   return {
     user,
+    signUp,
     signInWithGithub,
+    signInWithEmail,
     signOut
   }
 }
@@ -94,8 +122,3 @@ const formatUser = (user: RawUser) => {
     photoUrl: user.user_metadata.avatar_url
   }
 }
-
-
-
-
-
