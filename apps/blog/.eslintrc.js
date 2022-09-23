@@ -6,7 +6,6 @@ module.exports = {
   },
   extends: [
     'custom',
-    'plugin:@next/next/recommended',
     'standard'
   ],
   parser: '@typescript-eslint/parser',
