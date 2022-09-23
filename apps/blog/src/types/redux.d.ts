@@ -1,7 +1,7 @@
-import "redux";
-import { Task } from "redux-saga";
+import 'redux'
+import { Task } from 'redux-saga'
 
-declare module "redux" {
+declare module 'redux' {
   export interface Store {
     sagaTask?: Task;
   }
