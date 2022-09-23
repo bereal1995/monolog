@@ -3,6 +3,8 @@ import Image from 'next/image'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
+import Images from '../../images'
+
 interface Props {
   children?: React.ReactNode
   className?: string
@@ -11,12 +13,14 @@ interface Props {
   shape?: 'circle' | 'square',
 }
 
-export default function Avatar ({ children, className, src = '', size = 32, shape = 'square' }: Props) {
+export default function Avatar ({ children, className, src, size = 32, shape = 'square' }: Props) {
   const width = size === 'large'
     ? 48
     : size === 'small'
       ? 24
       : size
+
+  const img = Images.ose
   return (
     <Container
       className={className}
@@ -29,7 +33,7 @@ export default function Avatar ({ children, className, src = '', size = 32, shap
       `}
     >
       <Image
-        src={src}
+        src={src || img}
         layout={'fill'}
       />
       {children}

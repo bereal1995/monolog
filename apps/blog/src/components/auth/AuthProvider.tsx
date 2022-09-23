@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-
+import Cookies from 'js-cookie'
 import { AuthSession, User as RawUser } from '@supabase/supabase-js'
 
 import { supabase } from '@/src/lib/supabaseClient'
 
-interface User {
+export interface UserProps {
   id: string
   email: string | undefined
   name: string
@@ -13,14 +13,18 @@ interface User {
 }
 
 interface AuthContextType {
-  user: User | null;
-  signInWithGithub: () => void;
+  user: UserProps | null;
+  signUp: (email: string, password: string) => Promise<void>
+  signInWithGithub: () => Promise<void>
+  signInWithEmail: (email: string, password: string) => Promise<void>
   signOut: () => void;
 }
 
 const AuthContext = React.createContext<AuthContextType>({
   user: null,
+  signUp: () => Promise.resolve(undefined),
   signInWithGithub: () => Promise.resolve(undefined),
+  signInWithEmail: () => Promise.resolve(undefined),
   signOut: () => Promise.resolve(undefined)
 })
 
@@ -43,21 +47,26 @@ export const useAuth = () => {
 }
 
 const useAuthProvider = () => {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<UserProps | null>(null)
 
   const handleUser = (rawUser: RawUser | null | undefined) => {
     if (rawUser) {
       const user = formatUser(rawUser)
       setUser(user)
+      Cookies.set('monolog-auth', 'true', {
+        expires: 1
+      })
       return user
     } else {
       setUser(null)
+      Cookies.remove('monolog-auth')
       return false
     }
   }
 
   useEffect(() => {
     const session = supabase.auth.session()
+    console.log('@@ session ', session)
     handleUser(session?.user)
 
     const { data } = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
@@ -69,20 +78,37 @@ const useAuthProvider = () => {
     }
   }, [])
 
+  const signUp = async (email: string, password: string) => {
+    await supabase.auth.signUp({
+      email,
+      password
+    })
+  }
+
   const signInWithGithub = async () => {
     await supabase.auth.signIn({
       provider: 'github'
     })
   }
 
+  const signInWithEmail = async (email: string, password: string) => {
+    await supabase.auth.signIn({
+      email,
+      password
+    })
+  }
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
+    Cookies.remove('monolog-auth')
     console.log('@@ error ', error)
   }
 
   return {
     user,
+    signUp,
     signInWithGithub,
+    signInWithEmail,
     signOut
   }
 }

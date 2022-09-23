@@ -5,7 +5,6 @@ import { Global } from '@emotion/react'
 
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
-import Logo from '@/components/header/Logo'
 import resetStyle from '@/styles/resetStyle'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -21,7 +20,6 @@ export default function App ({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <AuthProvider>
-      <Logo/>
       <Global styles={resetStyle} />
       {getLayout(<Component {...pageProps} />)}
     </AuthProvider>

@@ -1,11 +1,14 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 
 interface Props {}
 
 export default function Logo (props: Props) {
   return (
     <Container>
-      LOGO
+      <Link href={'/'}>
+        <a>LOGO</a>
+      </Link>
     </Container>
   )
 }

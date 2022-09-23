@@ -30,5 +30,6 @@ module.exports = {
       'error',
       { 'newlines-between': 'always-and-inside-groups' }
     ]
-  }
+  },
+  ignorePatterns: ['**/cypress/*']
 }
