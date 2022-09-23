@@ -51,7 +51,10 @@ export default function Login () {
             minLength: 6 // supabase 기본 밸리데이션이 6자리 이상
           })}
         />
-        <button type={'submit'}>로그인</button>
+        <button
+          data-test-id={'login-button'}
+          type={'submit'}
+        >로그인</button>
       </form>
 
       <button onClick={signInWithGithub}>github 로그인</button>

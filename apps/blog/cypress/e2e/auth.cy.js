@@ -1,13 +1,12 @@
 describe('example to-do app', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000/login')
   })
 
-  it('displays two todo items by default', () => {
-    cy.contains('로그인').click()
-
-    cy.get('.todo-list li').first().should('have.text', 'Pay electric bill')
-    cy.get('.todo-list li').last().should('have.text', 'Walk the dog')
+  it('login', () => {
+    cy.get('[name="email"]').type("dev.koo6357@gmail.com")
+    cy.get('[name="password"]').type("123456")
+    cy.get('[data-test-id="login-button"]').click()
   })
 
 })
