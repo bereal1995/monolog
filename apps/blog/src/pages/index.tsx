@@ -4,9 +4,16 @@ import { END } from 'redux-saga'
 import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
 import { getPokemon } from '@/modules/app/reducer'
+import { getNotionPage } from '@/api/notion'
 
-export default function Home () {
+interface Props {
+  notionData: any;
+}
+
+export default function Home ({ notionData }: Props) {
   const { user } = useAuth()
+
+  console.log('notionData', notionData)
 
   return (
     <Container>
@@ -28,8 +35,12 @@ export const getStaticProps = wrapper.getStaticProps(
 
     await (store as any).sagaTask.toPromise()
 
+    const res = await getNotionPage()
+
     return {
-      props: {},
+      props: {
+        notionData: res
+      },
       revalidate: 30
     }
   }
