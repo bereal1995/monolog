@@ -1,9 +1,8 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
 interface Props {}
 
-export default function Logo(props: Props) {
-
+export default function Logo (props: Props) {
   return (
     <Container>
       LOGO
@@ -13,4 +12,4 @@ export default function Logo(props: Props) {
 const Container = styled.h1`
   font-weight: 700;
   font-size: 20px;
-`;
+`

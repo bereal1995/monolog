@@ -1,6 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {supabase} from "@/src/lib/supabaseClient";
-import {AuthSession, User as RawUser} from "@supabase/supabase-js";
+import React, { useContext, useEffect, useState } from 'react'
+
+import { AuthSession, User as RawUser } from '@supabase/supabase-js'
+
+import { supabase } from '@/src/lib/supabaseClient'
 
 interface User {
   id: string
@@ -19,15 +21,15 @@ interface AuthContextType {
 const AuthContext = React.createContext<AuthContextType>({
   user: null,
   signInWithGithub: () => Promise.resolve(undefined),
-  signOut: () => Promise.resolve(undefined),
-});
+  signOut: () => Promise.resolve(undefined)
+})
 
 interface Props {
   children: React.ReactNode;
 }
 
-export default function AuthProvider({children}: Props) {
-  const value = useAuthProvider();
+export default function AuthProvider ({ children }: Props) {
+  const value = useAuthProvider()
 
   return (
     <AuthContext.Provider value={value}>
@@ -37,11 +39,11 @@ export default function AuthProvider({children}: Props) {
 }
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 const useAuthProvider = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null)
 
   const handleUser = (rawUser: RawUser | null | undefined) => {
     if (rawUser) {
@@ -55,10 +57,10 @@ const useAuthProvider = () => {
   }
 
   useEffect(() => {
-    const session = supabase.auth.session();
+    const session = supabase.auth.session()
     handleUser(session?.user)
 
-    const {data} = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
+    const { data } = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
       handleUser(session?.user)
     })
 
@@ -69,12 +71,12 @@ const useAuthProvider = () => {
 
   const signInWithGithub = async () => {
     await supabase.auth.signIn({
-      provider: 'github',
+      provider: 'github'
     })
   }
 
   const signOut = async () => {
-    const {error} = await supabase.auth.signOut()
+    const { error } = await supabase.auth.signOut()
     console.log('@@ error ', error)
   }
 
@@ -94,8 +96,3 @@ const formatUser = (user: RawUser) => {
     photoUrl: user.user_metadata.avatar_url
   }
 }
-
-
-
-
-

@@ -1,10 +1,11 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-import {useAuth} from '@/components/auth/AuthProvider';
-import {Button} from "ui";
+import { Button } from 'ui'
 
-export default function Home() {
-  const {user, signInWithGithub, signOut} = useAuth();
+import { useAuth } from '@/components/auth/AuthProvider'
+
+export default function Home () {
+  const { user, signInWithGithub, signOut } = useAuth()
   return (
     <Container>
       <h1>Home</h1>
@@ -13,7 +14,7 @@ export default function Home() {
       <Button onClick={signInWithGithub}>github 로그인</Button>
       <Button onClick={signOut}>로그아웃!</Button>
     </Container>
-  );
+  )
 }
 
 const Container = styled.div`

@@ -1,15 +1,16 @@
-import styled from '@emotion/styled';
+import styled from '@emotion/styled'
 
-import { Button } from 'ui';
+import { Button } from 'ui'
+
 interface Props {
 }
 
 const headerButtonList = [
   { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' },
-];
+  { name: 'About', link: '/about' }
+]
 
-export default function ButtonList(props: Props) {
+export default function ButtonList (props: Props) {
   return (
     <Container>
       {
@@ -27,4 +28,4 @@ export default function ButtonList(props: Props) {
 const Container = styled.div`
   display: flex;
   gap: 10px;
-`;
+`
