@@ -5,11 +5,28 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "blog#build": {
+      "dependsOn": [
+        "^build",
+        "$NEXT_PUBLIC_SUPABASE_URL",
+        "$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      ],
+      "outputs": [".next/**"]
+    },
     "lint": {
       "outputs": []
     },
     "dev": {
       "cache": false
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+    },
+    "deploy": {
+      "dependsOn": ["build", "test", "lint"],
+      "outputs": []
     }
   }
 }
