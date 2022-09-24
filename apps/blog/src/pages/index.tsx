@@ -12,9 +12,6 @@ interface Props {
 
 export default function Home ({ notionData }: Props) {
   const { user } = useAuth()
-
-  console.log('notionData', notionData)
-
   return (
     <Container>
       <h1>Home</h1>

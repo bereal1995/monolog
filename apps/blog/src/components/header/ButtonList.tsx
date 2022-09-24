@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 
 import { Button } from 'ui'
 
+import { useThemeMode } from '@/styles/ThemeProvider'
+
 interface Props {
 }
 
@@ -11,6 +13,11 @@ const headerButtonList = [
 ]
 
 export default function ButtonList (props: Props) {
+  const { themeMode, handleThemeChange } = useThemeMode()
+
+  const handleClickThemeButton = () => {
+    handleThemeChange(themeMode === 'light' ? 'dark' : 'light')
+  }
   return (
     <Container>
       {
@@ -22,6 +29,9 @@ export default function ButtonList (props: Props) {
           </Button>
         ))
       }
+      <Button onClick={handleClickThemeButton}>
+        {themeMode}
+      </Button>
     </Container>
   )
 }

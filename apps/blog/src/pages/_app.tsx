@@ -3,8 +3,10 @@ import { AppProps } from 'next/app'
 import { NextPage } from 'next'
 import { Global } from '@emotion/react'
 
+import ThemeProvider from '@/styles/ThemeProvider'
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
+import themeStyle from '@/styles/themeStyle'
 import resetStyle from '@/styles/resetStyle'
 import { wrapper } from '@/modules/store'
 
@@ -21,8 +23,11 @@ function App ({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <AuthProvider>
-      <Global styles={resetStyle} />
-      {getLayout(<Component {...pageProps} />)}
+      <ThemeProvider>
+        <Global styles={resetStyle} />
+        <Global styles={themeStyle} />
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeProvider>
     </AuthProvider>
   )
 }
