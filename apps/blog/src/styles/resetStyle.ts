@@ -44,6 +44,9 @@ const resetStyle = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  div {
+    box-sizing: border-box;
+  }
 `
 
 export default resetStyle

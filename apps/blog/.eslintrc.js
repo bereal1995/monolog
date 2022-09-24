@@ -29,7 +29,8 @@ module.exports = {
     'import/order': [
       'error',
       { 'newlines-between': 'always-and-inside-groups' }
-    ]
+    ],
+    camelcase: 'off'
   },
   ignorePatterns: ['**/cypress/*']
 }
