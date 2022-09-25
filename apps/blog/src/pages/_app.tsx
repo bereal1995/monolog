@@ -1,14 +1,12 @@
 import type { ReactElement, ReactNode } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
-import { Global } from '@emotion/react'
 
-import ThemeProvider from '@/styles/ThemeProvider'
+import CustomThemeProvider from '@/src/styles/CustomThemeProvider'
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
-import themeStyle from '@/styles/themeStyle'
-import resetStyle from '@/styles/resetStyle'
 import { wrapper } from '@/modules/store'
+import GlobalStyle from '@/styles/GlobalStyle'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -23,11 +21,10 @@ function App ({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <AuthProvider>
-      <ThemeProvider>
-        <Global styles={resetStyle} />
-        <Global styles={themeStyle} />
+      <CustomThemeProvider>
+        <GlobalStyle/>
         {getLayout(<Component {...pageProps} />)}
-      </ThemeProvider>
+      </CustomThemeProvider>
     </AuthProvider>
   )
 }

@@ -1,8 +1,10 @@
 import styled from '@emotion/styled'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from 'ui'
 
-import { useThemeMode } from '@/styles/ThemeProvider'
+import { RootState } from '@/modules/reducers'
+import { setThemeMode } from '@/src/modules/app/reducer'
 
 interface Props {
 }
@@ -13,10 +15,11 @@ const headerButtonList = [
 ]
 
 export default function ButtonList (props: Props) {
-  const { themeMode, handleThemeChange } = useThemeMode()
+  const dispatch = useDispatch()
+  const themeMode = useSelector((state: RootState) => state.app.themeMode)
 
   const handleClickThemeButton = () => {
-    handleThemeChange(themeMode === 'light' ? 'dark' : 'light')
+    dispatch(setThemeMode({ themeMode: themeMode === 'light' ? 'dark' : 'light' }))
   }
   return (
     <Container>
