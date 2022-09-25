@@ -1,4 +1,3 @@
-import { HYDRATE } from 'next-redux-wrapper'
 import { combineReducers } from 'redux'
 import type { AnyAction, CombinedState } from '@reduxjs/toolkit'
 
@@ -8,20 +7,9 @@ type ReducerState = {
   app: AppStateType;
 };
 
-const rootReducer = (state: any, action: AnyAction): CombinedState<ReducerState> => {
-  switch (action.type) {
-    case HYDRATE:
-      return {
-        ...state,
-        ...action.payload
-      }
-
-    default:
-      return combineReducers({
-        app: AppReducer
-      })(state, action)
-  }
-}
+const rootReducer = (state: any, action: AnyAction): CombinedState<ReducerState> => combineReducers({
+  app: AppReducer
+})(state, action)
 
 export default rootReducer
 

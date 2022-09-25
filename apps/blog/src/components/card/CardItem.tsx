@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-
-import { useThemeMode } from '@/src/styles/ThemeProvider'
+import { lightTheme } from 'ui/constants/colors'
 
 interface Props {
   id?: string
@@ -9,7 +8,6 @@ interface Props {
 }
 
 export default function CardItem ({ id, title }: Props) {
-  const { theme } = useThemeMode()
   return (
     <Container>
       <Link href={`/${id}`}>
@@ -31,6 +29,9 @@ const Container = styled.div`
   transition: transform 1s cubic-bezier(0, 0.55, 0.45, 1) 0s;
   &:hover {
     transform: translateY(-20px);
+  }
+  a {
+    color: ${lightTheme.textPrimary};
   }
 `
 

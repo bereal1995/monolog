@@ -1,10 +1,8 @@
 import styled from '@emotion/styled'
-import { END } from 'redux-saga'
 import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
-import { getPokemon } from '@/modules/app/reducer'
 import { getNotionBlocks } from '@/api/notion'
 import Card from '@/components/card'
 
@@ -32,11 +30,6 @@ const Container = styled.div`
 
 export const getStaticProps = wrapper.getStaticProps(
   (store) => async () => {
-    store.dispatch(getPokemon())
-    store.dispatch(END)
-
-    await (store as any).sagaTask.toPromise()
-
     const notionBlocks = await getNotionBlocks()
 
     return {
