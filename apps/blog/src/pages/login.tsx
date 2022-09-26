@@ -1,6 +1,10 @@
 import styled from '@emotion/styled'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import Head from 'next/head'
+
+import { Button, Input } from 'antd'
+
+import { css } from '@emotion/react'
 
 import { useAuth } from '@/components/auth/AuthProvider'
 
@@ -15,10 +19,10 @@ type FormValues = {
 };
 
 export default function Login () {
-  const { signInWithEmail, signInWithGithub } = useAuth()
-  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>()
+  const { signInWithEmail, signInWithGithub, signInWithGoogle } = useAuth()
+  const { handleSubmit, control, formState: { errors } } = useForm<FormValues>()
 
-  const signIn = ({ email, password }: {email: string, password: string}) => signInWithEmail(email, password)
+  const signIn = ({ email, password }: { email: string, password: string }) => signInWithEmail(email, password)
 
   return (
     <Container>
@@ -33,30 +37,101 @@ export default function Login () {
           }}
         />
       </Head>
+
+      <h1>로그인</h1>
+
       <form onSubmit={handleSubmit(signIn)}>
-        <input type="text"
-               placeholder="email"
-               {...register('email', {
-                 required: true,
-                 validate: {
-                   isEmail
-                 }
-               })}
+        <FormLabel>이메일</FormLabel>
+        <Controller
+          name="email"
+          control={control}
+          rules={{
+            required: true,
+            validate: {
+              isEmail
+            }
+          }}
+          render={({ field }) => (
+            <Input
+              css={css`
+                margin-bottom: 20px;
+              `}
+              type="text"
+              placeholder="email"
+              data-test-id={'email'}
+              {...field}
+            />
+          )}
         />
-        <input
-          type={'password'}
-          placeholder={'password'}
-          {...register('password', {
+
+        <FormLabel>비밀번호</FormLabel>
+        <Controller
+          name="password"
+          control={control}
+          rules={{
             required: true,
             minLength: 6 // supabase 기본 밸리데이션이 6자리 이상
-          })}
+          }}
+          render={({ field }) => (
+            <Input
+              css={css`
+                margin-bottom: 20px;
+              `}
+              type={'password'}
+              data-test-id={'password'}
+              placeholder={'password'}
+              {...field}
+            />
+          )}
         />
-        <button type={'submit'}>로그인</button>
+        <Button
+          css={css`
+            margin-bottom: 40px;
+          `}
+          block
+          type={'primary'}
+          htmlType={'submit'}
+          data-test-id={'login-button'}
+        >로그인</Button>
       </form>
 
-      <button onClick={signInWithGithub}>github 로그인</button>
+      <Button
+        css={css`
+          margin-bottom: 20px;
+        `}
+        block
+        onClick={signInWithGithub}>
+        Github 로그인
+      </Button>
+      <Button
+        block
+        onClick={signInWithGoogle}>
+        Google 로그인
+      </Button>
     </Container>
   )
 }
 
-const Container = styled.div``
+const Container = styled.div`
+  max-width: 360px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 40px;
+    margin: 15vh 0 10vh;
+    text-align: center;
+    .dark & {
+      color: #fff;
+    }
+
+    .light & {
+      color: #000;
+    }
+  }
+`
+
+const FormLabel = styled.div`
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #fff;
+`
