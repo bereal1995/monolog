@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
 import { AuthSession, User as RawUser } from '@supabase/supabase-js'
 
+import { useRouter } from 'next/router'
+
 import { supabase } from '@/src/lib/supabaseClient'
 
 export interface UserProps {
@@ -16,6 +18,7 @@ interface AuthContextType {
   user: UserProps | null;
   signUp: (email: string, password: string) => Promise<void>
   signInWithGithub: () => Promise<void>
+  signInWithGoogle: () => Promise<void>
   signInWithEmail: (email: string, password: string) => Promise<void>
   signOut: () => void;
 }
@@ -24,6 +27,7 @@ const AuthContext = React.createContext<AuthContextType>({
   user: null,
   signUp: () => Promise.resolve(undefined),
   signInWithGithub: () => Promise.resolve(undefined),
+  signInWithGoogle: () => Promise.resolve(undefined),
   signInWithEmail: () => Promise.resolve(undefined),
   signOut: () => Promise.resolve(undefined)
 })
@@ -48,6 +52,7 @@ export const useAuth = () => {
 
 const useAuthProvider = () => {
   const [user, setUser] = useState<UserProps | null>(null)
+  const router = useRouter()
 
   const handleUser = (rawUser: RawUser | null | undefined) => {
     if (rawUser) {
@@ -56,17 +61,15 @@ const useAuthProvider = () => {
       Cookies.set('monolog-auth', 'true', {
         expires: 1
       })
-      return user
+      router.push('/')
     } else {
       setUser(null)
       Cookies.remove('monolog-auth')
-      return false
     }
   }
 
   useEffect(() => {
     const session = supabase.auth.session()
-    console.log('@@ session ', session)
     handleUser(session?.user)
 
     const { data } = supabase.auth.onAuthStateChange((_event: string, session: AuthSession | null) => {
@@ -91,6 +94,12 @@ const useAuthProvider = () => {
     })
   }
 
+  const signInWithGoogle = async () => {
+    await supabase.auth.signIn({
+      provider: 'google'
+    })
+  }
+
   const signInWithEmail = async (email: string, password: string) => {
     await supabase.auth.signIn({
       email,
@@ -108,6 +117,7 @@ const useAuthProvider = () => {
     user,
     signUp,
     signInWithGithub,
+    signInWithGoogle,
     signInWithEmail,
     signOut
   }

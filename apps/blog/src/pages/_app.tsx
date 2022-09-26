@@ -8,6 +8,8 @@ import AuthProvider from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
 import GlobalStyle from '@/styles/GlobalStyle'
 
+import 'antd/dist/antd.min.css'
+
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
 }
