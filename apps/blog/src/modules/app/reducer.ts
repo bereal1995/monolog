@@ -7,7 +7,7 @@ export interface AppStateType {
 }
 
 const initialState: AppStateType = {
-  themeMode: typeof localStorage !== 'undefined' ? (localStorage.getItem('themeMode') || 'light') : 'light',
+  themeMode: 'light',
   data: null
 }
 
