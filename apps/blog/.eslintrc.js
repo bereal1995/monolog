@@ -2,22 +2,15 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
-  extends: [
-    'custom',
-    'standard'
-  ],
+  extends: ['custom', 'standard', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'unused-imports'
-  ],
+  plugins: ['react', '@typescript-eslint', 'unused-imports'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/no-unknown-property': 'off',
@@ -26,11 +19,9 @@ module.exports = {
     'unused-imports/no-unused-vars': 'off',
     'react/no-unescaped-entities': 'off',
     'no-unused-vars': 'off',
-    'import/order': [
-      'error',
-      { 'newlines-between': 'always-and-inside-groups' }
-    ],
-    camelcase: 'off'
+    'import/order': ['error', { 'newlines-between': 'always-and-inside-groups' }],
+    camelcase: 'off',
+    'comma-dangle': 'off',
   },
-  ignorePatterns: ['**/cypress/*']
+  ignorePatterns: ['**/cypress/*'],
 }
