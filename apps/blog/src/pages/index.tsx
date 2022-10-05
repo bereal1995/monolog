@@ -3,23 +3,23 @@ import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoi
 
 import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
-import { getNotionBlocks } from '@/api/notion'
+import { getRootBlockChildren } from '@/api/notion'
 import Card from '@/components/card'
 
 interface Props {
-  notionBlocks: ListBlockChildrenResponse;
+  blocks: ListBlockChildrenResponse
 }
 
-export default function Home ({ notionBlocks }: Props) {
+export default function Home({ blocks }: Props) {
   const { user } = useAuth()
 
   return (
     <Container>
       <div>
-        <img src={user?.photoUrl} alt=""/>
+        <img src={user?.photoUrl} alt="" />
         <h2>{user?.name}</h2>
       </div>
-      <Card blocks={notionBlocks} />
+      <Card blocks={blocks} />
     </Container>
   )
 }
@@ -28,16 +28,13 @@ const Container = styled.div`
   padding: 10px;
 `
 
-export const getStaticProps = wrapper.getStaticProps(
-  (store) => async () => {
-    const notionBlocks = await getNotionBlocks()
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  const blocks = await getRootBlockChildren()
 
-    return {
-      props: {
-        notionBlocks
-      },
-      revalidate: 30
-    }
+  return {
+    props: {
+      blocks,
+    },
+    revalidate: 30,
   }
-
-)
+})

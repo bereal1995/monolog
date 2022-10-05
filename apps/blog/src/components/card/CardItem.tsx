@@ -26,7 +26,7 @@ const Container = styled.div`
   height: 100%;
   background-color: #fff;
   transform: translateY(0px);
-  transition: transform 1s cubic-bezier(0, 0.55, 0.45, 1) 0s;
+  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1) 0s; // easing 참고 https://material.io/design/motion/speed.html#easing
   &:hover {
     transform: translateY(-20px);
   }
