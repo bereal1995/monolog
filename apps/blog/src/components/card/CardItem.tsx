@@ -7,7 +7,7 @@ interface Props {
   title?: string
 }
 
-export default function CardItem ({ id, title }: Props) {
+export default function CardItem({ id, title }: Props) {
   return (
     <Container>
       <Link href={`/${id}`}>
@@ -15,7 +15,7 @@ export default function CardItem ({ id, title }: Props) {
           <TextBox>
             <h3>{title}</h3>
           </TextBox>
-          <ImgBox/>
+          <ImgBox />
         </a>
       </Link>
     </Container>
@@ -30,7 +30,13 @@ const Container = styled.div`
   &:hover {
     transform: translateY(-20px);
   }
-  a {
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: ${lightTheme.textPrimary};
   }
 `

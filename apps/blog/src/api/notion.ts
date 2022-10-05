@@ -6,8 +6,7 @@ export const getNotionPage = async (page_id?: string) => {
   if (!page_id) return
 
   const response = await notion.pages.retrieve({
-    page_id
-    // page_size: 50
+    page_id,
   })
   return response
 }
@@ -17,7 +16,7 @@ export const getNotionBlocks = async () => {
 
   const response = await notion.blocks.children.list({
     block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
-    page_size: 50
+    page_size: 50,
     // start_cursor
   })
 

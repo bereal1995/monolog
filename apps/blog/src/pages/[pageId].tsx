@@ -1,20 +1,12 @@
 import styled from '@emotion/styled'
 import { GetServerSideProps } from 'next'
-import { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
-import { getNotionPage } from '@/api/notion'
-import { getTitleFromPage } from '@/lib/notion'
+interface Props {}
 
-interface Props {
-  notionPage: PageObjectResponse;
-}
-
-export default function PageId ({ notionPage }: Props) {
-  const title = getTitleFromPage(notionPage)
-
+export default function PageId(props: Props) {
   return (
     <Container>
-      <h1>{title}</h1>
+      <h1>{'title'}</h1>
     </Container>
   )
 }
@@ -26,11 +18,7 @@ const Container = styled.div`
 `
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const notionPage = await getNotionPage(query.pageId as string)
-
   return {
-    props: {
-      notionPage
-    }
+    props: {},
   }
 }
