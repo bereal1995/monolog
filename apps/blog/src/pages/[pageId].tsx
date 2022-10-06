@@ -1,23 +1,31 @@
 import styled from '@emotion/styled'
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { GetServerSideProps } from 'next'
 
-import { getBlocksWithChildren, getFullBlocks } from '../api/notion'
+import { BlockType, getBlocksWithChildren, getFullBlocks } from '../api/notion'
+import Block from '../components/notion/Block'
 
 interface Props {
-  blocks: BlockObjectResponse
+  blocks: BlockType[]
 }
 
 export default function PageId({ blocks }: Props) {
-  console.log('blocks', blocks)
-
   return (
     <Container>
       <h1>{'title'}</h1>
+      <hr />
+      <article>
+        {blocks.map((block) => (
+          <Block key={block.id} block={block} />
+        ))}
+      </article>
     </Container>
   )
 }
 const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
   h1 {
     font-size: 30px;
     padding: 10px;

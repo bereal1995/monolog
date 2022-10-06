@@ -40,7 +40,7 @@ export const getBlockChildren = async (block_id: string) => {
   return response
 }
 
-type BlockType = BlockObjectResponse & { children?: BlockObjectResponse[] }
+export type BlockType = BlockObjectResponse & { children?: BlockObjectResponse[] }
 
 export const getFullBlocks = async (parentBlockId: string) => {
   const fullBlocks: BlockType[] = []
