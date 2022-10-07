@@ -30,13 +30,7 @@ const Container = styled.div`
   &:hover {
     transform: translateY(-20px);
   }
-  a,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  a {
     color: ${lightTheme.textPrimary};
   }
 `

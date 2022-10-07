@@ -20,7 +20,6 @@ function BulletedListItem({ block }: Props) {
       <BlockItem>
         <BlockBullet />
         <BlockContent>{block.bulleted_list_item.rich_text[0].plain_text}</BlockContent>
-        {/* <RichTexts value={value.bulleted_list_item.text} /> */}
       </BlockItem>
       {block.children && (
         <BlockChildren>
@@ -47,6 +46,5 @@ const BlockBullet = styled.span`
   background-color: ${({ theme }) => theme.textPrimary};
 `
 const BlockContent = styled.div`
-  display: inline-flex;
-  align-items: center;
+  text-align: center;
 `
