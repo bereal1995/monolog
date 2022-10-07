@@ -2,6 +2,11 @@ import BulletedListItem from './BulletedListItem'
 
 import Paragraph from './Paragraph'
 
+import Heading1 from './Heading1'
+
+import Heading2 from './Heading2'
+import Heading3 from './Heading3'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
@@ -16,16 +21,12 @@ function Block({ block }: BlockProps<BlockType>) {
   switch (type) {
     case 'paragraph':
       return <Paragraph block={block} />
-    // return <Paragraph block={block} />
     case 'heading_1':
-      return <div>Heading1</div>
-    // return <Heading1 block={block} />
+      return <Heading1 block={block} />
     case 'heading_2':
-      return <div>Heading2</div>
-    // return <Heading2 block={block} />
+      return <Heading2 block={block} />
     case 'heading_3':
-      return <div>Heading3</div>
-    // return <Heading3 block={block} />
+      return <Heading3 block={block} />
     case 'bulleted_list_item':
       return <BulletedListItem block={block} />
     case 'numbered_list_item':
