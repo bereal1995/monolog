@@ -7,6 +7,10 @@ import Heading1 from './Heading1'
 import Heading2 from './Heading2'
 import Heading3 from './Heading3'
 
+import Unsupported from './Unsupported'
+
+import Code from './Code'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
@@ -29,6 +33,8 @@ function Block({ block }: BlockProps<BlockType>) {
       return <Heading3 block={block} />
     case 'bulleted_list_item':
       return <BulletedListItem block={block} />
+    case 'code':
+      return <Code block={block}></Code>
     case 'numbered_list_item':
       return <div>NumberedListItem</div>
     // return <NumberedListItem block={block} />
@@ -41,12 +47,8 @@ function Block({ block }: BlockProps<BlockType>) {
     case 'child_page':
       return <div>ChildPage</div>
     // return <ChildPage block={block} />
-    case 'unsupported':
-      return <div>Unsupported</div>
-    // return <Unsupported block={block} />
     default:
-      return <div>Unsupported</div>
-    // return <Unsupported block={block} />
+      return <Unsupported />
   }
 }
 

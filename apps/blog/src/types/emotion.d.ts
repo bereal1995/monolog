@@ -4,6 +4,7 @@ import { LibTheme } from 'some-lib'
 
 declare module '@emotion/react' {
   export interface Theme {
+    primary: string
     background: string
     textPrimary: string
     textSecondary: string
@@ -14,7 +15,7 @@ declare module '@emotion/react' {
       selected: string
       disabled: string
       disabledBackground: string
-    },
+    }
     divider: string
   }
 }

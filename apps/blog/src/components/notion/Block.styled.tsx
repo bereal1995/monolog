@@ -10,7 +10,7 @@ export const BlockItem = styled.div`
 `
 
 export const BlockContent = styled.div`
-  text-align: center;
+  flex: 1;
   &:empty::after {
     content: '\\00a0';
   }
