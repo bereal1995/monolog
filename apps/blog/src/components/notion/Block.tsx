@@ -1,17 +1,21 @@
 import BulletedListItem from './BulletedListItem'
 
+import Paragraph from './Paragraph'
+
 import { BlockType } from '@/src/api/notion'
 
-interface Props {
-  block: BlockType
+export interface BlockProps<T> {
+  block: T & {
+    children?: BlockType[]
+  }
 }
 
-function Block({ block }: Props) {
+function Block({ block }: BlockProps<BlockType>) {
   const { type } = block
 
   switch (type) {
     case 'paragraph':
-      return <div>Paragraph</div>
+      return <Paragraph block={block} />
     // return <Paragraph block={block} />
     case 'heading_1':
       return <div>Heading1</div>

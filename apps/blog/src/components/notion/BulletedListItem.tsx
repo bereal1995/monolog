@@ -1,20 +1,10 @@
 import { BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-
 import styled from '@emotion/styled'
 
-import Block from './Block'
+import Block, { BlockProps } from './Block'
+import { BlockChildren, BlockContent, BlockItem } from './Block.styled'
 
-import { BlockItem } from './Block.styled'
-
-import { BlockType } from '@/src/api/notion'
-
-interface Props {
-  block: BulletedListItemBlockObjectResponse & {
-    children?: BlockType[]
-  }
-}
-
-function BulletedListItem({ block }: Props) {
+function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectResponse>) {
   return (
     <>
       <BlockItem>
@@ -34,9 +24,6 @@ function BulletedListItem({ block }: Props) {
 
 export default BulletedListItem
 
-const BlockChildren = styled.div`
-  margin-left: 20px;
-`
 const BlockBullet = styled.span`
   display: block;
   width: 7px;
@@ -44,7 +31,4 @@ const BlockBullet = styled.span`
   margin-right: 10px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.textPrimary};
-`
-const BlockContent = styled.div`
-  text-align: center;
 `

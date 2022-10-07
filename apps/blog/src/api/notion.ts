@@ -1,21 +1,18 @@
-import { Client, isFullBlock, iteratePaginatedAPI } from '@notionhq/client'
+import { Client, isFullBlock, isFullPage, iteratePaginatedAPI } from '@notionhq/client'
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY })
 
-// export const getNotionPage = async (page_id?: string) => {
-//   if (!page_id) return
+export const getNotionPage = async (page_id?: string) => {
+  if (!page_id) return
 
-//   const response = await notion.pages.retrieve({
-//     page_id,
-//   })
-//   return response
-// }
-
-export const getBlocks = async (block_id: string) => {
-  const response = await notion.blocks.retrieve({
-    block_id,
+  const response = await await notion.pages.retrieve({
+    page_id,
   })
+
+  if (!isFullPage(response)) {
+    return
+  }
 
   return response
 }
@@ -31,25 +28,17 @@ export const getRootBlockChildren = async () => {
   return response
 }
 
-export const getBlockChildren = async (block_id: string) => {
-  const response = await notion.blocks.children.list({
-    block_id,
-    page_size: 50,
-  })
-
-  return response
-}
-
 export type BlockType = BlockObjectResponse & { children?: BlockObjectResponse[] }
 
 export const getFullBlocks = async (parentBlockId: string) => {
-  const fullBlocks: BlockType[] = []
+  const fullBlocks = []
   for await (const block of iteratePaginatedAPI(notion.blocks.children.list, {
     block_id: parentBlockId,
   })) {
-    if (isFullBlock(block)) {
-      fullBlocks.push(block)
+    if (!isFullBlock(block)) {
+      continue
     }
+    fullBlocks.push(block)
   }
 
   return fullBlocks
