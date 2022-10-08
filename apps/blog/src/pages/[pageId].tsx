@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
-import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage } from '../api/notion'
+import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage, getRootBlockChildren } from '../api/notion'
 import Block from '../components/notion/Block'
 import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
+import { wrapper } from '../modules/store'
 
 interface Props {
   blocks: BlockType[]
@@ -42,8 +43,24 @@ const Container = styled.div`
   }
 `
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const pageId = query.pageId as string
+export async function getStaticPaths() {
+  const blocks = await getRootBlockChildren()
+  const ids = blocks?.filter((block) => block.type === 'child_page').map((block) => block.id)
+
+  console.log('ids', ids)
+
+  return {
+    paths: ids?.map((id) => ({
+      params: {
+        pageId: id.toString(),
+      },
+    })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async ({ params }) => {
+  const pageId = params?.pageId as string
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
   const initBlocks = await getFullBlocks(pageId)
@@ -56,4 +73,4 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
       title: pageTitle,
     },
   }
-}
+})

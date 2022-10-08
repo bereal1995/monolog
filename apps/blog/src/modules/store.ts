@@ -13,7 +13,7 @@ const createStore = () => {
   const store = configureStore({
     reducer: rootReducer,
     middleware: middlewares,
-    devTools: true
+    devTools: true,
   })
   store.sagaTask = sagaMiddleware.run(rootSaga)
 

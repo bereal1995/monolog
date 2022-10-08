@@ -20,12 +20,23 @@ export const getNotionPage = async (page_id?: string) => {
 export const getRootBlockChildren = async () => {
   if (!process.env.NEXT_PUBLIC_NOTION_DATABASE_ID) return
 
-  const response = await notion.blocks.children.list({
-    block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
-    page_size: 50,
-  })
+  const result = []
 
-  return response
+  // const response = await notion.blocks.children.list({
+  //   block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
+  //   page_size: 50,
+  // })
+
+  for await (const block of iteratePaginatedAPI(notion.blocks.children.list, {
+    block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
+  })) {
+    if (!isFullBlock(block)) {
+      continue
+    }
+    result.push(block)
+  }
+
+  return result
 }
 
 export type BlockType = BlockObjectResponse & { children?: BlockObjectResponse[]; index?: number }

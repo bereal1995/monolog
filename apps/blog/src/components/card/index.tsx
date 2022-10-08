@@ -1,31 +1,23 @@
 import styled from '@emotion/styled'
-import { BlockObjectResponse, ChildPageBlockObjectResponse, ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
+import { ChildPageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import CardItem from './CardItem'
 
+import { BlockType } from '@/src/api/notion'
+
 interface Props {
-  blocks: ListBlockChildrenResponse;
+  blocks: BlockType[]
 }
 
-export default function Card ({ blocks }: Props) {
-  const { results } = blocks
-
+export default function Card({ blocks }: Props) {
   return (
     <Container>
-      {
-        results
-          .filter((block) => (block as BlockObjectResponse).type === 'child_page')
-          .map((block) => {
-            const { id, child_page } = block as ChildPageBlockObjectResponse
-            return (
-              <CardItem
-                key={id}
-                id={id}
-                title={child_page.title}
-              />
-            )
-          })
-      }
+      {blocks
+        .filter((block) => block.type === 'child_page')
+        .map((block) => {
+          const { id, child_page } = block as ChildPageBlockObjectResponse
+          return <CardItem key={id} id={id} title={child_page.title} />
+        })}
     </Container>
   )
 }

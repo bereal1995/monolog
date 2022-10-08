@@ -1,13 +1,12 @@
 import styled from '@emotion/styled'
-import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
-import { getRootBlockChildren } from '@/api/notion'
+import { BlockType, getRootBlockChildren } from '@/api/notion'
 import Card from '@/components/card'
 
 interface Props {
-  blocks: ListBlockChildrenResponse
+  blocks: BlockType[]
 }
 
 export default function Home({ blocks }: Props) {
