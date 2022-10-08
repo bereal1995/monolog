@@ -21,3 +21,11 @@ export const HeadItem = styled.div`
   font-weight: 600;
   line-height: 1.3;
 `
+
+export const BlockPrefix = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  min-height: calc(1.5em + 3px + 3px);
+`

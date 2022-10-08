@@ -1,5 +1,7 @@
 import { PageObjectResponse, RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 
+import { BlockType } from '../api/notion'
+
 export const getTitleFromPage = (page?: PageObjectResponse, titleKey: string = 'Name') => {
   if (!page) return ''
   let title: RichTextItemResponse[] = []
@@ -21,4 +23,33 @@ export const getTitleFromPage = (page?: PageObjectResponse, titleKey: string = '
     ).title
   }
   return title.map(({ plain_text }) => plain_text).join('')
+}
+
+const setBlock = (block: BlockType, index: number) => {
+  if (block.type !== 'numbered_list_item' && !block.children) return block
+
+  if (block.type === 'numbered_list_item') {
+    block.index = index
+  }
+
+  if (block.children) {
+    block.children = setBlocksWithChildren(block.children)
+  }
+
+  return block
+}
+
+export const setBlocksWithChildren = (blocks: BlockType[]) => {
+  let index = 0
+  blocks.map((block) => {
+    if (block.type === 'numbered_list_item') {
+      index++
+    } else {
+      index = 0
+    }
+
+    return setBlock(block, index)
+  })
+
+  return blocks
 }

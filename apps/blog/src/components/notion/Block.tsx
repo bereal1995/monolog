@@ -13,18 +13,19 @@ import Code from './Code'
 
 import Divider from './Divider'
 
+import NumberedListItem from './NumberedListItem'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
   block: T & {
     children?: BlockType[]
+    index?: number
   }
 }
 
 function Block({ block }: BlockProps<BlockType>) {
   const { type } = block
-
-  console.log('type', type)
 
   switch (type) {
     case 'paragraph':
@@ -41,11 +42,10 @@ function Block({ block }: BlockProps<BlockType>) {
       return <Code block={block}></Code>
     case 'divider':
       return <Divider block={block} />
+    case 'numbered_list_item':
+      return <NumberedListItem block={block} />
     case 'quote':
       return <div>quote</div>
-    case 'numbered_list_item':
-      return <div>NumberedListItem</div>
-    // return <NumberedListItem block={block} />
     case 'to_do':
       return <div>ToDo</div>
     // return <ToDo block={block} />

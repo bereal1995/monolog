@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next'
 
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage } from '../api/notion'
 import Block from '../components/notion/Block'
-import { getTitleFromPage } from '../lib/notion'
+import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
 
 interface Props {
   blocks: BlockType[]
@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default function PageId({ blocks, title }: Props) {
+  console.log('blocks', setBlocksWithChildren(blocks))
+
   return (
     <Container>
       <h1>{title}</h1>
@@ -47,7 +49,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
   const initBlocks = await getFullBlocks(pageId)
-  const blocks = await getBlocksWithChildren(initBlocks)
+  const blocksWithChildren = await getBlocksWithChildren(initBlocks)
+  const blocks = setBlocksWithChildren(blocksWithChildren)
 
   return {
     props: {

@@ -2,7 +2,7 @@ import { BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/
 import styled from '@emotion/styled'
 
 import { BlockProps } from './Block'
-import { BlockContent, BlockItem } from './Block.styled'
+import { BlockContent, BlockItem, BlockPrefix } from './Block.styled'
 import BlockChildren from './BlockChildren'
 
 function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectResponse>) {
@@ -21,12 +21,7 @@ function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectRespo
 
 export default BulletedListItem
 
-const BlockBullet = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  min-height: calc(1.5em + 3px + 3px);
+const BlockBullet = styled(BlockPrefix)`
   span {
     display: block;
     width: 7px;
