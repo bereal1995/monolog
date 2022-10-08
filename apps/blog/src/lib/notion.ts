@@ -53,3 +53,14 @@ export const setBlocksWithChildren = (blocks: BlockType[]) => {
 
   return blocks
 }
+
+type AnnotationKey = keyof RichTextItemResponse['annotations']
+export const createClassName = (annotations: RichTextItemResponse['annotations']) =>
+  Object.keys(annotations).reduce((acc, key) => {
+    const annotationKey = key as AnnotationKey
+    if (annotationKey === 'color') return acc
+    if (annotations[annotationKey]) {
+      return acc + ` ${annotationKey}`
+    }
+    return acc
+  }, '')

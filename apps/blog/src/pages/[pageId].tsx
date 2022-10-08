@@ -11,8 +11,6 @@ interface Props {
 }
 
 export default function PageId({ blocks, title }: Props) {
-  console.log('blocks', setBlocksWithChildren(blocks))
-
   return (
     <Container>
       <h1>{title}</h1>

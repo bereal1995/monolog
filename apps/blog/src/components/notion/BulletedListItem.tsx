@@ -2,8 +2,9 @@ import { BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/
 import styled from '@emotion/styled'
 
 import { BlockProps } from './Block'
-import { BlockContent, BlockItem, BlockPrefix } from './Block.styled'
+import { BlockItem, BlockPrefix } from './Block.styled'
 import BlockChildren from './BlockChildren'
+import RichText from './RichText'
 
 function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectResponse>) {
   return (
@@ -12,7 +13,7 @@ function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectRespo
         <BlockBullet>
           <span />
         </BlockBullet>
-        <BlockContent>{block.bulleted_list_item.rich_text[0].plain_text}</BlockContent>
+        <RichText rich_text={block.bulleted_list_item.rich_text} />
       </BlockItem>
       <BlockChildren blockChildren={block.children} />
     </>

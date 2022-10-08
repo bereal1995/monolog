@@ -17,6 +17,7 @@ export default function GlobalStyle(props: Props) {
             a {
               color: ${theme.textSecondary};
             }
+            transition: background-color 0.3s ease-in-out;
           }
         `}
       />

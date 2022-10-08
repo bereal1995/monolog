@@ -17,7 +17,7 @@ export const BlockContent = styled.div`
 export const BlockChildrenBox = styled.div`
   margin-left: 20px;
 `
-export const HeadItem = styled.div`
+export const HeadContent = styled.div`
   font-weight: 600;
   line-height: 1.3;
 `
