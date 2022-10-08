@@ -16,8 +16,8 @@ export const lightTheme = {
 
 export const darkTheme = {
   primary: '#66bb6a',
-  background: '#121212',
-  textPrimary: '#fff',
+  background: '#191919',
+  textPrimary: '#ffffffcf',
   textSecondary: 'rgba(255, 255, 255, 0.7)',
   textDisabled: 'rgba(255, 255, 255, 0.5)',
   action: {

@@ -1,7 +1,8 @@
 import { ParagraphBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
-import Block, { BlockProps } from './Block'
-import { BlockChildren, BlockContent, BlockItem } from './Block.styled'
+import { BlockProps } from './Block'
+import { BlockContent, BlockItem } from './Block.styled'
+import BlockChildren from './BlockChildren'
 
 function Paragraph({ block }: BlockProps<ParagraphBlockObjectResponse>) {
   return (
@@ -9,13 +10,7 @@ function Paragraph({ block }: BlockProps<ParagraphBlockObjectResponse>) {
       <BlockItem>
         <BlockContent>{block.paragraph.rich_text[0]?.plain_text}</BlockContent>
       </BlockItem>
-      {block.children && (
-        <BlockChildren>
-          {block.children.map((childBlock) => {
-            return <Block key={`${childBlock.id}-child-${childBlock.id}`} block={childBlock} />
-          })}
-        </BlockChildren>
-      )}
+      <BlockChildren blockChildren={block.children} />
     </>
   )
 }

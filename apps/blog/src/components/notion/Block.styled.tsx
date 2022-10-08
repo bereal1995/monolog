@@ -2,21 +2,19 @@ import styled from '@emotion/styled'
 
 export const BlockItem = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   min-height: 1.5rem;
-  padding: 0.25rem 0.5rem;
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
 `
 
 export const BlockContent = styled.div`
   flex: 1;
+  padding: 3px 2px;
   &:empty::after {
     content: '\\00a0';
   }
 `
 
-export const BlockChildren = styled.div`
+export const BlockChildrenBox = styled.div`
   margin-left: 20px;
 `
 export const HeadItem = styled.div`

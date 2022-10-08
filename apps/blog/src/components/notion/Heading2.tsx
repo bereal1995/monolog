@@ -3,12 +3,16 @@ import { Heading2BlockObjectResponse } from '@notionhq/client/build/src/api-endp
 
 import { BlockProps } from './Block'
 import { BlockItem, HeadItem } from './Block.styled'
+import BlockChildren from './BlockChildren'
 
 function Heading2({ block }: BlockProps<Heading2BlockObjectResponse>) {
   return (
-    <BlockItem>
-      <HeadContent>{block.heading_2.rich_text[0].plain_text}</HeadContent>
-    </BlockItem>
+    <>
+      <BlockItem>
+        <HeadContent>{block.heading_2.rich_text[0].plain_text}</HeadContent>
+      </BlockItem>
+      <BlockChildren blockChildren={block.children} />
+    </>
   )
 }
 

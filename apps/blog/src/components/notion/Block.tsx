@@ -11,6 +11,8 @@ import Unsupported from './Unsupported'
 
 import Code from './Code'
 
+import Divider from './Divider'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
@@ -21,6 +23,8 @@ export interface BlockProps<T> {
 
 function Block({ block }: BlockProps<BlockType>) {
   const { type } = block
+
+  console.log('type', type)
 
   switch (type) {
     case 'paragraph':
@@ -35,6 +39,10 @@ function Block({ block }: BlockProps<BlockType>) {
       return <BulletedListItem block={block} />
     case 'code':
       return <Code block={block}></Code>
+    case 'divider':
+      return <Divider block={block} />
+    case 'quote':
+      return <div>quote</div>
     case 'numbered_list_item':
       return <div>NumberedListItem</div>
     // return <NumberedListItem block={block} />
