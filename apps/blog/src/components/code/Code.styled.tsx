@@ -2,11 +2,13 @@ import styled from '@emotion/styled'
 
 export const Block = styled.div`
   margin-bottom: 30px;
+  word-break: break-all;
   > pre {
     overflow: auto;
     margin-bottom: 5px;
     padding: 15px;
     border-radius: 5px;
+    white-space: pre-wrap;
   }
 `
 

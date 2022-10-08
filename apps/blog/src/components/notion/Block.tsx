@@ -15,6 +15,10 @@ import Divider from './Divider'
 
 import NumberedListItem from './NumberedListItem'
 
+import ImageBlock from './ImageBlock'
+
+import ColumnList from './ColumnList'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
@@ -44,6 +48,10 @@ function Block({ block }: BlockProps<BlockType>) {
       return <Divider block={block} />
     case 'numbered_list_item':
       return <NumberedListItem block={block} />
+    case 'image':
+      return <ImageBlock block={block} />
+    case 'column_list':
+      return <ColumnList block={block} />
     case 'quote':
       return <div>quote</div>
     case 'to_do':
