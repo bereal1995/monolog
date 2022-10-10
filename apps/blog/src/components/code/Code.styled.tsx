@@ -2,13 +2,10 @@ import styled from '@emotion/styled'
 
 export const Block = styled.div`
   margin-bottom: 30px;
-  word-break: break-all;
   > pre {
-    overflow: auto;
     margin-bottom: 5px;
-    padding: 15px;
+    padding: 15px 15px 0 15px;
     border-radius: 5px;
-    white-space: pre-wrap;
   }
 `
 
@@ -25,9 +22,8 @@ export const CodeHeader = styled.div`
   }
 `
 export const CodeContent = styled.div`
-  /* .line {
-    display: table-row;
-  } */
+  overflow: scroll;
+  padding-bottom: 15px;
 
   .line_no {
     display: table-cell;

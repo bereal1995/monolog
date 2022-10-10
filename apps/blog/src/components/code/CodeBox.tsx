@@ -47,16 +47,18 @@ function CodeBox({ language, code, isPlay }: Props) {
               <span className="language_name">{language}</span>
               <ActionButton onClick={onClickCopy}>{text}</ActionButton>
             </CodeHeader>
-            {tokens.map((line, i) => (
-              <CodeContent {...getLineProps({ line, key: i })}>
-                <span className="line_no">{i + 1}</span>
-                <span className="line_content">
-                  {line.map((token, key) => (
-                    <span {...getTokenProps({ token, key })} />
-                  ))}
-                </span>
-              </CodeContent>
-            ))}
+            <CodeContent>
+              {tokens.map((line, i) => (
+                <div {...getLineProps({ line, key: i })}>
+                  <span className="line_no">{i + 1}</span>
+                  <span className="line_content">
+                    {line.map((token, key) => (
+                      <span {...getTokenProps({ token, key })} />
+                    ))}
+                  </span>
+                </div>
+              ))}
+            </CodeContent>
           </pre>
         )}
       </Highlight>

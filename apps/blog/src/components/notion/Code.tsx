@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { Language } from 'prism-react-renderer'
 
@@ -19,13 +20,17 @@ function Code({ block }: BlockProps<CodeBlockObjectResponse>) {
   return (
     <>
       <BlockItem>
-        <BlockContent>
+        <CodeBlockContent>
           <CodeBox language={block.code.language as Language} code={code} isPlay={isPlay} />
-        </BlockContent>
+        </CodeBlockContent>
       </BlockItem>
       <BlockChildren blockChildren={block.children} />
     </>
   )
 }
+
+const CodeBlockContent = styled(BlockContent)`
+  width: 100%;
+`
 
 export default Code
