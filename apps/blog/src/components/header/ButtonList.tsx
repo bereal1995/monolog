@@ -6,15 +6,14 @@ import { Button } from 'ui'
 import { RootState } from '@/modules/reducers'
 import { setThemeMode } from '@/src/modules/app/reducer'
 
-interface Props {
-}
+interface Props {}
 
 const headerButtonList = [
   { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' }
+  { name: 'About', link: '/about' },
 ]
 
-export default function ButtonList (props: Props) {
+export default function ButtonList(props: Props) {
   const dispatch = useDispatch()
   const themeMode = useSelector((state: RootState) => state.app.themeMode)
 
@@ -23,18 +22,10 @@ export default function ButtonList (props: Props) {
   }
   return (
     <Container>
-      {
-        headerButtonList.map((item, index) => (
-          <Button
-            key={index}
-          >
-            {item.name}
-          </Button>
-        ))
-      }
-      <Button onClick={handleClickThemeButton}>
-        {themeMode}
-      </Button>
+      {headerButtonList.map((item, index) => (
+        <Button key={index}>{item.name}</Button>
+      ))}
+      <Button onClick={handleClickThemeButton}>{themeMode}</Button>
     </Container>
   )
 }

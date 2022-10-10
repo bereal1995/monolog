@@ -22,7 +22,7 @@ export const CodeHeader = styled.div`
   }
 `
 export const CodeContent = styled.div`
-  overflow: scroll;
+  overflow: auto;
   padding-bottom: 15px;
 
   .line_no {
