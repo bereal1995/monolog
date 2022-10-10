@@ -19,6 +19,8 @@ import ImageBlock from './ImageBlock'
 
 import ColumnList from './ColumnList'
 
+import ChildPage from './ChildPage'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps<T> {
@@ -52,6 +54,8 @@ function Block({ block }: BlockProps<BlockType>) {
       return <ImageBlock block={block} />
     case 'column_list':
       return <ColumnList block={block} />
+    case 'child_page':
+      return <ChildPage block={block} />
     case 'quote':
       return <div>quote</div>
     case 'to_do':
@@ -60,8 +64,6 @@ function Block({ block }: BlockProps<BlockType>) {
     case 'toggle':
       return <div>Toggle</div>
     // return <Toggle block={block} />
-    case 'child_page':
-      return <div>ChildPage</div>
     // return <ChildPage block={block} />
     default:
       return <Unsupported />

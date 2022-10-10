@@ -1,9 +1,10 @@
 import styled from '@emotion/styled'
 
+import Block from '../components/notion/Block'
+
 import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
 import { BlockType, getRootBlockChildren } from '@/api/notion'
-import Card from '@/components/card'
 
 interface Props {
   blocks: BlockType[]
@@ -18,17 +19,27 @@ export default function Home({ blocks }: Props) {
         <img src={user?.photoUrl} alt="" />
         <h2>{user?.name}</h2>
       </div>
-      <Card blocks={blocks} />
+      <div>
+        {blocks.map((block) => (
+          <Block key={block.id} block={block} />
+        ))}
+      </div>
     </Container>
   )
 }
 
 const Container = styled.div`
+  max-width: 800px;
   padding: 10px;
+  margin: 0 auto;
 `
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const blocks = await getRootBlockChildren()
+
+  // const initBlocks = await getFullBlocks(pageId)
+  // const blocksWithChildren = await getBlocksWithChildren(initBlocks)
+  // const blocks = setBlocksWithChildren(blocksWithChildren)
 
   return {
     props: {

@@ -63,6 +63,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   const pageId = params?.pageId as string
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
+
   const initBlocks = await getFullBlocks(pageId)
   const blocksWithChildren = await getBlocksWithChildren(initBlocks)
   const blocks = setBlocksWithChildren(blocksWithChildren)
