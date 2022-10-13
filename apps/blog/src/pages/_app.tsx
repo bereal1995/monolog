@@ -2,6 +2,8 @@ import type { ReactElement, ReactNode } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
 
+import { Provider } from 'react-redux'
+
 import CustomThemeProvider from '@/src/styles/CustomThemeProvider'
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
@@ -16,17 +18,20 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-function App ({ Component, pageProps }: AppPropsWithLayout) {
+function App({ Component, ...rest }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>)
+  const { store, props } = wrapper.useWrappedStore(rest)
 
   return (
-    <AuthProvider>
-      <CustomThemeProvider>
-        <GlobalStyle/>
-        {getLayout(<Component {...pageProps} />)}
-      </CustomThemeProvider>
-    </AuthProvider>
+    <Provider store={store}>
+      <AuthProvider>
+        <CustomThemeProvider>
+          <GlobalStyle />
+          {getLayout(<Component {...props.pageProps} />)}
+        </CustomThemeProvider>
+      </AuthProvider>
+    </Provider>
   )
 }
 
-export default wrapper.withRedux(App)
+export default App

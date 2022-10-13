@@ -3,15 +3,14 @@ import React, { useEffect } from 'react'
 import { getTheme } from 'ui/theme'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setThemeMode } from '@/modules/app/reducer'
-import { RootState } from '@/modules/reducers'
+import { appSelector, setThemeMode } from '@/modules/app/reducer'
 
-interface Props extends React.PropsWithChildren<{}> { }
+interface Props extends React.PropsWithChildren<{}> {}
 
-export default function CustomThemeProvider ({ children }: Props) {
+export default function CustomThemeProvider({ children }: Props) {
   const dispatch = useDispatch()
   const isOsDarkMode = typeof window !== 'undefined' && window?.matchMedia('(prefers-color-scheme: dark)').matches
-  const themeMode = useSelector((state: RootState) => state.app.themeMode)
+  const themeMode = useSelector(appSelector.themeMode)
 
   useEffect(() => {
     const localTheme = localStorage.getItem('themeMode')
@@ -23,9 +22,5 @@ export default function CustomThemeProvider ({ children }: Props) {
     }
   }, [isOsDarkMode, dispatch])
 
-  return (
-    <ThemeProvider theme={getTheme(themeMode)}>
-        {children}
-    </ThemeProvider>
-  )
+  return <ThemeProvider theme={getTheme(themeMode)}>{children}</ThemeProvider>
 }

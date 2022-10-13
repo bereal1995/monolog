@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from 'ui'
 
-import { RootState } from '@/modules/reducers'
-import { setThemeMode } from '@/src/modules/app/reducer'
+import { appSelector, setThemeMode } from '@/src/modules/app/reducer'
 
 interface Props {}
 
@@ -15,7 +14,7 @@ const headerButtonList = [
 
 export default function ButtonList(props: Props) {
   const dispatch = useDispatch()
-  const themeMode = useSelector((state: RootState) => state.app.themeMode)
+  const themeMode = useSelector(appSelector.themeMode)
 
   const handleClickThemeButton = () => {
     dispatch(setThemeMode({ themeMode: themeMode === 'light' ? 'dark' : 'light' }))
