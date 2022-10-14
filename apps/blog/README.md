@@ -1,6 +1,7 @@
 # Blog
 
 ## 기술스택
+
 - NextJs
 - typescript
 - redux
@@ -9,7 +10,6 @@
 - emotion
 - supabase
 - jest, react-testing-library
-- cypress
 - next-0auth
 - cloudflare
 - self-font
@@ -18,6 +18,7 @@
 - [datadog](https://www.datadoghq.com/)
 
 ## 폴더 구조
+
 ```
 ├── src
 │   ├── pages
@@ -33,24 +34,28 @@
 │   ├── services
 │   ├── lib
 ```
-  
 
 ## TODO
+
 - [ ] 헤더 UI 제작
+
   - [ ] 로고
   - [ ] 버튼
-      - [ ] 유저프로필 UI
-      - [ ] 다크모드 버튼
+    - [ ] 유저프로필 UI
+    - [ ] 다크모드 버튼
 
 - [ ] 로그인, 로그아웃 기능
+
   - [ ] 0Auth라이브러리 (Github, Google)
 
 - [ ] 메인 페이지
+
   - [ ] 리스트 UI [카드, 리스트]
   - [ ] 무한스크롤
   - [ ] 정렬
 
 - [ ] 상세 페이지
+
   - [ ] 댓글 기능 (supabase)
   - [ ] 목차 네비게이션 기능^
 

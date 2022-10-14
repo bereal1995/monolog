@@ -23,5 +23,4 @@ module.exports = {
     camelcase: 'off',
     'comma-dangle': 'off',
   },
-  ignorePatterns: ['**/cypress/*'],
 }
