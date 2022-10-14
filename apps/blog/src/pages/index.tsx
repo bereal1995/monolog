@@ -15,10 +15,10 @@ export default function Home({ blocks }: Props) {
 
   return (
     <Container>
-      <div>
+      {/* <div>
         <img src={user?.photoUrl} alt="" />
         <h2>{user?.name}</h2>
-      </div>
+      </div> */}
       <div>
         {blocks.map((block) => (
           <Block key={block.id} block={block} />
