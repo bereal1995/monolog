@@ -22,6 +22,7 @@ importers:
       '@notionhq/client': ^2.2.0
       '@reduxjs/toolkit': ^1.8.5
       '@supabase/supabase-js': ^1.35.7
+      '@types/facepaint': ^1.2.2
       '@types/js-cookie': ^3.0.2
       '@types/node': 18.7.18
       '@types/react': 18.0.20
@@ -39,6 +40,7 @@ importers:
       eslint-plugin-promise: ^6.0.1
       eslint-plugin-react: ^7.31.8
       eslint-plugin-unused-imports: ^2.0.0
+      facepaint: ^1.2.1
       js-cookie: ^3.0.1
       next: 12.3.0
       next-redux-wrapper: ^8.0.0
@@ -64,6 +66,7 @@ importers:
       '@types/js-cookie': 3.0.2
       antd: 4.23.2_biqbaboplfbrettd7655fr4n2y
       axios: 0.27.2
+      facepaint: 1.2.1
       js-cookie: 3.0.1
       next: 12.3.0_ir3quccc6i62x6qn6jjhyjjiey
       next-redux-wrapper: 8.0.0_hbg66zlzhsdrcprabwib5vy3cm
@@ -79,6 +82,7 @@ importers:
     devDependencies:
       '@babel/core': 7.19.1
       '@next/eslint-plugin-next': 12.3.1
+      '@types/facepaint': 1.2.2
       '@types/node': 18.7.18
       '@types/react': 18.0.20
       '@types/react-dom': 18.0.6
@@ -1063,6 +1067,10 @@ packages:
     dependencies:
       tslib: 2.4.0
     dev: false
+
+  /@types/facepaint/1.2.2:
+    resolution: {integrity: sha512-Xl9tAINsQL1s0TdXG5IiG75kZrxem5esbnKJF5gQgFel92OdS5zLtFYnbBw6fBruCMPYJQ9mK5pVmSsMl3Puug==}
+    dev: true
 
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
@@ -2932,6 +2940,10 @@ packages:
     resolution: {integrity: sha512-6hxeJYaL110a9b5TEJSj0gojyHQAmA2ch5Os+ySCiA1QGdS697XWY1pzsrSjqA9LDEEgdB/KypIlR59RcLuHYw==}
     dependencies:
       type: 2.7.2
+    dev: false
+
+  /facepaint/1.2.1:
+    resolution: {integrity: sha512-oNvBekbhsm/0PNSOWca5raHNAi6dG960Bx6LJgxDPNF59WpuspgQ17bN5MKwOr7JcFdQYc7StW3VZ28DBZLavQ==}
     dev: false
 
   /fast-deep-equal/3.1.3:

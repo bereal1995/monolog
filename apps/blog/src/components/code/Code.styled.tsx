@@ -45,7 +45,7 @@ export const ActionButton = styled.button`
   color: #79b3fd;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: inherit;
   cursor: pointer;
   &:disabled {
     cursor: unset;
