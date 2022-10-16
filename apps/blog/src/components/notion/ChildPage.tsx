@@ -7,7 +7,6 @@ import { BlockContent, BlockItem } from './Block.styled'
 import BlockChildren from './BlockChildren'
 
 function ChildPage({ block }: BlockProps<ChildPageBlockObjectResponse>) {
-  console.log('block', block)
   return (
     <BlockItem>
       <ChildPageBlockContent>

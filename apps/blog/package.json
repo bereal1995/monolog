@@ -29,6 +29,7 @@
     "react-redux": "^8.0.4",
     "redux": "^4.2.0",
     "redux-saga": "^1.2.1",
+    "sharp": "^0.31.1",
     "ui": "workspace:*"
   },
   "devDependencies": {

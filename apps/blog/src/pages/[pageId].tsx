@@ -47,8 +47,6 @@ export async function getStaticPaths() {
   const blocks = await getRootBlockChildren()
   const ids = blocks?.filter((block) => block.type === 'child_page').map((block) => block.id)
 
-  console.log('ids', ids)
-
   return {
     paths: ids?.map((id) => ({
       params: {
