@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
 import { useForm, Controller } from 'react-hook-form'
 import Head from 'next/head'
-
-import { Button, Input } from 'antd'
-
+import { Button } from 'ui'
 import { css } from '@emotion/react'
 
 import { useAuth } from '@/components/auth/AuthProvider'
@@ -14,15 +12,19 @@ const isEmail = (value: string) => {
 }
 
 type FormValues = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
-export default function Login () {
+export default function Login() {
   const { signInWithEmail, signInWithGithub, signInWithGoogle } = useAuth()
-  const { handleSubmit, control, formState: { errors } } = useForm<FormValues>()
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>()
 
-  const signIn = ({ email, password }: { email: string, password: string }) => signInWithEmail(email, password)
+  const signIn = ({ email, password }: { email: string; password: string }) => signInWithEmail(email, password)
 
   return (
     <Container>
@@ -33,7 +35,7 @@ export default function Login () {
             if (document.cookie && document.cookie.includes('monolog-auth')) {
               window.location.href = "/"
             }
-          `
+          `,
           }}
         />
       </Head>
@@ -48,11 +50,11 @@ export default function Login () {
           rules={{
             required: true,
             validate: {
-              isEmail
-            }
+              isEmail,
+            },
           }}
           render={({ field }) => (
-            <Input
+            <input
               css={css`
                 margin-bottom: 20px;
               `}
@@ -70,10 +72,10 @@ export default function Login () {
           control={control}
           rules={{
             required: true,
-            minLength: 6 // supabase 기본 밸리데이션이 6자리 이상
+            minLength: 6, // supabase 기본 밸리데이션이 6자리 이상
           }}
           render={({ field }) => (
-            <Input
+            <input
               css={css`
                 margin-bottom: 20px;
               `}
@@ -88,26 +90,22 @@ export default function Login () {
           css={css`
             margin-bottom: 40px;
           `}
-          block
-          type={'primary'}
-          htmlType={'submit'}
+          type={'submit'}
           data-test-id={'login-button'}
-        >로그인</Button>
+        >
+          로그인
+        </Button>
       </form>
 
       <Button
         css={css`
           margin-bottom: 20px;
         `}
-        block
-        onClick={signInWithGithub}>
+        onClick={signInWithGithub}
+      >
         Github 로그인
       </Button>
-      <Button
-        block
-        onClick={signInWithGoogle}>
-        Google 로그인
-      </Button>
+      <Button onClick={signInWithGoogle}>Google 로그인</Button>
     </Container>
   )
 }
