@@ -1,7 +1,9 @@
 import ose from './ose.png'
+import profile from './profile.png'
 
 const Images = {
-  ose
+  ose,
+  profile,
 }
 
 export default Images
