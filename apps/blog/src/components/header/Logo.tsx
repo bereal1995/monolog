@@ -3,11 +3,11 @@ import Link from 'next/link'
 
 interface Props {}
 
-export default function Logo (props: Props) {
+export default function Logo(props: Props) {
   return (
     <Container>
       <Link href={'/'}>
-        <a>LOGO</a>
+        <a>hhxdragon</a>
       </Link>
     </Container>
   )
@@ -15,4 +15,10 @@ export default function Logo (props: Props) {
 const Container = styled.h1`
   font-weight: 700;
   font-size: 20px;
+  a {
+    text-decoration: none;
+    &:hover {
+      color: ${({ theme }) => theme.action.active};
+    }
+  }
 `
