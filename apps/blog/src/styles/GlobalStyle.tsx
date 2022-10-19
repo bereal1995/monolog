@@ -6,7 +6,7 @@ import resetStyle from '@/styles/resetStyle'
 interface Props {}
 
 const breakpoints = [576, 768, 992, 1200]
-const mq = facepaint(breakpoints.map((bp) => `@media (min-width: ${bp}px)`))
+export const mq = facepaint(breakpoints.map((bp) => `@media (min-width: ${bp}px)`))
 
 export default function GlobalStyle(props: Props) {
   const theme = useTheme()

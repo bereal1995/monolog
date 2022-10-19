@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { DividerBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { BlockProps } from './Block'
@@ -9,12 +10,16 @@ function Divider({ block }: BlockProps<DividerBlockObjectResponse>) {
     <>
       <BlockItem>
         <BlockContent>
-          <hr />
+          <DividerLine />
         </BlockContent>
       </BlockItem>
       <BlockChildren blockChildren={block.children} />
     </>
   )
 }
+
+const DividerLine = styled.hr`
+  border-color: ${({ theme }) => theme.action.disabledBackground};
+`
 
 export default Divider

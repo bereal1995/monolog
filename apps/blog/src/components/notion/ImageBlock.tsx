@@ -9,7 +9,7 @@ function ImageBlock({ block }: BlockProps<ImageBlockObjectResponse>) {
   if (block.image.type !== 'file') return null
 
   return (
-    <Block>
+    <Block className="image_block">
       <Image src={block.image.file.url} alt="notion image" layout="fill" objectFit="contain" priority />
     </Block>
   )

@@ -19,8 +19,15 @@ function RichText({ rich_text }: Props) {
 
           switch (item.type) {
             case 'text':
+              if (item.href) {
+                return (
+                  <a key={index} className={className} style={style} href={item.href} target="_blank" rel="noreferrer">
+                    {item.text.content}
+                  </a>
+                )
+              }
               return (
-                <span key={`${item.plain_text}_${index}`} className={className} {...style}>
+                <span key={`${item.plain_text}_${index}`} className={className} style={style}>
                   {item.text.content}
                 </span>
               )

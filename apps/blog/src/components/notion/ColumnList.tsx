@@ -7,19 +7,28 @@ import { BlockContent, BlockItem } from './Block.styled'
 function ColumnList({ block }: BlockProps<ColumnListBlockObjectResponse>) {
   return (
     <BlockItem>
-      <BlockBox>
-        {block.children?.map(({ children }) => {
-          return children?.map((childBlock) => {
-            return <Block key={`${childBlock.id}-child-${childBlock.id}`} block={childBlock} />
-          })
+      <BlockContainer className="column_list">
+        {block.children?.map(({ children: column, index }) => {
+          return (
+            <ColumnItem key={column?.[0].id || index}>
+              {column?.map((block) => {
+                return <Block key={`${block.id}-child-${block.id}`} block={block} />
+              })}
+            </ColumnItem>
+          )
         })}
-      </BlockBox>
+      </BlockContainer>
     </BlockItem>
   )
 }
 
-const BlockBox = styled(BlockContent)`
+const BlockContainer = styled(BlockContent)`
   display: flex;
+`
+
+const ColumnItem = styled.div`
+  flex: 1;
+  width: 50%;
 `
 
 export default ColumnList

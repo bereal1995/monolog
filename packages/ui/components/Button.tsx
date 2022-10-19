@@ -1,27 +1,25 @@
-import * as React from "react";
-import styled from '@emotion/styled';
-import { css } from "@emotion/react";
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  fullWidth?: boolean;
+  fullWidth?: boolean
 }
 
 export const Button = ({ fullWidth = false, children, ...rest }: ButtonProps) => {
-  if (!children) return null;
+  if (!children) return null
 
   return (
     <StyledButton
-      css={
-        css`
-          width: ${fullWidth ? '100%' : 'auto'};
-        `
-      }
+      css={css`
+        width: ${fullWidth ? '100%' : 'auto'};
+      `}
       {...rest}
     >
       <span>{children}</span>
     </StyledButton>
-  );
-};
+  )
+}
 
 const StyledButton = styled.button`
   display: inline-flex;
@@ -45,7 +43,9 @@ const StyledButton = styled.button`
     opacity: 0.26;
     cursor: not-allowed;
   }
-  &:active, &:hover {
+  &:active,
+  &:hover,
+  &.active {
     font-weight: 700;
   }
-`;
+`

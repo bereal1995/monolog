@@ -6,7 +6,7 @@ const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY })
 export const getNotionPage = async (page_id?: string) => {
   if (!page_id) return
 
-  const response = await await notion.pages.retrieve({
+  const response = await notion.pages.retrieve({
     page_id,
   })
 

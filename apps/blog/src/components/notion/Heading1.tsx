@@ -18,5 +18,7 @@ function Heading1({ block }: BlockProps<Heading1BlockObjectResponse>) {
 export default Heading1
 
 const HeadContent = styled(_HeadContent)`
+  margin-top: 32px;
+  margin-bottom: 4px;
   font-size: 30px;
 `
