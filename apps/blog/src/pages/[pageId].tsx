@@ -70,6 +70,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
     props: {
       blocks,
       title: pageTitle,
+      revalidate: 60 * 60,
     },
   }
 })
