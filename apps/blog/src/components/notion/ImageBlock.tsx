@@ -10,7 +10,7 @@ function ImageBlock({ block }: BlockProps<ImageBlockObjectResponse>) {
 
   return (
     <Block>
-      <Image src={block.image.file.url} alt="notion image" layout="fill" objectFit="contain" />
+      <Image src={block.image.file.url} alt="notion image" layout="fill" objectFit="contain" priority />
     </Block>
   )
 }
