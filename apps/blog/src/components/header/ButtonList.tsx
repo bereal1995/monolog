@@ -9,7 +9,7 @@ import { mq } from '@/src/styles/GlobalStyle'
 interface Props {}
 
 const headerButtonList = [
-  { name: 'Home', link: '/' },
+  { name: 'Post', link: '/' },
   { name: 'About', link: '/about' },
 ]
 

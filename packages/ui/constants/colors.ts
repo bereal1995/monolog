@@ -5,9 +5,9 @@ export const lightTheme = {
   textSecondary: '#99A5C0',
   textDisabled: '#C0C8D9',
   action: {
-    active: '#19254C',
-    hover: '#a8bae7',
-    selected: '#19254C',
+    active: '#729874',
+    hover: '#729874',
+    selected: '#729874',
     disabled: '#C0C8D9',
     disabledBackground: '#C0C8D9',
   },

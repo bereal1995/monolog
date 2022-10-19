@@ -4,6 +4,8 @@ import { NextPage } from 'next'
 
 import { Provider } from 'react-redux'
 
+import HeadMeta from '../components/seo/HeadMeta'
+
 import CustomThemeProvider from '@/src/styles/CustomThemeProvider'
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
@@ -23,14 +25,17 @@ function App({ Component, ...rest }: AppPropsWithLayout) {
   const { store, props } = wrapper.useWrappedStore(rest)
 
   return (
-    <Provider store={store}>
-      <AuthProvider>
-        <CustomThemeProvider>
-          <GlobalStyle />
-          {getLayout(<Component {...props.pageProps} />)}
-        </CustomThemeProvider>
-      </AuthProvider>
-    </Provider>
+    <>
+      <HeadMeta />
+      <Provider store={store}>
+        <AuthProvider>
+          <CustomThemeProvider>
+            <GlobalStyle />
+            {getLayout(<Component {...props.pageProps} />)}
+          </CustomThemeProvider>
+        </AuthProvider>
+      </Provider>
+    </>
   )
 }
 

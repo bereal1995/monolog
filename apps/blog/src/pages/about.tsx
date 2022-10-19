@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage } from '../api/notion'
 import Block from '../components/notion/Block'
+import HeadMeta from '../components/seo/HeadMeta'
 import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
 import { wrapper } from '../modules/store'
 
@@ -13,14 +14,17 @@ interface Props {
 
 export default function About({ blocks, title }: Props) {
   return (
-    <Container>
-      <h1>{title}</h1>
-      <article>
-        {blocks.map((block) => (
-          <Block key={block.id} block={block} />
-        ))}
-      </article>
-    </Container>
+    <>
+      <HeadMeta title="HH | About" />
+      <Container>
+        <h1>{title}</h1>
+        <article>
+          {blocks.map((block) => (
+            <Block key={block.id} block={block} />
+          ))}
+        </article>
+      </Container>
+    </>
   )
 }
 const Container = styled.div`

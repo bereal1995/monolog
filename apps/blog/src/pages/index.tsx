@@ -70,10 +70,6 @@ const Info = styled.div`
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const blocks = await getRootBlockChildren()
 
-  // const initBlocks = await getFullBlocks(pageId)
-  // const blocksWithChildren = await getBlocksWithChildren(initBlocks)
-  // const blocks = setBlocksWithChildren(blocksWithChildren)
-
   return {
     props: {
       blocks,

@@ -3,25 +3,33 @@ import { GetStaticProps } from 'next'
 
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage, getRootBlockChildren } from '../api/notion'
 import Block from '../components/notion/Block'
+import HeadMeta from '../components/seo/HeadMeta'
 import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
 import { wrapper } from '../modules/store'
 
 interface Props {
   blocks: BlockType[]
   title: string
+  lastEditedTime: string
 }
 
-export default function PageId({ blocks, title }: Props) {
+export default function PageId({ blocks, title, lastEditedTime }: Props) {
   return (
-    <Container>
-      <h1>{title}</h1>
-      <hr />
-      <article>
-        {blocks.map((block) => (
-          <Block key={block.id} block={block} />
-        ))}
-      </article>
-    </Container>
+    <>
+      <HeadMeta title={`HH | ${title}`} />
+      <Container>
+        <Title>
+          <h1>{title}</h1>
+          <p>마지막 수정: {lastEditedTime}</p>
+        </Title>
+        <hr />
+        <article>
+          {blocks.map((block) => (
+            <Block key={block.id} block={block} />
+          ))}
+        </article>
+      </Container>
+    </>
   )
 }
 const Container = styled.div`
@@ -29,17 +37,24 @@ const Container = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
 
-  h1 {
-    font-size: 30px;
-    padding: 10px 0;
-  }
-
   hr {
     margin: 0;
   }
 
   article {
     padding-top: 10px;
+  }
+`
+
+const Title = styled.div`
+  h1 {
+    font-size: 30px;
+    padding-top: 10px;
+  }
+  p {
+    font-size: 12px;
+    color: ${({ theme }) => theme.textSecondary};
+    text-align: right;
   }
 `
 
@@ -61,6 +76,8 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   const pageId = params?.pageId as string
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
+  const lastEditedDate = new Date(page?.last_edited_time || '')
+  const lastEditedTime = new Intl.DateTimeFormat('ko-KR', { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' }).format(lastEditedDate)
 
   const initBlocks = await getFullBlocks(pageId)
   const blocksWithChildren = await getBlocksWithChildren(initBlocks)
@@ -70,6 +87,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
     props: {
       blocks,
       title: pageTitle,
+      lastEditedTime,
       revalidate: 60 * 60,
     },
   }
