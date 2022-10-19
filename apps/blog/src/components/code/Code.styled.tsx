@@ -4,7 +4,7 @@ export const Block = styled.div`
   margin-bottom: 30px;
   > pre {
     margin-bottom: 5px;
-    padding: 15px 15px 0 15px;
+    padding: 15px;
     border-radius: 5px;
   }
 `
@@ -23,7 +23,6 @@ export const CodeHeader = styled.div`
 `
 export const CodeContent = styled.div`
   overflow: auto;
-  padding-bottom: 15px;
 
   .line_no {
     display: table-cell;
