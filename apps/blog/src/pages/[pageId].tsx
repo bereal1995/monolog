@@ -88,7 +88,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
       blocks,
       title: pageTitle,
       lastEditedTime,
-      revalidate: 60 * 60,
+      revalidate: 30,
     },
   }
 })
