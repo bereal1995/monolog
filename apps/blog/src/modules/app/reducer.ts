@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../reducers'
 
 export interface AppStateType {
-  themeMode: string
+  themeMode: 'light' | 'dark'
   data: any
 }
 
@@ -17,7 +17,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setThemeMode(state, action: PayloadAction<{ themeMode: string }>) {
+    setThemeMode(state, action: PayloadAction<{ themeMode: AppStateType['themeMode'] }>) {
       state.themeMode = action.payload.themeMode
       localStorage.setItem('themeMode', action.payload.themeMode)
     },

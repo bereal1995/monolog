@@ -1,9 +1,9 @@
-import { darkTheme, lightTheme } from "../constants/colors"
+import { darkTheme, lightTheme } from '../constants/colors'
 
-export const getTheme = (theme?: string) => {
-  if (theme === 'light') {
+export const getTheme = (themeMode?: 'light' | 'dark') => {
+  if (themeMode === 'light') {
     return lightTheme
-  } else if (theme === 'dark') {
+  } else if (themeMode === 'dark') {
     return darkTheme
   } else {
     return lightTheme
