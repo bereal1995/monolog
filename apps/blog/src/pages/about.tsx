@@ -6,6 +6,7 @@ import Block from '../components/notion/Block'
 import HeadMeta from '../components/seo/HeadMeta'
 import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
 import { wrapper } from '../modules/store'
+import { mq } from '../styles/GlobalStyle'
 
 interface Props {
   blocks: BlockType[]
@@ -44,7 +45,9 @@ const Container = styled.div`
   .column_list {
     & > div:first-of-type {
       flex: none;
-      width: 35%;
+      ${mq({
+        width: ['35%', '35%', '20%'],
+      })}
       .image_block {
         min-height: 100px;
       }
