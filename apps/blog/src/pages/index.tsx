@@ -5,7 +5,6 @@ import ListItem from '../components/home/ListItem'
 
 import Images from '../images'
 
-import { useAuth } from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
 import { BlockType, getRootBlockChildren } from '@/api/notion'
 
@@ -14,7 +13,7 @@ interface Props {
 }
 
 export default function Home({ blocks }: Props) {
-  const { user } = useAuth()
+  // const { user } = useAuth()
   return (
     <Container>
       {/* <div>
@@ -67,13 +66,12 @@ const Info = styled.div`
   }
 `
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
   const blocks = await getRootBlockChildren()
 
   return {
     props: {
       blocks,
     },
-    revalidate: 30,
   }
 })
