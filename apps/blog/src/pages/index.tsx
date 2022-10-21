@@ -1,12 +1,14 @@
 import styled from '@emotion/styled'
 import Image from 'next/image'
 
-import ListItem from '../components/home/ListItem'
+import dynamic from 'next/dynamic'
 
 import Images from '../images'
 
 import { wrapper } from '@/modules/store'
 import { BlockType, getRootBlockChildren } from '@/api/notion'
+
+const ListItem = dynamic(() => import('../components/home/ListItem'), { ssr: false })
 
 interface Props {
   blocks: BlockType[]
