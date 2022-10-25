@@ -1,34 +1,48 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useRef } from 'react'
 
-import { usePosts } from '../hooks'
+import { OFFSET, useInfinitePokemon, useObserver } from '../hooks'
 
 function PostList() {
-  const [postCount, setPostCount] = useState(10)
-  const { data, isLoading, isFetching } = usePosts(postCount)
+  const target = useRef<HTMLDivElement>(null)
+  const { data, error, fetchNextPage, hasNextPage, isLoading, isFetching, isFetchingNextPage, status } = useInfinitePokemon()
 
-  if (isLoading) return <div>Loading</div>
+  const onIntersect = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      entry.isIntersecting && fetchNextPage()
+    })
+  }
+
+  useObserver({
+    target,
+    onIntersect,
+  })
 
   return (
     <Block>
       <ul>
-        {data?.map((post, index) => (
-          <li key={post.id}>
-            <div>
-              <span>{index + 1}. </span>
-              <Link href="/detail">
-                <a>{post.title}</a>
-              </Link>
-            </div>
-          </li>
-        ))}
+        {isLoading && <p>불러오는 중</p>}
+        {status === 'error' && <p>에러 발생!</p>}
+        {status === 'success' &&
+          data.pages.map((group, pageIndex) => (
+            <ListPageItem key={pageIndex}>
+              {group.results.map(({ name, url }, index) => {
+                const id = url.split('/').at(-2)
+                return (
+                  <li key={name + index}>
+                    <span>{OFFSET * pageIndex + index + 1}</span>
+                    <Link href={`/${id}`}>
+                      <a>{name}</a>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ListPageItem>
+          ))}
       </ul>
-      {postCount <= 90 && (
-        <button onClick={() => setPostCount(postCount + 10)} disabled={isFetching}>
-          {isFetching ? 'Loading...' : 'Show More'}
-        </button>
-      )}
+      <div ref={target} />
+      {isFetchingNextPage && <p>계속 불러오는 중</p>}
     </Block>
   )
 }
@@ -36,38 +50,12 @@ function PostList() {
 const Block = styled.section`
   padding-bottom: 20px;
   li {
-    display: block;
-    margin-bottom: 10px;
-  }
-  div {
-    align-items: center;
-    display: flex;
-  }
-  a {
-    font-size: 14px;
-    margin-right: 10px;
-    text-decoration: none;
-    padding-bottom: 0;
-    border: 0;
-  }
-  span {
-    font-size: 14px;
-    margin-right: 5px;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  button:before {
-    align-self: center;
-    border-style: solid;
-    border-width: 6px 4px 0 4px;
-    border-color: #ffffff transparent transparent transparent;
-    content: '';
-    height: 0;
-    margin-right: 5px;
-    width: 0;
+    span {
+      margin-right: 10px;
+    }
   }
 `
+
+const ListPageItem = styled.div``
 
 export default PostList
