@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { OFFSET, useInfinitePokemon, useObserver } from '../hooks'
 
@@ -13,11 +13,20 @@ function PostList() {
       entry.isIntersecting && fetchNextPage()
     })
   }
+  const setScrollY = (scrollY: number) => {
+    localStorage.setItem('scrollY', String(scrollY))
+  }
 
   useObserver({
     target,
     onIntersect,
   })
+
+  useEffect(() => {
+    const scrollY = localStorage.getItem('scrollY')
+    // 기본값이 "0"이기 때문에 스크롤 값이 저장됐을 때에만 window를 스크롤시킨다.
+    if (scrollY !== '0') window.scrollTo(0, Number(scrollY))
+  }, [])
 
   return (
     <Block>
@@ -33,7 +42,7 @@ function PostList() {
                   <li key={name + index}>
                     <span>{OFFSET * pageIndex + index + 1}</span>
                     <Link href={`/${id}`}>
-                      <a>{name}</a>
+                      <a onClick={() => setScrollY(window.scrollY)}>{name}</a>
                     </Link>
                   </li>
                 )

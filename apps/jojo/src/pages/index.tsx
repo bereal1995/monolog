@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
 import type { NextPage } from 'next'
 
 import PostList from '../components/PostList'
-import { fetchPosts } from '../hooks'
 
 const Home: NextPage = () => {
   return (
@@ -26,14 +24,8 @@ const Block = styled.div`
 `
 
 export async function getStaticProps() {
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery(['posts', 10], () => fetchPosts(10))
-
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {},
   }
 }
 
