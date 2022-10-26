@@ -6,7 +6,7 @@ import { OFFSET, useInfinitePokemon, useObserver } from '../hooks'
 
 function PostList() {
   const target = useRef<HTMLDivElement>(null)
-  const { data, error, fetchNextPage, hasNextPage, isLoading, isFetching, isFetchingNextPage, status } = useInfinitePokemon()
+  const { data, fetchNextPage, isLoading, isFetchingNextPage, status } = useInfinitePokemon()
 
   const onIntersect = (entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
