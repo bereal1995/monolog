@@ -21,8 +21,6 @@ const getPokemonList = ({ pageParam = OFFSET }) =>
       previous: string
       results: PokemonItem[]
     }>('https://pokeapi.co/api/v2/pokemon', {
-      // axios.get(url, config),
-      // url전체를 템플릿 리터럴로 넘기든 config의 params로 넘기든 취향에 맞게 넘기자.
       params: {
         limit: OFFSET,
         offset: pageParam,

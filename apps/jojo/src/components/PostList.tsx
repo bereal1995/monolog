@@ -14,7 +14,7 @@ function PostList() {
     })
   }
   const setScrollY = (scrollY: number) => {
-    localStorage.setItem('scrollY', String(scrollY))
+    sessionStorage.setItem('scrollY', String(scrollY))
   }
 
   useObserver({
@@ -23,8 +23,8 @@ function PostList() {
   })
 
   useEffect(() => {
-    const scrollY = localStorage.getItem('scrollY')
-    // 기본값이 "0"이기 때문에 스크롤 값이 저장됐을 때에만 window를 스크롤시킨다.
+    const scrollY = sessionStorage.getItem('scrollY')
+    console.log('scrollY', scrollY)
     if (scrollY !== '0') window.scrollTo(0, Number(scrollY))
   }, [])
 
