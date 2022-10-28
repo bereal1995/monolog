@@ -8,6 +8,10 @@ const posts = [
     title: '무한 스크롤',
     path: '/infinite-scroll',
   },
+  {
+    title: 'useLayoutEffect',
+    path: '/use-layout-effect',
+  },
 ]
 
 const Home: NextPage = () => {
