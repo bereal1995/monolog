@@ -1,12 +1,14 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 
-import PostList from '@/src/posts/infinite-scroll/components/PostList'
+import { lightTheme } from 'ui/constants/colors'
+
+import PostList from '@/src/posts/infinite-scroll/components/PokemonList'
 
 const Home: NextPage = () => {
   return (
     <Block>
-      <h2>next jojo</h2>
+      <h2>무한스크롤 + 스크롤 유지 (포켓몬)</h2>
       <PostList />
     </Block>
   )
@@ -15,11 +17,14 @@ const Home: NextPage = () => {
 const Block = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background-color: #ccc;
+  background-color: ${lightTheme.background};
 
   h2 {
-    border-bottom: 1px solid #000;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid ${lightTheme.textPrimary};
+    font-size: 20px;
+    font-weight: 600;
   }
 `
 

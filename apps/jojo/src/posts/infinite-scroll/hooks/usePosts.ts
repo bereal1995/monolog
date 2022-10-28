@@ -7,7 +7,7 @@ interface Item {
   title: string
   body: string
 }
-interface PokemonItem {
+export interface PokemonItem {
   name: string
   url: string
 }
