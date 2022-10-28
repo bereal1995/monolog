@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 import { OFFSET, useInfinitePokemon, useIntersect } from '../hooks'
 
@@ -12,16 +11,6 @@ function PostList() {
       fetchNextPage()
     }
   })
-
-  const setScrollY = (scrollY: number) => {
-    sessionStorage.setItem('scrollY', String(scrollY))
-  }
-
-  useEffect(() => {
-    const scrollY = sessionStorage.getItem('scrollY')
-    console.log('scrollY', scrollY)
-    if (scrollY !== '0') window.scrollTo(0, Number(scrollY))
-  }, [])
 
   return (
     <Block>
@@ -37,7 +26,7 @@ function PostList() {
                   <li key={name + index}>
                     <span>{OFFSET * pageIndex + index + 1}</span>
                     <Link href={`/${id}`}>
-                      <a onClick={() => setScrollY(window.scrollY)}>{name}</a>
+                      <a>{name}</a>
                     </Link>
                   </li>
                 )

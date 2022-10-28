@@ -5,6 +5,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { NextPageContext } from 'next'
 
+import ScrollRemember from '../posts/infinite-scroll/components/ScrollRemember'
+
 import GlobalStyle from '@/styles/GlobalStyle'
 
 type PageProps = {
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }: ExtendedAppProps<PageProps>) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <GlobalStyle />
+        <ScrollRemember />
         <Component {...pageProps} />
       </Hydrate>
       <ReactQueryDevtools />
