@@ -36,6 +36,7 @@ const Block = styled.li`
   height: 112px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  text-transform: capitalize;
   span {
     margin-right: 10px;
     font-weight: 600;
