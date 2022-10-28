@@ -15,6 +15,9 @@ export default function GlobalStyle(props: Props) {
       <Global styles={resetStyle} />
       <Global
         styles={css`
+          html {
+            text-size-adjust: none;
+          }
           body {
             background-color: ${theme.background};
             color: ${theme.textPrimary};
