@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <ul>
         {posts.map((post, index) => {
           return (
-            <Link href={post.path}>
+            <Link href={post.path} key={post.title}>
               <li>
                 <span>{`${index + 1}. `}</span>
                 <a>{post.title}</a>

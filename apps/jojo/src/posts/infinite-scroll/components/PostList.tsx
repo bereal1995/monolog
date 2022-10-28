@@ -1,26 +1,21 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
-import { OFFSET, useInfinitePokemon, useObserver } from '../hooks'
+import { OFFSET, useInfinitePokemon, useIntersect } from '../hooks'
 
 function PostList() {
-  const target = useRef<HTMLDivElement>(null)
   const { data, fetchNextPage, isLoading, isFetchingNextPage, status } = useInfinitePokemon()
+  const ref = useIntersect(async (entry, observer) => {
+    observer.unobserve(entry.target)
+    if (!isFetchingNextPage) {
+      fetchNextPage()
+    }
+  })
 
-  const onIntersect = (entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      entry.isIntersecting && fetchNextPage()
-    })
-  }
   const setScrollY = (scrollY: number) => {
     sessionStorage.setItem('scrollY', String(scrollY))
   }
-
-  useObserver({
-    target,
-    onIntersect,
-  })
 
   useEffect(() => {
     const scrollY = sessionStorage.getItem('scrollY')
@@ -50,7 +45,7 @@ function PostList() {
             </ListPageItem>
           ))}
       </ul>
-      <div ref={target} />
+      <Target ref={ref} />
       {isFetchingNextPage && <p>계속 불러오는 중</p>}
     </Block>
   )
@@ -66,5 +61,9 @@ const Block = styled.section`
 `
 
 const ListPageItem = styled.div``
+
+const Target = styled.div`
+  height: 1px;
+`
 
 export default PostList
