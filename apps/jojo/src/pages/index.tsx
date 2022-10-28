@@ -1,25 +1,53 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
+import Link from 'next/link'
+import { lightTheme } from 'ui/constants/colors'
 
-import PostList from '../components/PostList'
+const posts = [
+  {
+    title: '무한 스크롤',
+    path: '/infinite-scroll',
+  },
+]
 
 const Home: NextPage = () => {
   return (
     <Block>
-      <h2>next jojo</h2>
-      <PostList />
+      <h2>hhxdragon</h2>
+      <ul>
+        {posts.map((post, index) => {
+          return (
+            <Link href={post.path}>
+              <li>
+                <span>{`${index + 1}. `}</span>
+                <a>{post.title}</a>
+              </li>
+            </Link>
+          )
+        })}
+      </ul>
     </Block>
   )
 }
 
 const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  background-color: #ccc;
-
   h2 {
-    border-bottom: 1px solid #000;
+    padding: 5px 10px;
+    border-bottom: 1px solid ${lightTheme.divider};
+  }
+  ul {
+    padding: 10px;
+    li {
+      padding: 5px 0;
+      cursor: pointer;
+      &:hover {
+        color: ${lightTheme.textSecondary};
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 `
 

@@ -12,7 +12,7 @@
       "@/types/*": ["src/types/*"],
       "@/modules/*": ["src/modules/*"],
       "@/constants/*": ["src/constants/*"],
-      "@/hooks/*": ["src/hooks/*"],
+      "@/hooks/*": ["src/posts/infinite-scroll/hooks/*"],
       "@/api/*": ["src/api/*"],
       "@/images/*": ["src/images/*"],
       "@/services/*": ["src/services/*"]
