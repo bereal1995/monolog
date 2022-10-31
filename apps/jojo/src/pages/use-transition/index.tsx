@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import React, { useState, useTransition } from 'react'
 
-import Before from '@/src/posts/use-transition/before'
+import Before from '@/src/posts/use-transition/Before'
 import After from '@/src/posts/use-transition/After'
 
 function Home() {
