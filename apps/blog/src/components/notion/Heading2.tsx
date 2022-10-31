@@ -9,17 +9,22 @@ import RichText from './RichText'
 function Heading2({ block }: BlockProps<Heading2BlockObjectResponse>) {
   return (
     <>
-      <BlockItem>
+      <StyledBlockItem>
         <HeadContent>
           <RichText rich_text={block.heading_2.rich_text} />
         </HeadContent>
-      </BlockItem>
+      </StyledBlockItem>
       <BlockChildren blockChildren={block.children} />
     </>
   )
 }
 
 export default Heading2
+
+const StyledBlockItem = styled(BlockItem)`
+  margin-top: 1.4em;
+  margin-bottom: 1px;
+`
 
 const HeadContent = styled(_HeadContent)`
   font-size: 24px;

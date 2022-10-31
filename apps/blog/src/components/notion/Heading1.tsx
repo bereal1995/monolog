@@ -7,15 +7,20 @@ import RichText from './RichText'
 
 function Heading1({ block }: BlockProps<Heading1BlockObjectResponse>) {
   return (
-    <BlockItem>
+    <StyledBlockItem>
       <HeadContent>
         <RichText rich_text={block.heading_1.rich_text} />
       </HeadContent>
-    </BlockItem>
+    </StyledBlockItem>
   )
 }
 
 export default Heading1
+
+const StyledBlockItem = styled(BlockItem)`
+  margin-top: 2em;
+  margin-bottom: 4px;
+`
 
 const HeadContent = styled(_HeadContent)`
   margin-top: 32px;
