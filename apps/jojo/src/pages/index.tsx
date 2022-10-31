@@ -7,10 +7,17 @@ const posts = [
   {
     title: '무한 스크롤',
     path: '/infinite-scroll',
+    tags: ['nextJs', 'react-query', 'infinite-scroll'],
   },
   {
     title: 'useLayoutEffect',
     path: '/use-layout-effect',
+    tags: ['react'],
+  },
+  {
+    title: 'useTransition',
+    path: '/use-transition',
+    tags: ['react'],
   },
 ]
 
@@ -24,7 +31,10 @@ const Home: NextPage = () => {
             <Link href={post.path} key={post.title}>
               <li>
                 <span>{`${index + 1}. `}</span>
-                <a>{post.title}</a>
+                <a>
+                  <h3>{post.title}</h3>
+                  <div>Tag: {post.tags.join(', ')}</div>
+                </a>
               </li>
             </Link>
           )
@@ -42,6 +52,7 @@ const Block = styled.div`
   ul {
     padding: 10px;
     li {
+      display: flex;
       padding: 5px 0;
       cursor: pointer;
       &:hover {
@@ -52,6 +63,11 @@ const Block = styled.div`
   a {
     text-decoration: none;
     color: inherit;
+    font-size: 12px;
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
   }
 `
 
