@@ -1,5 +1,4 @@
 import React from 'react'
-import Image from 'next/image'
 import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
@@ -9,16 +8,12 @@ interface Props {
   children?: React.ReactNode
   className?: string
   src: string | undefined
-  size?: number | 'large' | 'small',
-  shape?: 'circle' | 'square',
+  size?: number | 'large' | 'small'
+  shape?: 'circle' | 'square'
 }
 
-export default function Avatar ({ children, className, src, size = 32, shape = 'square' }: Props) {
-  const width = size === 'large'
-    ? 48
-    : size === 'small'
-      ? 24
-      : size
+export default function Avatar({ children, className, src, size = 32, shape = 'square' }: Props) {
+  const width = size === 'large' ? 48 : size === 'small' ? 24 : size
 
   const img = Images.ose
   return (
@@ -29,13 +24,14 @@ export default function Avatar ({ children, className, src, size = 32, shape = '
         height: ${width}px;
         border-radius: ${shape === 'circle' ? '50%' : '0'};
         overflow: hidden;
-        border:1px solid #ddd;
+        border: 1px solid #ddd;
       `}
     >
-      <Image
+      {/* <Image
         src={src || img}
         layout={'fill'}
-      />
+      /> */}
+      <img src={src} alt="avatar_img" />
       {children}
     </Container>
   )

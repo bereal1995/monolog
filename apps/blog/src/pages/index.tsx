@@ -1,6 +1,4 @@
 import styled from '@emotion/styled'
-import Image from 'next/image'
-
 import dynamic from 'next/dynamic'
 
 import Images from '../images'
@@ -24,7 +22,8 @@ export default function Home({ blocks }: Props) {
       </div> */}
       <Info>
         <div>
-          <Image src={Images.profile} alt="profile image" layout="fill" objectFit="contain" priority />
+          {/* <Image src={Images.profile} alt="profile image" layout="fill" objectFit="contain" priority /> */}
+          {Images.profile ? <img src={Images.profile.src} alt="profile image" /> : null}
         </div>
         <h2>
           안녕하세요 프론트엔드 개발자 조효형입니다.
@@ -62,6 +61,14 @@ const Info = styled.div`
     margin-right: 14px;
     border-radius: 50%;
     background-color: #000;
+  }
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
   h2 {
     flex: 1;
