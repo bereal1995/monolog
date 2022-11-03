@@ -4,7 +4,7 @@ export const BlockItem = styled.div`
   display: flex;
   align-items: flex-start;
   min-height: 1.5rem;
-  word-break: break-all;
+  word-break: break-word;
 `
 
 export const BlockContent = styled.div`
