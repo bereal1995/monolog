@@ -75,7 +75,7 @@ const Info = styled.div`
   }
 `
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
   const blocks = await getRootBlockChildren()
 
   return {
