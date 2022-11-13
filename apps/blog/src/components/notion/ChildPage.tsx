@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
-import { ChildPageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import Link from 'next/link'
 
 import { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
 import BlockChildren from './BlockChildren'
+import Unsupported from './Unsupported'
 
-function ChildPage({ block }: BlockProps<ChildPageBlockObjectResponse>) {
+function ChildPage({ block }: BlockProps) {
+  if (block?.type !== 'child_page') return <Unsupported />
   return (
     <BlockItem>
       <ChildPageBlockContent>

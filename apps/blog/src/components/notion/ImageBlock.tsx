@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
-import { ImageBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { BlockProps } from './Block'
 import { BlockItem } from './Block.styled'
+import Unsupported from './Unsupported'
 
-function ImageBlock({ block }: BlockProps<ImageBlockObjectResponse>) {
+function ImageBlock({ block }: BlockProps) {
+  if (block?.type !== 'image') return <Unsupported />
   if (block.image.type !== 'file') return null
 
   return (

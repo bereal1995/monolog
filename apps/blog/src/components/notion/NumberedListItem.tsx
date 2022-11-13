@@ -1,11 +1,11 @@
-import { NumberedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
-
 import { BlockProps } from './Block'
 import { BlockItem, BlockPrefix } from './Block.styled'
 import BlockChildren from './BlockChildren'
 import RichText from './RichText'
+import Unsupported from './Unsupported'
 
-function NumberedListItem({ block }: BlockProps<NumberedListItemBlockObjectResponse>) {
+function NumberedListItem({ block }: BlockProps) {
+  if (block?.type !== 'numbered_list_item') return <Unsupported />
   return (
     <>
       <BlockItem data-id={block.id} data-type={block.type}>

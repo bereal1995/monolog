@@ -1,12 +1,13 @@
-import { BulletedListItemBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import styled from '@emotion/styled'
 
 import { BlockProps } from './Block'
 import { BlockItem, BlockPrefix } from './Block.styled'
 import BlockChildren from './BlockChildren'
 import RichText from './RichText'
+import Unsupported from './Unsupported'
 
-function BulletedListItem({ block }: BlockProps<BulletedListItemBlockObjectResponse>) {
+function BulletedListItem({ block }: BlockProps) {
+  if (block?.type !== 'bulleted_list_item') return <Unsupported />
   return (
     <>
       <BlockItem>

@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
-import { Heading3BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { BlockProps } from './Block'
 import { BlockItem, HeadContent as _HeadContent } from './Block.styled'
 import BlockChildren from './BlockChildren'
 import RichText from './RichText'
+import Unsupported from './Unsupported'
 
-function Heading3({ block }: BlockProps<Heading3BlockObjectResponse>) {
+function Heading3({ block }: BlockProps) {
+  if (block?.type !== 'heading_3') return <Unsupported />
   return (
     <>
       <StyledBlockItem>

@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
-import { DividerBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
 import BlockChildren from './BlockChildren'
+import Unsupported from './Unsupported'
 
-function Divider({ block }: BlockProps<DividerBlockObjectResponse>) {
+function Divider({ block }: BlockProps) {
+  if (block?.type !== 'divider') return <Unsupported />
   return (
     <>
       <BlockItem>

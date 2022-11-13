@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
-import { ColumnListBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
 import Block, { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
+import Unsupported from './Unsupported'
 
-function ColumnList({ block }: BlockProps<ColumnListBlockObjectResponse>) {
+function ColumnList({ block }: BlockProps) {
+  if (block?.type !== 'column_list') return <Unsupported />
   return (
     <BlockItem>
       <BlockContainer className="column_list">

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { CodeBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { Language } from 'prism-react-renderer'
 
 import CodeBox from '../code/CodeBox'
@@ -7,8 +6,10 @@ import CodeBox from '../code/CodeBox'
 import { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
 import BlockChildren from './BlockChildren'
+import Unsupported from './Unsupported'
 
-function Code({ block }: BlockProps<CodeBlockObjectResponse>) {
+function Code({ block }: BlockProps) {
+  if (block?.type !== 'code') return <Unsupported />
   const isPlay = block.code.caption[0]?.plain_text === 'play'
 
   const code = block.code.rich_text.reduce((acc, item) => {
