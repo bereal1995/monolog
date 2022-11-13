@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage } from '../api/notion'
 import Block from '../components/notion/Block'
@@ -55,7 +55,7 @@ const Container = styled.div`
   }
 `
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async () => {
+export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps((store) => async () => {
   const pageId = process.env.NEXT_PUBLIC_NOTION_ABOUT_DATABASE_ID as string
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
