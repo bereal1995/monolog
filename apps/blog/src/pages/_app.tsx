@@ -1,12 +1,9 @@
 import type { ReactElement, ReactNode } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
-
 import { Provider } from 'react-redux'
 
-import HeadMeta from '../components/seo/HeadMeta'
-
-import CustomThemeProvider from '@/src/styles/CustomThemeProvider'
+import HeadMeta from '@/components/seo/HeadMeta'
 import Layout from '@/src/layout'
 import AuthProvider from '@/components/auth/AuthProvider'
 import { wrapper } from '@/modules/store'
@@ -29,10 +26,8 @@ function App({ Component, ...rest }: AppPropsWithLayout) {
       <HeadMeta />
       <Provider store={store}>
         <AuthProvider>
-          <CustomThemeProvider>
-            <GlobalStyle />
-            {getLayout(<Component {...props.pageProps} />)}
-          </CustomThemeProvider>
+          <GlobalStyle />
+          {getLayout(<Component {...props.pageProps} />)}
         </AuthProvider>
       </Provider>
     </>

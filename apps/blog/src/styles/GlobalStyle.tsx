@@ -1,6 +1,7 @@
 import { css, Global, useTheme } from '@emotion/react'
 import facepaint from 'facepaint'
 
+import GlobalThemeCss from '@/styles/GlobalThemeCss'
 import resetStyle from '@/styles/resetStyle'
 
 interface Props {}
@@ -13,17 +14,13 @@ export default function GlobalStyle(props: Props) {
   return (
     <>
       <Global styles={resetStyle} />
+      <Global styles={GlobalThemeCss} />
       <Global
         styles={css`
           html {
             text-size-adjust: none;
           }
           body {
-            background-color: ${theme.background};
-            color: ${theme.textPrimary};
-            a {
-              color: ${theme.textSecondary};
-            }
             transition: background-color 0.3s ease-in-out;
             ${mq({
               fontSize: ['14px', '14px', '16px'],

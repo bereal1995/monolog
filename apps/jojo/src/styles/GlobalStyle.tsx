@@ -1,5 +1,5 @@
 import { css, Global } from '@emotion/react'
-import { lightTheme } from 'ui/constants/colors'
+import { themedPalette } from 'ui/theme'
 import facepaint from 'facepaint'
 
 import resetStyle from './resetStyle'
@@ -16,10 +16,10 @@ export default function GlobalStyle(props: Props) {
       <Global
         styles={css`
           body {
-            background-color: ${lightTheme.background};
-            color: ${lightTheme.textPrimary};
+            background-color: ${themedPalette.background};
+            color: ${themedPalette.textPrimary};
             a {
-              color: ${lightTheme.textSecondary};
+              color: ${themedPalette.textSecondary};
             }
             transition: background-color 0.3s ease-in-out;
             ${mq({

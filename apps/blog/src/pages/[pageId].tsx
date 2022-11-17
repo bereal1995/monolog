@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { GetStaticProps } from 'next'
+import { themedPalette } from 'ui/theme'
 
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage, getRootBlockChildren } from '../api/notion'
 import Block from '../components/notion/Block'
@@ -53,7 +54,7 @@ const Title = styled.div`
   }
   p {
     font-size: 12px;
-    color: ${({ theme }) => theme.textSecondary};
+    color: ${themedPalette.textSecondary};
     text-align: right;
   }
 `

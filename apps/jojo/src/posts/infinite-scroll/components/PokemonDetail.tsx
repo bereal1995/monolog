@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import styled from '@emotion/styled'
 
-import { lightTheme } from 'ui/constants/colors'
+import { themedPalette } from 'ui/theme'
 
 import { Pokemon } from '@/src/types/pokemon'
 
@@ -70,7 +70,7 @@ const Bottom = styled.div`
   padding: 20px;
   margin-top: 30px;
 
-  background-color: ${lightTheme.action.hover};
+  background-color: ${themedPalette.hover};
   border-radius: 10px;
   color: #fff;
   text-align: center;

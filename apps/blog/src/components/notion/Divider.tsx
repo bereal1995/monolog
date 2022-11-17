@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { themedPalette } from 'ui/theme'
 
 import { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
@@ -20,7 +21,7 @@ function Divider({ block }: BlockProps) {
 }
 
 const DividerLine = styled.hr`
-  border-color: ${({ theme }) => theme.action.disabledBackground};
+  border-color: ${themedPalette.disabledBackground};
 `
 
 export default Divider

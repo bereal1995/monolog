@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import { RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints'
 
+import { themedPalette } from 'ui/theme'
+
 import { BlockContent } from './Block.styled'
 
 import { createClassName } from '@/src/lib/notion'
@@ -50,7 +52,7 @@ function RichText({ rich_text }: Props) {
 
 const Block = styled.span`
   .code {
-    background: ${({ theme }) => theme.action.disabledBackground};
+    background: ${themedPalette.disabledBackground};
     color: #eb5757;
     border-radius: 3px;
     font-size: 85%;
@@ -69,7 +71,7 @@ const Block = styled.span`
     text-decoration: underline;
   }
   .mention {
-    color: ${({ theme }) => theme.action.disabledBackground};
+    color: ${themedPalette.disabledBackground};
   }
   .equation {
   }

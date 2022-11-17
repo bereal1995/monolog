@@ -1,5 +1,7 @@
 import styled from '@emotion/styled'
 
+import { themedPalette } from 'ui/theme'
+
 import Block from '../notion/Block'
 
 import { BlockType } from '@/src/api/notion'
@@ -22,9 +24,8 @@ function ListItem({ block }: Props) {
 const Container = styled.div`
   padding: 5px 0;
   margin-bottom: 20px;
-  /* border-bottom: 1px solid ${({ theme }) => theme.divider}; */
   a {
-    color: ${({ theme }) => theme.primary};
+    color: ${themedPalette.primary};
     font-size: 23px;
     font-weight: 600;
     text-decoration: none;

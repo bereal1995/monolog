@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { themedPalette } from 'ui/theme'
 
 import { BlockProps } from './Block'
 import { BlockContent, BlockItem } from './Block.styled'
@@ -24,7 +25,7 @@ function ChildPage({ block }: BlockProps) {
 
 const ChildPageBlockContent = styled(BlockContent)`
   &:hover {
-    background-color: ${({ theme }) => theme.action.hover};
+    background-color: ${themedPalette.hover};
     a {
       color: #fff;
     }

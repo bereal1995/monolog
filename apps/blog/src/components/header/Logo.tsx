@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import { themedPalette } from 'ui/theme'
 
 interface Props {}
 
@@ -18,7 +19,7 @@ const Container = styled.h1`
   a {
     text-decoration: none;
     &:hover {
-      color: ${({ theme }) => theme.action.active};
+      color: ${themedPalette.active};
     }
   }
 `

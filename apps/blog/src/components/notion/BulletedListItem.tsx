@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { themedPalette } from 'ui/theme'
 
 import { BlockProps } from './Block'
 import { BlockItem, BlockPrefix } from './Block.styled'
@@ -29,6 +30,6 @@ const BlockBullet = styled(BlockPrefix)`
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.textPrimary};
+    background-color: ${themedPalette.textPrimary};
   }
 `

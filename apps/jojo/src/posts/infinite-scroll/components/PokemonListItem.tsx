@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { lightTheme } from 'ui/constants/colors'
+import { themedPalette } from 'ui/theme'
 
 import { PokemonItem } from '../hooks'
 
@@ -42,8 +42,8 @@ const Block = styled.li`
     font-weight: 600;
   }
   &:hover {
-    background-color: ${lightTheme.textPrimary};
-    color: ${lightTheme.action.hover};
+    background-color: ${themedPalette.textPrimary};
+    color: ${themedPalette.hover};
   }
 `
 

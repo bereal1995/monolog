@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
-
-import { lightTheme } from 'ui/constants/colors'
+import { themedPalette } from 'ui/theme'
 
 import PostList from '@/src/posts/infinite-scroll/components/PokemonList'
 
@@ -17,12 +16,12 @@ const Home: NextPage = () => {
 const Block = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${lightTheme.background};
+  background-color: ${themedPalette.background};
 
   h2 {
     padding: 5px 10px;
     margin-bottom: 20px;
-    border-bottom: 1px solid ${lightTheme.textPrimary};
+    border-bottom: 1px solid ${themedPalette.textPrimary};
     font-size: 20px;
     font-weight: 600;
   }
