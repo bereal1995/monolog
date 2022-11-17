@@ -1,11 +1,20 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from '@emotion/styled'
+
+import { useSelector } from 'react-redux'
+
+import { useToggleTheme } from '@/src/hooks/theme/useToggleTheme'
+import { appSelector } from '@/src/modules/app/reducer'
 
 interface Props {}
 
 function ThemeToggleButton(props: Props) {
+  const themeReady = useSelector(appSelector.systemThemeMode) !== 'not-ready'
+  const [themeMode, toggle] = useToggleTheme()
   const spinnerRef = useRef<HTMLDivElement>(null)
   const rotate = useRef<number>(0)
+  const initialRotate = useRef<boolean>(false)
+  const isDarkMode = themeMode === 'dark'
 
   const spinnerRotate = () => {
     if (spinnerRef.current) {
@@ -15,8 +24,19 @@ function ThemeToggleButton(props: Props) {
   }
 
   const handleClickThemeButton = () => {
+    toggle()
     spinnerRotate()
   }
+
+  useEffect(() => {
+    if (initialRotate.current) return
+    if (isDarkMode && !initialRotate.current && spinnerRef.current) {
+      spinnerRotate()
+      initialRotate.current = true
+    }
+  }, [isDarkMode])
+
+  if (!themeReady) return null
 
   return (
     <Block onClick={handleClickThemeButton}>

@@ -15,7 +15,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/api/*": ["src/api/*"],
       "@/images/*": ["src/images/*"],
-      "@/services/*": ["src/services/*"]
+      "@/services/*": ["src/services/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,7 +1,9 @@
-import type { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 import { AppProps } from 'next/app'
 import { NextPage } from 'next'
 import { Provider } from 'react-redux'
+
+import { enableDarkMode, enableLightMode } from '../modules/app/reducer'
 
 import HeadMeta from '@/components/seo/HeadMeta'
 import Layout from '@/src/layout'
@@ -17,9 +19,24 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-function App({ Component, ...rest }: AppPropsWithLayout) {
+function App({ Component, ...rest }: NextPage & AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>)
   const { store, props } = wrapper.useWrappedStore(rest)
+
+  const loadTheme = () => {
+    const themeMode = localStorage.getItem('themeMode')
+    if (!themeMode) return
+    if (themeMode === 'dark') {
+      store.dispatch(enableDarkMode())
+    } else {
+      store.dispatch(enableLightMode())
+    }
+    // document.body.dataset.themeMode = themeMode
+  }
+
+  useEffect(() => {
+    loadTheme()
+  }, [])
 
   return (
     <>

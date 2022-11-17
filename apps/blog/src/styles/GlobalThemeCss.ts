@@ -17,11 +17,11 @@ const GlobalThemeCss = css`
     }
   }
 
-  body[data-theme='light'] {
+  body[data-theme-mode='light'] {
     ${themes.light};
   }
 
-  body[data-theme='dark'] {
+  body[data-theme-mode='dark'] {
     ${themes.dark};
   }
 `

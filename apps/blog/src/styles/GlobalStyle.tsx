@@ -1,6 +1,7 @@
-import { css, Global, useTheme } from '@emotion/react'
+import { css, Global } from '@emotion/react'
 import facepaint from 'facepaint'
 
+import { useThemeEffect } from '@/hooks/theme/useThemeEffect'
 import GlobalThemeCss from '@/styles/GlobalThemeCss'
 import resetStyle from '@/styles/resetStyle'
 
@@ -10,7 +11,7 @@ const breakpoints = [576, 768, 992, 1200]
 export const mq = facepaint(breakpoints.map((bp) => `@media (min-width: ${bp}px)`))
 
 export default function GlobalStyle(props: Props) {
-  const theme = useTheme()
+  useThemeEffect()
   return (
     <>
       <Global styles={resetStyle} />
