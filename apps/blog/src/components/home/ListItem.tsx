@@ -22,7 +22,7 @@ function ListItem({ block }: Props) {
 }
 
 const Container = styled.div`
-  padding: 5px 0;
+  grid-column: span 4 / span 4;
   margin-bottom: 20px;
   a {
     color: ${themedPalette.primary};

@@ -3,39 +3,31 @@ import dynamic from 'next/dynamic'
 
 import Images from '../images'
 
+import PostList from '../components/home/PostList'
+
+import { NOTION } from '../constants/notion'
+
 import { wrapper } from '@/modules/store'
-import { BlockType, getRootBlockChildren } from '@/api/notion'
+import { BlockType, getNotionDatabase } from '@/api/notion'
 
 const ListItem = dynamic(() => import('../components/home/ListItem'), { ssr: false })
 
 interface Props {
-  blocks: BlockType[]
+  posts: BlockType[]
 }
 
-export default function Home({ blocks }: Props) {
-  // const { user } = useAuth()
+export default function Home({ posts }: Props) {
   return (
     <Container>
-      {/* <div>
-        <img src={user?.photoUrl} alt="" />
-        <h2>{user?.name}</h2>
-      </div> */}
       <Info>
-        <div>
-          {/* <Image src={Images.profile} alt="profile image" layout="fill" objectFit="contain" priority /> */}
-          {Images.profile ? <img src={Images.profile.src} alt="profile image" /> : null}
-        </div>
+        <div>{Images.profile ? <img src={Images.profile.src} alt="profile image" /> : null}</div>
         <h2>
           안녕하세요 프론트엔드 개발자 조효형입니다.
           <br />
           경험을 쌓아 나가며, 더 나은 개발자가 되기 위해 노력하고 있습니다.
         </h2>
       </Info>
-      <div>
-        {blocks.map((block) => (
-          <ListItem key={block.id} block={block} />
-        ))}
-      </div>
+      <PostList posts={posts} />
     </Container>
   )
 }
@@ -76,11 +68,11 @@ const Info = styled.div`
 `
 
 export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  const blocks = await getRootBlockChildren()
+  const posts = await getNotionDatabase(NOTION.POSTS_DATABASE_ID!)
 
   return {
     props: {
-      blocks,
+      posts,
     },
   }
 })

@@ -15,6 +15,8 @@ import ImageBlock from './ImageBlock'
 import ColumnList from './ColumnList'
 import ChildPage from './ChildPage'
 
+import ChildDatabase from './ChildDatabase'
+
 import { BlockType } from '@/src/api/notion'
 
 export interface BlockProps {
@@ -40,6 +42,7 @@ const blockComponents: BlockComponents = {
   image: ImageBlock,
   column_list: ColumnList,
   child_page: ChildPage,
+  child_database: ChildDatabase,
   quote: () => <div>quote</div>,
   to_do: () => <div>ToDo</div>,
   toggle: () => <div>Toggle</div>,

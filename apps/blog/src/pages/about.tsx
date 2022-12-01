@@ -4,6 +4,7 @@ import { GetServerSideProps } from 'next'
 import { BlockType, getBlocksWithChildren, getFullBlocks, getNotionPage } from '../api/notion'
 import Block from '../components/notion/Block'
 import HeadMeta from '../components/seo/HeadMeta'
+import { NOTION } from '../constants/notion'
 import { getTitleFromPage, setBlocksWithChildren } from '../lib/notion'
 import { wrapper } from '../modules/store'
 import { mq } from '../styles/GlobalStyle'
@@ -56,7 +57,7 @@ const Container = styled.div`
 `
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps((store) => async () => {
-  const pageId = process.env.NEXT_PUBLIC_NOTION_ABOUT_DATABASE_ID as string
+  const pageId = NOTION.ABOUT_DATABASE_ID!
   const page = await getNotionPage(pageId)
   const pageTitle = getTitleFromPage(page)
 

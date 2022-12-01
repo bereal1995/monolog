@@ -1,7 +1,9 @@
 import { Client, isFullBlock, isFullPage, iteratePaginatedAPI } from '@notionhq/client'
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
-const notion = new Client({ auth: process.env.NEXT_PUBLIC_NOTION_API_KEY })
+import { NOTION } from '../constants/notion'
+
+const notion = new Client({ auth: NOTION.NOTION_API_KEY })
 
 export const getNotionPage = async (page_id?: string) => {
   if (!page_id) return
@@ -18,17 +20,12 @@ export const getNotionPage = async (page_id?: string) => {
 }
 
 export const getRootBlockChildren = async () => {
-  if (!process.env.NEXT_PUBLIC_NOTION_DATABASE_ID) return
+  if (!NOTION.DEFAULT_PAGE_DATABASE_ID) return
 
   const result = []
 
-  // const response = await notion.blocks.children.list({
-  //   block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
-  //   page_size: 50,
-  // })
-
   for await (const block of iteratePaginatedAPI(notion.blocks.children.list, {
-    block_id: process.env.NEXT_PUBLIC_NOTION_DATABASE_ID,
+    block_id: NOTION.DEFAULT_PAGE_DATABASE_ID,
   })) {
     if (!isFullBlock(block)) {
       continue
@@ -73,4 +70,18 @@ export const getBlocksWithChildren = async (blocks: BlockType[]) => {
       return await getBlockWithChildren(block)
     }),
   )
+}
+
+export const getNotionDatabase = async (database_id: string) => {
+  const postPages = []
+  const fullOrPartialPages = await notion.databases.query({
+    database_id,
+  })
+  for (const page of fullOrPartialPages.results) {
+    if (!isFullPage(page)) {
+      continue
+    }
+    postPages.push(page)
+  }
+  return postPages
 }

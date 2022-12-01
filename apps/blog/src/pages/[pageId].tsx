@@ -64,11 +64,18 @@ export async function getStaticPaths() {
   const ids = blocks?.filter((block) => block.type === 'child_page').map((block) => block.id)
 
   return {
-    paths: ids?.map((id) => ({
-      params: {
-        pageId: id.toString(),
+    // paths: ids?.map((id) => ({
+    //   params: {
+    //     pageId: id.toString(),
+    //   },
+    // })),
+    paths: [
+      {
+        params: {
+          pageId: 'ca174b6c-9719-4a3a-878f-03d54ccdffac',
+        },
       },
-    })),
+    ],
     fallback: false,
   }
 }
@@ -76,19 +83,18 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async ({ params }) => {
   const pageId = params?.pageId as string
   const page = await getNotionPage(pageId)
-  const pageTitle = getTitleFromPage(page)
+  const pageTitle = getTitleFromPage(page, 'title')
   const lastEditedDate = new Date(page?.last_edited_time || '')
   const lastEditedTime = new Intl.DateTimeFormat('ko-KR', { weekday: 'short', year: 'numeric', month: '2-digit', day: '2-digit' }).format(lastEditedDate)
-
   const initBlocks = await getFullBlocks(pageId)
   const blocksWithChildren = await getBlocksWithChildren(initBlocks)
   const blocks = setBlocksWithChildren(blocksWithChildren)
-
   return {
     props: {
       blocks,
       title: pageTitle,
       lastEditedTime,
+      page,
       revalidate: 30,
     },
   }
