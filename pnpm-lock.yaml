@@ -24,6 +24,7 @@ importers:
       '@types/react': ^18.0.21
       '@typescript-eslint/eslint-plugin': ^5.40.0
       '@typescript-eslint/parser': ^5.40.0
+      '@vercel/analytics': ^0.1.5
       '@vercel/og': ^0.0.19
       classnames: ^2.3.1
       cross-env: ^7.0.2
@@ -62,6 +63,7 @@ importers:
       '@keyvhq/core': 1.6.14
       '@keyvhq/redis': 1.6.21
       '@react-icons/all-files': 4.1.0_react@18.2.0
+      '@vercel/analytics': 0.1.5_react@18.2.0
       '@vercel/og': 0.0.19
       classnames: 2.3.2
       date-fns: 2.29.3
@@ -1571,6 +1573,14 @@ packages:
     resolution: {integrity: sha512-hgfExDzUU9uTRTPDCpw2s9jWTxcxmpJya3fK5ADpf5VDpSy8WYwY/kh28XE0tUcbsljeP8wfan48QvAQTSSa3Q==}
     peerDependencies:
       react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@vercel/analytics/0.1.5_react@18.2.0:
+    resolution: {integrity: sha512-/k9N8Ea3Yc5A52GlkjzUEbi2vE/izClrOf++ryBkxEfrZM/OZwtHkdNw/QExZ1h/B67RCZLK7bCOnKKrhG7gTg==}
+    peerDependencies:
+      react: ^16.8||^17||^18
     dependencies:
       react: 18.2.0
     dev: false
