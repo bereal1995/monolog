@@ -78,7 +78,7 @@ export const PageHead: React.FC<
 
       <meta property='og:title' content={title} />
       <meta name='twitter:title' content={title} />
-      <title>{title}</title>
+      <title>{title === '이력서' ? `이력서 - 조효형` : title}</title>
     </Head>
   )
 }
