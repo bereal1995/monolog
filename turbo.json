@@ -7,14 +7,7 @@
     },
     "blog#build": {
       "dependsOn": ["^build"],
-      "env": [
-        "NEXT_PUBLIC_NOTION_API_KEY",
-        "NEXT_PUBLIC_NOTION_PAGE_DATABASE_ID",
-        "NEXT_PUBLIC_NOTION_POSTS_DATABASE_ID",
-        "NEXT_PUBLIC_NOTION_ABOUT_DATABASE_ID",
-        "NEXT_PUBLIC_SUPABASE_URL",
-        "NEXT_PUBLIC_SUPABASE_ANON_KEY"
-      ],
+      "env": ["NEXT_PUBLIC_FATHOM_ID", "NEXT_PUBLIC_POSTHOG_ID", "TWITTER_ACCESS_TOKEN"],
       "outputs": [".next/**"]
     },
     "jojo#build": {

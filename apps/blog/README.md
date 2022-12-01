@@ -1,66 +1,7 @@
-# Blog
+# notion Blog
 
-## 기술스택
+## License
 
-- NextJs
-- typescript
-- redux
-- swr
-- scss
-- emotion
-- supabase
-- jest, react-testing-library
-- next-0auth
-- cloudflare
-- self-font
-- framer
-- centry
-- [datadog](https://www.datadoghq.com/)
+MIT © [Travis Fischer](https://transitivebullsh.it)
 
-## 폴더 구조
-
-```
-├── src
-│   ├── pages
-│   ├── components
-│   ├── modules
-│   ├── styles
-│   ├── types
-│   ├── constants
-│   ├── utils
-│   ├── hooks
-│   ├── api
-│   ├── images
-│   ├── services
-│   ├── lib
-```
-
-## TODO
-
-- [ ] 헤더 UI 제작
-
-  - [ ] 로고
-  - [ ] 버튼
-    - [ ] 유저프로필 UI
-    - [ ] 다크모드 버튼
-
-- [ ] 로그인, 로그아웃 기능
-
-  - [ ] 0Auth라이브러리 (Github, Google)
-
-- [ ] 메인 페이지
-
-  - [ ] 리스트 UI [카드, 리스트]
-  - [ ] 무한스크롤
-  - [ ] 정렬
-
-- [ ] 상세 페이지
-
-  - [ ] 댓글 기능 (supabase)
-  - [ ] 목차 네비게이션 기능^
-
-- [ ] about 페이지
-
-- [ ] 노션 API
-  - [ ] 노션 글 가져오기
-  - [ ] 검색
+Support my open source work by <a href="https://twitter.com/transitive_bs">following me on twitter <img src="https://storage.googleapis.com/saasify-assets/twitter-logo.svg" alt="twitter" height="24px" align="center"></a>
