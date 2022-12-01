@@ -10,7 +10,7 @@
       "env": ["NEXT_PUBLIC_FATHOM_ID", "NEXT_PUBLIC_POSTHOG_ID", "TWITTER_ACCESS_TOKEN"],
       "outputs": [".next/**"]
     },
-    "jojo#build": {
+    "hh-example#build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**"]
     },
