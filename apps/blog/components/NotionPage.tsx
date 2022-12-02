@@ -117,17 +117,25 @@ const propertyDateValue = (
   { data, schema, pageHeader },
   defaultFn: () => React.ReactNode
 ) => {
-  if (pageHeader && schema?.name?.toLowerCase() === 'published') {
-    const publishDate = data?.[0]?.[1]?.[0]?.[1]?.start_date
+  const publishDate = data?.[0]?.[1]?.[0]?.[1]?.start_date
+  const koDate = new Date(publishDate).toLocaleDateString('ko-KR', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long'
+  })
 
+  if (pageHeader && schema?.name?.toLowerCase() === 'published') {
     if (publishDate) {
-      return `${formatDate(publishDate, {
-        month: 'long'
-      })}`
+      return (
+        koDate ??
+        `${formatDate(publishDate, {
+          month: 'long'
+        })}`
+      )
     }
   }
-
-  return defaultFn()
+  return koDate ?? defaultFn()
 }
 
 const propertyTextValue = (
