@@ -1,19 +1,17 @@
 import styled from '@emotion/styled'
-import { User } from './GlobalHeader'
 
-function UserInfo({ user, onLogout }: { user: User; onLogout(): void }) {
+interface Props {
+  username?: string
+  avatarUrl?: string
+  onClickAvatar?: () => void
+}
+
+function UserInfo({ username, avatarUrl, onClickAvatar }: Props) {
   return (
     <Block>
-      <div>반갑습니다! {user.name}님</div>
-      <Avatar
-        onClick={() => {
-          if (typeof window === 'undefined') return
-          if (confirm('로그아웃 하시겠습니까?')) {
-            onLogout()
-          }
-        }}
-      >
-        <img src={user.photoUrl} alt="유저 프로필 이미지" />
+      <div>반갑습니다! {username}님</div>
+      <Avatar onClick={onClickAvatar}>
+        <img src={avatarUrl} alt="유저 프로필 이미지" />
       </Avatar>
     </Block>
   )

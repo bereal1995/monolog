@@ -1,37 +1,43 @@
 import styled from '@emotion/styled'
 import UserInfo from './UserInfo'
 
-export interface User {
-  id: string
-  email: string | undefined
-  name: string
-  providerId: string
-  photoUrl: string
-}
 interface Props {
-  user?: User
-  onLogin: () => void
-  onLogout: () => void
+  isLoggedIn?: boolean
+  username?: string
+  avatarUrl?: string
+  onClickLogo?: () => void
+  onLogin?: () => void
+  onClickAvatar?: () => void
 }
 
-function GlobalHeader({ user, onLogin, onLogout }: Props) {
-  const isLogin = !!user
-
+function GlobalHeader({ isLoggedIn = false, username, avatarUrl, onClickLogo, onLogin, onClickAvatar }: Props) {
   return (
     <HeaderWrapper>
-      <Content>
-        <Logo>HH</Logo>
-        <Actions>
-          <AuthWrapper>{isLogin ? <UserInfo user={user} onLogout={onLogout} /> : <LoginButton onClick={onLogin}>로그인</LoginButton>}</AuthWrapper>
-        </Actions>
-      </Content>
+      <HeaderInner>
+        <Content>
+          <Logo onClick={onClickLogo}>HH</Logo>
+          <Actions>
+            <AuthWrapper>
+              {isLoggedIn ? (
+                <UserInfo username={username} avatarUrl={avatarUrl} onClickAvatar={onClickAvatar} />
+              ) : (
+                <LoginButton onClick={onLogin}>로그인</LoginButton>
+              )}
+            </AuthWrapper>
+          </Actions>
+        </Content>
+      </HeaderInner>
     </HeaderWrapper>
   )
 }
 
 const HeaderWrapper = styled.div`
-  height: 64px;
   background: var(--hh-bg-color);
+`
+const HeaderInner = styled.div`
+  height: 64px;
+  background: transparent;
+  backdrop-filter: saturate(180%) blur(8px);
   color: var(--hh-fg-color);
 `
 const Content = styled.div`
@@ -46,6 +52,7 @@ const Content = styled.div`
 const Logo = styled.div`
   font-weight: 700;
   font-size: 28px;
+  cursor: pointer;
 `
 
 const Actions = styled.div``
