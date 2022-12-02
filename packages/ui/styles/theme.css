@@ -1,0 +1,37 @@
+:root {
+  --hh-fg-color: rgb(55, 53, 47);
+  --hh-fg-color-0: rgba(55, 53, 47, 0.09);
+  --hh-fg-color-1: rgba(55, 53, 47, 0.16);
+  --hh-fg-color-2: rgba(55, 53, 47, 0.4);
+  --hh-fg-color-3: rgba(55, 53, 47, 0.6);
+  --hh-fg-color-4: #000;
+  --hh-fg-color-5: rgba(55, 53, 47, 0.024);
+  --hh-fg-color-6: rgba(55, 53, 47, 0.8);
+  --hh-fg-color-icon: var(--hh-fg-color);
+
+  --hh-bg-color: #fff;
+  --hh-bg-color-0: rgba(135, 131, 120, 0.15);
+  --hh-bg-color-1: rgb(247, 246, 243);
+  --hh-bg-color-2: rgba(135, 131, 120, 0.15);
+
+  --hh-select-color-0: rgb(46, 170, 220);
+  --hh-select-color-1: rgba(45, 170, 219, 0.3);
+  --hh-select-color-2: #d9eff8;
+}
+
+.dark-mode {
+  --hh-fg-color: rgba(255, 255, 255, 0.9);
+  --hh-fg-color-0: var(--hh-fg-color);
+  --hh-fg-color-1: var(--hh-fg-color);
+  --hh-fg-color-2: var(--hh-fg-color);
+  --hh-fg-color-3: var(--hh-fg-color);
+  --hh-fg-color-4: var(--hh-fg-color);
+  --hh-fg-color-5: rgba(255, 255, 255, 0.7);
+  --hh-fg-color-6: #fff;
+  --hh-fg-color-icon: #fff;
+
+  --hh-bg-color: #2f3437;
+  --hh-bg-color-0: rgb(71, 76, 80);
+  --hh-bg-color-1: rgb(63, 68, 71);
+  --hh-bg-color-2: rgba(135, 131, 120, 0.15);
+}

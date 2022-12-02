@@ -1,2 +1,1 @@
-import * as React from "react";
-export * from "./components/Button";
+import * as React from 'react'

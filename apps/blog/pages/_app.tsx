@@ -1,6 +1,5 @@
 // global styles shared across the entire site
 import * as React from 'react'
-import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import { Analytics } from '@vercel/analytics/react'
 
@@ -19,6 +18,7 @@ import 'styles/global.css'
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
+import 'ui/styles/theme.css'
 
 import { bootstrap } from '@/lib/bootstrap-client'
 import {
@@ -28,12 +28,14 @@ import {
   posthogConfig,
   posthogId
 } from '@/lib/config'
+import AuthProvider from 'context/AuthProvider'
+import Global from '@/components/Global'
 
 if (!isServer) {
   bootstrap()
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   const router = useRouter()
 
   React.useEffect(() => {
@@ -64,7 +66,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Global />
+        <Component {...pageProps} />
+      </AuthProvider>
       <Analytics />
     </>
   )
