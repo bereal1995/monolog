@@ -1,8 +1,10 @@
+import React from 'react'
 import styled from '@emotion/styled'
+
+import Logo from '../vectors/Logo'
 
 import { colors } from '@/lib/colors'
 import { mq } from '@/lib/media'
-import Logo from '../vectors/Logo'
 
 interface Props {
   title?: React.ReactNode

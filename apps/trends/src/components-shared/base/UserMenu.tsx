@@ -1,10 +1,13 @@
-import { colors } from '@/lib/colors'
-import { mediaQuery } from '@/lib/media'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
+
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+
+import { mediaQuery } from '@/lib/media'
+import { colors } from '@/lib/colors'
 
 interface Props {
   visible: boolean
@@ -13,8 +16,11 @@ interface Props {
 
 function UserMenu({ visible, onClose }: Props) {
   const ref = useRef<HTMLDivElement>(null)
+  const supabase = useSupabaseClient()
   // const logout = useLogout()
-  const logout = () => {}
+  const logout = () => {
+    supabase.auth.signOut()
+  }
 
   // useOnClickOutside(ref, (e) => {
   //   onClose(e)

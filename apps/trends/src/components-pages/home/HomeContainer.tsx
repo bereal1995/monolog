@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import TabLayout from '@/components-shared/layouts/TabLayout'
 import { useLocale } from '@/hooks/useLocale'
-import { mediaQuery, mq } from '@/lib/media'
+import { mediaQuery } from '@/lib/media'
 
 export default function HomeContainer() {
   const { changeLocale } = useLocale()
