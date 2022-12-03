@@ -9,6 +9,7 @@ import { Global } from '@emotion/react'
 
 import { useDefaultSeo } from '@/hooks/useDefaultSeo'
 import GlobalStyle from '@/styles/GlobalStyle'
+import GlobalDialog from '@/components-shared/base/GlobalDialog'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(() => new QueryClient())
@@ -23,6 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
+            <GlobalDialog/>
           </Hydrate>
         </QueryClientProvider>
       </SessionContextProvider>

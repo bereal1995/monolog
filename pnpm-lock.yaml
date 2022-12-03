@@ -190,9 +190,11 @@ importers:
       '@types/facepaint': ^1.2.2
       '@types/hoist-non-react-statics': ^3.3.1
       '@types/node': 18.11.9
+      '@types/qs': ^6.9.7
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       axios: ^1.2.0
+      date-fns: ^2.28.0
       eslint: 8.28.0
       eslint-config-custom: workspace:*
       eslint-config-next: 13.0.5
@@ -209,6 +211,7 @@ importers:
       next-i18next: ^13.0.0
       next-seo: ^5.14.1
       prettier: ^2.7.1
+      qs: ^6.11.0
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.40.0
@@ -217,6 +220,7 @@ importers:
       tsconfig: workspace:*
       typescript: 4.9.3
       ui: workspace:*
+      zustand: ^4.1.4
     dependencies:
       '@emotion/babel-preset-css-prop': 11.10.0_@babel+core@7.20.5
       '@emotion/react': 11.10.5_hebjedjhazelsvuzebr6t7ng24
@@ -229,6 +233,7 @@ importers:
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       axios: 1.2.0
+      date-fns: 2.29.3
       eslint: 8.28.0
       eslint-config-next: 13.0.5_hsf322ms6xhhd4b5ne6lb74y4a
       facepaint: 1.2.1
@@ -237,6 +242,7 @@ importers:
       next: 13.0.5_672uxklweod7ene3nqtsh262ca
       next-i18next: 13.0.0_sqrilzjmqdbnpr3f23fvxycbtm
       next-seo: 5.14.1_7iuvftg57tblwyxclfkwku5xo4
+      qs: 6.11.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.40.0_react@18.2.0
@@ -244,9 +250,11 @@ importers:
       react-icons: 4.7.1_react@18.2.0
       typescript: 4.9.3
       ui: link:../../packages/ui
+      zustand: 4.1.4_react@18.2.0
     devDependencies:
       '@types/facepaint': 1.2.2
       '@types/hoist-non-react-statics': 3.3.1
+      '@types/qs': 6.9.7
       eslint-config-custom: link:../../packages/eslint-config-custom
       eslint-config-standard: 17.0.0_5dakk4wnrkkieagghiqvu5yn4y
       eslint-plugin-import: 2.26.0_eslint@8.28.0
@@ -1758,6 +1766,10 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+
+  /@types/qs/6.9.7:
+    resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+    dev: true
 
   /@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
@@ -5716,6 +5728,13 @@ packages:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
 
+  /qs/6.11.0:
+    resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.4
+    dev: false
+
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
@@ -7075,4 +7094,20 @@ packages:
 
   /yoga-wasm-web/0.1.2:
     resolution: {integrity: sha512-8SkgawHcA0RUbMrnhxbaQkZDBi8rMed8pQHixkFF9w32zGhAwZ9/cOHWlpYfr6RCx42Yp3siV45/jPEkJxsk6w==}
+    dev: false
+
+  /zustand/4.1.4_react@18.2.0:
+    resolution: {integrity: sha512-k2jVOlWo8p4R83mQ+/uyB8ILPO2PCJOf+QVjcL+1PbMCk1w5OoPYpAIxy9zd93FSfmJqoH6lGdwzzjwqJIRU5A==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
