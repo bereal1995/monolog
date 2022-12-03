@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import Link from 'next/link'
-import { themedPalette } from 'ui/theme'
 
 const posts = [
   {
@@ -47,7 +46,7 @@ const Home: NextPage = () => {
 const Block = styled.div`
   h2 {
     padding: 5px 10px;
-    border-bottom: 1px solid ${themedPalette.divider};
+    border-bottom: 1px solid #fcf;
   }
   ul {
     padding: 10px;
@@ -56,7 +55,7 @@ const Block = styled.div`
       padding: 5px 0;
       cursor: pointer;
       &:hover {
-        color: ${themedPalette.textSecondary};
+        color: #000;
       }
     }
   }
