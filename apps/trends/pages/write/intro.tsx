@@ -1,3 +1,5 @@
+import IntroContainer from '@/components-pages/write/intro/IntroContainer'
+
 export default function Intro() {
-  return <div>Intro</div>
+  return <IntroContainer />
 }

@@ -24,7 +24,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         <QueryClientProvider client={queryClient}>
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
-            <GlobalDialog/>
+            <GlobalDialog />
           </Hydrate>
         </QueryClientProvider>
       </SessionContextProvider>

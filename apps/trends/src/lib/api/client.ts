@@ -39,14 +39,9 @@ async function rejectIfNeeded(response: Response) {
 }
 
 export const fetchClient = {
-  baseUrl:
-    typeof window === 'undefined'
-      ? 'http://localhost:8080'
-      : window.ENV?.API_BASE_URL ?? 'http://localhost:8080',
+  baseUrl: typeof window === 'undefined' ? 'http://localhost:8080' : window.ENV?.API_BASE_URL ?? 'http://localhost:8080',
   async get<T>(url: string, config: RequestConfig = {}) {
-    const query = config?.params
-      ? QueryString.stringify(config.params, { addQueryPrefix: true })
-      : ''
+    const query = config?.params ? QueryString.stringify(config.params, { addQueryPrefix: true }) : ''
     const response = await fetch(this.baseUrl.concat(url, query), {
       method: 'GET',
       ...(typeof window === 'undefined' ? {} : { credentials: 'include' }),
@@ -117,9 +112,7 @@ export const fetchClient = {
     })
     await rejectIfNeeded(response)
 
-    const data: T = response.headers.get('Content-Type')?.includes('json')
-      ? await response.json()
-      : ((await response.text()) as any)
+    const data: T = response.headers.get('Content-Type')?.includes('json') ? await response.json() : ((await response.text()) as any)
 
     const { headers } = response
     return {
