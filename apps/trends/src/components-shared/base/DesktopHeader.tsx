@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useUser } from '@supabase/auth-helpers-react'
+import { useSession, useUser } from '@supabase/auth-helpers-react'
+
+import { useEffect, useState } from 'react'
 
 import Button from '../system/Button'
 import Logo from '../vectors/Logo'
@@ -10,9 +12,18 @@ import UserAddon from './UserAddon'
 
 import { colors } from '@/lib/colors'
 import { mq } from '@/lib/media'
+import { useSupabaseProfile } from '@/lib/useSupabaseProfile'
 
 function DesktopHeader() {
+  const session = useSession()
   const user = useUser()
+  const [profile, setProfile] = useState<{username: string, avatarUrl: string} | null>(null)
+  const {getProfile} = useSupabaseProfile()
+
+  useEffect(() => {
+    getProfile(setProfile)
+  }, [session])
+
   return (
     <Block>
       <HomeLink href="/">
@@ -23,7 +34,7 @@ function DesktopHeader() {
         <Addon>
           <SearchArea />
           {user ? (
-            <UserAddon username={user.user_metadata.username ?? 'null'} />
+            <UserAddon username={profile?.username ?? user.user_metadata.user_name ?? 'null'} />
           ) : (
             <Buttons>
               <Button variant="text" size="small" to="/auth/login">

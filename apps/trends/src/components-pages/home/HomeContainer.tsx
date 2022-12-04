@@ -15,6 +15,7 @@ import { GetItemsResult, ListMode } from '@/lib/api/types'
 
 import { getWeekRangeFromDate } from '@/lib/week'
 import { getItems } from '@/lib/api/items'
+import { useIntersect } from '@/hooks/useIntersect'
 
 interface Props {
   initialData: GetItemsResult
@@ -28,7 +29,7 @@ export default function HomeContainer({ initialData }: Props) {
   const startDate = router.query.start as string
   const endDate = router.query.end as string
   const [dateRange, setDateRange] = useState(startDate && endDate ? [startDate, endDate] : defaultDateRange)
-  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery(
     ['items', mode].concat(mode === 'past' ? dateRange : []),
     ({ pageParam }) =>
       getItems({
@@ -47,11 +48,18 @@ export default function HomeContainer({ initialData }: Props) {
       },
     },
   )
+  const ref = useIntersect(async (entry, observer) => {
+    observer.unobserve(entry.target)
+    if (!isFetchingNextPage && hasNextPage) {
+      fetchNextPage()
+    }
+  })
   const items = data?.pages.flatMap((page) => page.list)
 
   return (
     <StyledTabLayout>
       <Content>{items ? <LinkCardList items={items} /> : null}</Content>
+      <div ref={ref} />
     </StyledTabLayout>
   )
 }

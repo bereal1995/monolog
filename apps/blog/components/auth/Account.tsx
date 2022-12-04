@@ -20,7 +20,6 @@ export default function Account({ session }: { session: Session }) {
   const { getProfile, updateProfile, loading } = useSupabaseProfile()
 
   useEffect(() => {
-    console.log('dsadsadas')
     getProfile(setProfile)
   }, [session])
 
@@ -31,7 +30,6 @@ export default function Account({ session }: { session: Session }) {
       avatarUrl: string
     }
   ) => {
-    console.log('data', data)
     if (data) {
       setUsername(data.username)
       setAvatarUrl(data.avatarUrl)
