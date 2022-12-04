@@ -1,21 +1,20 @@
 import styled from '@emotion/styled'
-
 import { useInfiniteQuery } from '@tanstack/react-query'
-
-import { useMemo, useState } from 'react'
-
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import LinkCardList from './LinkCardList'
+import ListModeSelector from './ListModeSelector'
+import WeekSelector from './WeekSelector'
 
 import TabLayout from '@/components-shared/layouts/TabLayout'
 import { useLocale } from '@/hooks/useLocale'
 import { mediaQuery } from '@/lib/media'
 import { GetItemsResult, ListMode } from '@/lib/api/types'
-
 import { getWeekRangeFromDate } from '@/lib/week'
 import { getItems } from '@/lib/api/items'
 import { useIntersect } from '@/hooks/useIntersect'
+import EmptyList from '@/components-shared/system/EmptyList'
 
 interface Props {
   initialData: GetItemsResult
@@ -35,7 +34,7 @@ export default function HomeContainer({ initialData }: Props) {
       getItems({
         mode,
         cursor: pageParam,
-        ...(mode === 'past' ? { startDate: 'dateRange[0]', endDate: 'dateRange[1]' } : {}),
+        ...(mode === 'past' ? { startDate: dateRange[0], endDate: dateRange[1] } : {}),
       }),
     {
       initialData: {
@@ -54,12 +53,28 @@ export default function HomeContainer({ initialData }: Props) {
       fetchNextPage()
     }
   })
-  const items = data?.pages.flatMap((page) => page.list)
 
+  const onSelectMode = (mode: ListMode) => {
+    setMode(mode)
+    router.push({ query: { mode } })
+  }
+
+  useEffect(() => {
+    if (mode === 'past') {
+      setDateRange(startDate && endDate ? [startDate, endDate] : defaultDateRange)
+    }
+  }, [mode, startDate, endDate, defaultDateRange])
+
+  const items = data?.pages.flatMap((page) => page.list)
   return (
     <StyledTabLayout>
-      <Content>{items ? <LinkCardList items={items} /> : null}</Content>
-      <div ref={ref} />
+      <Content>
+        <ListModeSelector mode={mode} onSelectMode={onSelectMode} />
+        {mode === 'past' && <WeekSelector dateRange={dateRange} />}
+        {items ? <LinkCardList items={items} /> : null}
+        <div ref={ref} />
+      </Content>
+      {items?.length === 0 ? <EmptyList /> : null}
     </StyledTabLayout>
   )
 }
