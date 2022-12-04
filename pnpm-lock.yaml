@@ -194,6 +194,7 @@ importers:
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       axios: ^1.2.0
+      cookies-next: ^2.1.1
       date-fns: ^2.28.0
       eslint: 8.28.0
       eslint-config-custom: workspace:*
@@ -206,16 +207,13 @@ importers:
       eslint-plugin-unused-imports: ^2.0.0
       facepaint: ^1.2.1
       framer-motion: ^7.6.18
-      i18next: ^22.0.6
       next: 13.0.5
-      next-i18next: ^13.0.0
       next-seo: ^5.14.1
       prettier: ^2.7.1
       qs: ^6.11.0
       react: 18.2.0
       react-dom: 18.2.0
       react-hook-form: ^7.40.0
-      react-i18next: ^12.0.0
       react-icons: ^4.7.1
       tsconfig: workspace:*
       typescript: 4.9.3
@@ -233,20 +231,18 @@ importers:
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       axios: 1.2.0
+      cookies-next: 2.1.1
       date-fns: 2.29.3
       eslint: 8.28.0
       eslint-config-next: 13.0.5_hsf322ms6xhhd4b5ne6lb74y4a
       facepaint: 1.2.1
       framer-motion: 7.6.18_biqbaboplfbrettd7655fr4n2y
-      i18next: 22.0.6
       next: 13.0.5_672uxklweod7ene3nqtsh262ca
-      next-i18next: 13.0.0_sqrilzjmqdbnpr3f23fvxycbtm
       next-seo: 5.14.1_7iuvftg57tblwyxclfkwku5xo4
       qs: 6.11.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-hook-form: 7.40.0_react@18.2.0
-      react-i18next: 12.0.0_nger6pvrp5hnzeykouhwqmsdti
       react-icons: 4.7.1_react@18.2.0
       typescript: 4.9.3
       ui: link:../../packages/ui
@@ -1694,6 +1690,10 @@ packages:
       '@types/responselike': 1.0.0
     dev: false
 
+  /@types/cookie/0.4.1:
+    resolution: {integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==}
+    dev: false
+
   /@types/eslint-scope/3.7.4:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
@@ -1721,6 +1721,7 @@ packages:
     dependencies:
       '@types/react': 18.0.25
       hoist-non-react-statics: 3.3.2
+    dev: true
 
   /@types/http-cache-semantics/4.0.1:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
@@ -1744,6 +1745,10 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 18.11.10
+    dev: false
+
+  /@types/node/16.18.4:
+    resolution: {integrity: sha512-9qGjJ5GyShZjUfx2ArBIGM+xExdfLvvaCyQR0t6yRXKPcWCVYF/WemtX/uIU3r7FYECXRXkIiw2Vnhn6y8d+pw==}
     dev: false
 
   /@types/node/18.11.10:
@@ -2648,6 +2653,19 @@ packages:
   /convert-source-map/1.9.0:
     resolution: {integrity: sha512-ASFBup0Mz1uyiIjANan1jzLQami9z1PoYSZCiiYW2FczPbenXc45FZdBZLzOT+r6+iciuEModtmCti+hjaAk0A==}
 
+  /cookie/0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
+  /cookies-next/2.1.1:
+    resolution: {integrity: sha512-AZGZPdL1hU3jCjN2UMJTGhLOYzNUN9Gm+v8BdptYIHUdwz397Et1p+sZRfvAl8pKnnmMdX2Pk9xDRKCGBum6GA==}
+    dependencies:
+      '@types/cookie': 0.4.1
+      '@types/node': 16.18.4
+      cookie: 0.4.2
+    dev: false
+
   /copy-anything/3.0.3:
     resolution: {integrity: sha512-fpW2W/BqEzqPp29QS+MwwfisHCQZtiduTe/m8idFo0xbti9fIZ2WVhAsCv4ggFVH3AgCkVdpoOCtQC6gBrdhjw==}
     engines: {node: '>=12.13'}
@@ -2664,11 +2682,6 @@ packages:
   /core-js-pure/3.26.1:
     resolution: {integrity: sha512-VVXcDpp/xJ21KdULRq/lXdLzQAtX7+37LzpyfFM973il0tWSsDEoyzG38G14AjTpK9VTfiNM9jnFauq/CpaWGQ==}
     requiresBuild: true
-
-  /core-js/3.26.1:
-    resolution: {integrity: sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==}
-    requiresBuild: true
-    dev: false
 
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -4458,12 +4471,6 @@ packages:
     resolution: {integrity: sha512-2zuLt85Ta+gIyvs4N88pCYskNrxf1TFv3LR9t5mdAZIX8BcgQQ48F2opUptvHa6m8zsy5v/a0i9mWzTrlNWU0Q==}
     dev: false
 
-  /html-parse-stringify/3.0.1:
-    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
-    dependencies:
-      void-elements: 3.1.0
-    dev: false
-
   /http-cache-semantics/4.1.0:
     resolution: {integrity: sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==}
     dev: false
@@ -4486,16 +4493,6 @@ packages:
 
   /hyphenate-style-name/1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
-    dev: false
-
-  /i18next-fs-backend/2.0.1:
-    resolution: {integrity: sha512-fzeiFOXqsMiFAFUnNyC4buERI11vTAuf7JIDWqaiPgBK3R+XJQMSY1LyoXaWspBEFaAkXH/0uMbOv7nttBFztg==}
-    dev: false
-
-  /i18next/22.0.6:
-    resolution: {integrity: sha512-RlreNGoPIdDP4QG+qSA9PxZKGwlzmcozbI9ObI6+OyUa/Rp0EjZZA9ubyBjw887zVNZsC+7FI3sXX8oiTzAfig==}
-    dependencies:
-      '@babel/runtime': 7.20.6
     dev: false
 
   /ieee754/1.2.1:
@@ -5099,26 +5096,6 @@ packages:
 
   /neo-async/2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
-    dev: false
-
-  /next-i18next/13.0.0_sqrilzjmqdbnpr3f23fvxycbtm:
-    resolution: {integrity: sha512-XiODAmMdueAIETQKIRPvYEZ5ghLOlzHb6PI4/WzwYkKdC/5q6UROzwIRw7aj3VWRB3xwnuuzEVI9NAjMfXyrkQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      i18next: ^22.0.6
-      next: '>= 12.0.0'
-      react: '>= 17.0.2'
-      react-i18next: ^12.0.0
-    dependencies:
-      '@babel/runtime': 7.20.6
-      '@types/hoist-non-react-statics': 3.3.1
-      core-js: 3.26.1
-      hoist-non-react-statics: 3.3.2
-      i18next: 22.0.6
-      i18next-fs-backend: 2.0.1
-      next: 13.0.5_672uxklweod7ene3nqtsh262ca
-      react: 18.2.0
-      react-i18next: 12.0.0_nger6pvrp5hnzeykouhwqmsdti
     dev: false
 
   /next-seo/5.14.1_7iuvftg57tblwyxclfkwku5xo4:
@@ -5798,26 +5775,6 @@ packages:
       react-dom: '>=16.8.1'
     dependencies:
       hotkeys-js: 3.9.4
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /react-i18next/12.0.0_nger6pvrp5hnzeykouhwqmsdti:
-    resolution: {integrity: sha512-/O7N6aIEAl1FaWZBNvhdIo9itvF/MO/nRKr9pYqRc9LhuC1u21SlfwpiYQqvaeNSEW3g3qUXLREOWMt+gxrWbg==}
-    peerDependencies:
-      i18next: '>= 19.0.0'
-      react: '>= 16.8.0'
-      react-dom: '*'
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
-    dependencies:
-      '@babel/runtime': 7.20.6
-      html-parse-stringify: 3.0.1
-      i18next: 22.0.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
@@ -6907,11 +6864,6 @@ packages:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
     dev: true
-
-  /void-elements/3.1.0:
-    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
-    engines: {node: '>=0.10.0'}
-    dev: false
 
   /warning/4.0.3:
     resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}

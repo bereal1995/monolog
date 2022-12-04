@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import { GetServerSideProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { getItems } from '@/lib/api/items'
 import HomeContainer from '@/components-pages/home/HomeContainer'
@@ -48,7 +47,6 @@ export const getServerSideProps: GetServerSideProps = async ({ locale = 'ko', qu
     props: {
       initialItems,
       dehydratedState: dehydrate(queryClient),
-      ...(await serverSideTranslations(locale, ['seo'])),
     },
   }
 }
