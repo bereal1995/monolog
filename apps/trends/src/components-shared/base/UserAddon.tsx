@@ -1,10 +1,12 @@
-import { mediaQuery } from '@/lib/media'
 import styled from '@emotion/styled'
 import { useRef, useState } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
 
 import Button from '../system/Button'
+
 import UserMenu from './UserMenu'
+
+import { mediaQuery } from '@/lib/media'
 
 interface Props {
   username: string

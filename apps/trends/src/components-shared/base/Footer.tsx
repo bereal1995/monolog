@@ -1,7 +1,9 @@
+import styled from '@emotion/styled'
+
+import FooterTabItem from './FooterTabItem'
+
 import { colors } from '@/lib/colors'
 import { mq } from '@/lib/media'
-import styled from '@emotion/styled'
-import FooterTabItem from './FooterTabItem'
 
 function Footer() {
   return (

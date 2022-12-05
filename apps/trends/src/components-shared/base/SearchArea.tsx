@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
-
-import { colors } from '@/lib/colors'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
+
+import { colors } from '@/lib/colors'
 
 
 function SearchArea() {

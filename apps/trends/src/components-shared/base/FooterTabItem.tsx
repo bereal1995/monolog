@@ -2,9 +2,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import { AiFillHome, AiOutlineSearch, AiOutlinePlusCircle, AiFillBook, AiFillSetting } from 'react-icons/ai'
 import { css } from '@emotion/react'
-import { colors } from '@/lib/colors'
-import Link from 'next/link'
+
 import ActiveLink from './ActiveLink'
+
+import { colors } from '@/lib/colors'
 
 const IconMap = {
   home: AiFillHome,
@@ -22,10 +23,7 @@ function FooterTabItem({ icon, to }: Props) {
   const iconEl = React.createElement(IconMap[icon])
 
   return (
-    <LinkItem
-      href={to}
-      activeClassName="active"
-    >
+    <LinkItem href={to} activeClassName="active">
       {iconEl}
     </LinkItem>
   )
