@@ -3,6 +3,8 @@ import { keymap } from '@codemirror/view'
 import { EditorView, minimalSetup } from 'codemirror'
 import { indentWithTab } from '@codemirror/commands'
 
+import { Extension } from '@codemirror/state'
+
 import { colors } from './colors'
 
 const customTheme = EditorView.theme({
@@ -30,4 +32,4 @@ const customTheme = EditorView.theme({
   },
 })
 
-export const codeMirrorExtensions = [minimalSetup, markdown(), customTheme, keymap.of([indentWithTab]), EditorView.lineWrapping]
+export const codeMirrorExtensions: Extension[] = [keymap.of([indentWithTab]), customTheme, markdown(), minimalSetup]
