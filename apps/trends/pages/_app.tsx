@@ -1,7 +1,7 @@
 import type { AppContext, AppProps } from 'next/app'
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { createBrowserSupabaseClient, Session } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { Global } from '@emotion/react'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -12,7 +12,7 @@ import { setClientCookie } from '@/lib/api/client'
 import GlobalBottomSheetModal from '@/components-shared/base/GlobalBottomSheetModal'
 import Core from '@/components-shared/base/Core'
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps<{ initialSession: Session; dehydratedState: any }>) => {
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -23,7 +23,7 @@ const App = ({ Component, pageProps }: AppProps) => {
         },
       }),
   )
-  const [supabase] = useState(() => createBrowserSupabaseClient())
+  const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
   return (
     <>
@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <Hydrate state={pageProps?.dehydratedState}>
-          <SessionContextProvider supabaseClient={supabase} initialSession={pageProps?.initialSession}>
+          <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps?.initialSession}>
             <Component {...pageProps} />
             <GlobalDialog />
             <GlobalBottomSheetModal />
