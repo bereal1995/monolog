@@ -1,7 +1,30 @@
-import { useRouter } from "next/router"
+import { GetServerSideProps } from 'next'
 
-export default function ItemDetailPage() {
-  const router = useRouter()
-  const { itemId } = router.query
-  return <div>ItemDetail {itemId}</div>
+import { getComments, getItem } from '@/lib/api/items'
+import { Comment, Item } from '@/lib/api/types'
+import ItemDetailContainer from '@/components-pages/items/ItemDetailContainer'
+import { useCommentsQuery } from '@/hooks/query/useCommentsQuery'
+
+interface Props {
+  item: Item
+  initialComments: Comment[]
+}
+
+export default function ItemDetailPage({ item, initialComments }: Props) {
+  const { data: comments } = useCommentsQuery(item.id, {
+    initialData: initialComments,
+  })
+  return <ItemDetailContainer item={item} comments={comments ?? []} />
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const itemId = Number(context.params?.itemId!)
+  const [item, initialComments] = await Promise.all([getItem(itemId), getComments(itemId)])
+
+  return {
+    props: {
+      item,
+      initialComments,
+    },
+  }
 }
