@@ -10,6 +10,7 @@ import GlobalStyle from '@/styles/GlobalStyle'
 import GlobalDialog from '@/components-shared/base/GlobalDialog'
 import { setClientCookie } from '@/lib/api/client'
 import GlobalBottomSheetModal from '@/components-shared/base/GlobalBottomSheetModal'
+import Core from '@/components-shared/base/Core'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(
@@ -27,16 +28,17 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Global styles={GlobalStyle} />
-      <SessionContextProvider supabaseClient={supabase} initialSession={pageProps.initialSession}>
-        <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <Hydrate state={pageProps.dehydratedState}>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
+        <Hydrate state={pageProps?.dehydratedState}>
+          <SessionContextProvider supabaseClient={supabase} initialSession={pageProps?.initialSession}>
             <Component {...pageProps} />
             <GlobalDialog />
             <GlobalBottomSheetModal />
-          </Hydrate>
-        </QueryClientProvider>
-      </SessionContextProvider>
+            <Core />
+          </SessionContextProvider>
+        </Hydrate>
+      </QueryClientProvider>
     </>
   )
 }

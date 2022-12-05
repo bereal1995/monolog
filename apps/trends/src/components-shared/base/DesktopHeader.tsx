@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { useSession, useUser } from '@supabase/auth-helpers-react'
-
-import { useEffect, useState } from 'react'
+import { useUser } from '@supabase/auth-helpers-react'
 
 import Button from '../system/Button'
 import Logo from '../vectors/Logo'
@@ -12,17 +10,11 @@ import UserAddon from './UserAddon'
 
 import { colors } from '@/lib/colors'
 import { mq } from '@/lib/media'
-import { useSupabaseProfile } from '@/lib/useSupabaseProfile'
+import { useSupabaseValue } from '@/states/supabase'
 
 function DesktopHeader() {
-  const session = useSession()
   const user = useUser()
-  const [profile, setProfile] = useState<{username: string, avatarUrl: string} | null>(null)
-  const {getProfile} = useSupabaseProfile()
-
-  useEffect(() => {
-    getProfile(setProfile)
-  }, [session])
+  const { profile } = useSupabaseValue()
 
   return (
     <Block>

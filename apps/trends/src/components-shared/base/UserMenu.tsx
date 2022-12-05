@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import { useRef } from 'react'
 
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 import { mediaQuery } from '@/lib/media'
 import { colors } from '@/lib/colors'
+import { useLogout } from '@/hooks/useLogout'
 
 interface Props {
   visible: boolean
@@ -16,11 +16,7 @@ interface Props {
 
 function UserMenu({ visible, onClose }: Props) {
   const ref = useRef<HTMLDivElement>(null)
-  const supabase = useSupabaseClient()
-  // const logout = useLogout()
-  const logout = () => {
-    supabase.auth.signOut()
-  }
+  const logout = useLogout()
 
   // useOnClickOutside(ref, (e) => {
   //   onClose(e)

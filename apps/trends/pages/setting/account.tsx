@@ -1,3 +1,6 @@
+
+import AccountContainer from '@/components-pages/setting/AccountContainer'
+
 export default function Account() {
-  return <div>Account</div>
+  return <AccountContainer />
 }
