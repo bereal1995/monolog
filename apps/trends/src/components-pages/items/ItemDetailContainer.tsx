@@ -21,7 +21,7 @@ interface Props {
 function ItemDetailContainer({ item, comments }: Props) {
   const router = useRouter()
   const user = useUser()
-  const isMyItem = user?.id === item.user.id
+  const isMyItem = user?.id === item.user.authId
   const { open: openBottomSheetModal } = useBottomSheetModalActions()
   const openDialog = useOpenDialog()
 

@@ -36,6 +36,7 @@ export interface Publisher {
 export interface User {
   id: string
   username: string
+  authId: string
 }
 
 export interface PageInfo {

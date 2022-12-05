@@ -35,7 +35,7 @@ function CommentItem({ comment, isSubComment }: Props) {
   const { like, unlike } = useCommentLike()
   const openLoginDialog = useOpenLoginDialog()
   const currentUser = useUser()
-  const isMyComment = comment.user.id === currentUser?.id
+  const isMyComment = comment.user.authId === currentUser?.id
   const { open: openBottomSheetModal } = useBottomSheetModalActions()
   const deleteComment = useDeleteComment()
   const [isReplying, setIsReplying] = useState(false)
