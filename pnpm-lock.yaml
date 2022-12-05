@@ -226,6 +226,7 @@ importers:
       tsconfig: workspace:*
       typescript: 4.9.3
       ui: workspace:*
+      use-debounce: ^9.0.2
       zustand: ^4.1.4
     dependencies:
       '@codemirror/commands': 6.1.2
@@ -261,6 +262,7 @@ importers:
       react-icons: 4.7.1_react@18.2.0
       typescript: 4.9.3
       ui: link:../../packages/ui
+      use-debounce: 9.0.2_react@18.2.0
       zustand: 4.1.4_react@18.2.0
     devDependencies:
       '@types/facepaint': 1.2.2
@@ -7064,6 +7066,15 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.1.1
+
+  /use-debounce/9.0.2_react@18.2.0:
+    resolution: {integrity: sha512-QLyB0sxt9F5AisGDrUybCRJSLE60bTQR0yXc+IebNGUu1GCXwii1zsZl82mPGdWqDVQy7+1FKMLHQUixxf5Nbw==}
+    engines: {node: '>= 10.0.0'}
+    peerDependencies:
+      react: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /use-persisted-state/0.3.3_react@18.2.0:
     resolution: {integrity: sha512-pCNlvYC8+XjRxwnIut4teGC9f2p9aD88R8OGseQGZa2dvqG/h1vEGk1vRE1IZG0Vf161UDpn+NlW4+UGubQflQ==}
