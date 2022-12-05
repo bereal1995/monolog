@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GlobalStyle from '@/styles/GlobalStyle'
 import GlobalDialog from '@/components-shared/base/GlobalDialog'
 import { setClientCookie } from '@/lib/api/client'
+import GlobalBottomSheetModal from '@/components-shared/base/GlobalBottomSheetModal'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [queryClient] = useState(
@@ -32,6 +33,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
             <GlobalDialog />
+            <GlobalBottomSheetModal />
           </Hydrate>
         </QueryClientProvider>
       </SessionContextProvider>

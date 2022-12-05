@@ -217,6 +217,7 @@ const MoreButton = styled.button`
   width: 24px;
   height: 24px;
   color: ${colors.gray5};
+  cursor: pointer;
   svg {
     width: 20px;
     height: 20px;
@@ -287,6 +288,7 @@ const ReplyButton = styled.button`
   border: none;
   background: none;
   outline: none;
+  cursor: pointer;
   svg {
     width: 16px;
     height: 16px;

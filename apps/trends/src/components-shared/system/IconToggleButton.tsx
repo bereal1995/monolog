@@ -20,12 +20,7 @@ function IconToggleButton({ isActive, inactiveIcon, activeIcon, size = 'medium',
             {activeIcon}
           </SvgWrapper>
         ) : (
-          <SvgWrapper
-            key="outline"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-          >
+          <SvgWrapper key="outline" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
             {inactiveIcon}
           </SvgWrapper>
         )}
@@ -37,6 +32,7 @@ function IconToggleButton({ isActive, inactiveIcon, activeIcon, size = 'medium',
 const StyledButton = styled.button<{ size: Size }>`
   position: relative;
   display: inline-flex;
+  cursor: pointer;
   ${(props) =>
     props.size === 'medium' &&
     css`
