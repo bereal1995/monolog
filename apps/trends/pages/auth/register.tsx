@@ -1,15 +1,13 @@
-import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { NextSeo } from 'next-seo'
 
 import RegisterContainer from '@/components-pages/auth/RegisterContainer'
 
 export default function Register() {
   return (
     <>
-      <Head>
-        <title>회원가입</title>
-      </Head>
+      <NextSeo title="회원가입" noindex />
       <RegisterContainer />
     </>
   )

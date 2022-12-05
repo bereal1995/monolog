@@ -5,7 +5,9 @@ import { createBrowserSupabaseClient, Session } from '@supabase/auth-helpers-nex
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { Global } from '@emotion/react'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { DefaultSeo } from 'next-seo'
 
+import SEO from '@/config/seo.config'
 import GlobalStyle from '@/styles/GlobalStyle'
 import GlobalDialog from '@/components-shared/base/GlobalDialog'
 import { setClientCookie } from '@/lib/api/client'
@@ -13,10 +15,7 @@ import GlobalBottomSheetModal from '@/components-shared/base/GlobalBottomSheetMo
 import Core from '@/components-shared/base/Core'
 
 const App = ({ Component, pageProps }: AppProps<{ initialSession: Session; dehydratedState: any }>) => {
-  const [queryClient] = useState(
-    () =>
-      new QueryClient(),
-  )
+  const [queryClient] = useState(() => new QueryClient())
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
   return (
@@ -26,6 +25,7 @@ const App = ({ Component, pageProps }: AppProps<{ initialSession: Session; dehyd
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
           <Hydrate state={pageProps.dehydratedState}>
+            <DefaultSeo {...SEO} />
             <Component {...pageProps} />
             <GlobalDialog />
             <GlobalBottomSheetModal />

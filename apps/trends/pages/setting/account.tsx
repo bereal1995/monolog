@@ -1,10 +1,16 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { GetServerSideProps } from 'next'
+import { NextSeo } from 'next-seo'
 
 import AccountContainer from '@/components-pages/setting/AccountContainer'
 
 export default function Account() {
-  return <AccountContainer />
+  return (
+    <>
+      <NextSeo title="설정" noindex />
+      <AccountContainer />
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

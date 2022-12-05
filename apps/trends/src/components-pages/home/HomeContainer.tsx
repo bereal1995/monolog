@@ -23,7 +23,7 @@ interface Props {
 export default function HomeContainer({ initialData }: Props) {
   const { changeLocale } = useLocale()
   const router = useRouter()
-  const [mode, setMode] = useState<ListMode>((router.query.mode as any) ?? 'recent')
+  const [mode, setMode] = useState<ListMode>((router.query.mode as any) ?? 'trending')
   const defaultDateRange = useMemo(() => getWeekRangeFromDate(new Date()), [])
   const startDate = router.query.start as string
   const endDate = router.query.end as string

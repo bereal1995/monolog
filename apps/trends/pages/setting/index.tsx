@@ -1,11 +1,14 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { GetServerSideProps } from 'next'
+import { NextSeo } from 'next-seo'
 
 import SettingContainer from '@/components-pages/setting/SettingContainer'
 
 export default function Setting() {
-  
-  return <SettingContainer />
+  return <>
+    <NextSeo title="설정" noindex />
+    <SettingContainer />
+  </>
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

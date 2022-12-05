@@ -1,16 +1,13 @@
-import Head from 'next/head'
-
 import { GetServerSideProps } from 'next'
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { NextSeo } from 'next-seo'
 
 import LoginContainer from '@/components-pages/auth/LoginContainer'
 
 export default function Login() {
   return (
     <>
-      <Head>
-        <title>로그인</title>
-      </Head>
+      <NextSeo title="로그인" noindex />
       <LoginContainer />
     </>
   )

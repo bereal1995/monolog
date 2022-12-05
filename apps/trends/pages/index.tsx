@@ -1,5 +1,6 @@
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 import { GetServerSideProps } from 'next'
+import { NextSeo } from 'next-seo'
 
 import { getItems } from '@/lib/api/items'
 import HomeContainer from '@/components-pages/home/HomeContainer'
@@ -15,7 +16,12 @@ export default function Home({ initialItems }: { initialItems: GetItemsResult })
     },
   })
 
-  return <HomeContainer initialData={initialItems} />
+  return (
+    <>
+      <NextSeo title="trends" description="It, 개발, 디자인, 트렌드를 한눈에" />
+      <HomeContainer initialData={initialItems} />
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ locale = 'ko', query }) => {

@@ -1,10 +1,16 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { GetServerSideProps } from 'next'
+import { NextSeo } from 'next-seo'
 
 import WriteContainer from '@/components-pages/write/WriteContainer'
 
 export default function Write() {
-  return <WriteContainer />
+  return (
+    <>
+      <NextSeo title="새 글 작성" noindex />
+      <WriteContainer />
+    </>
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
