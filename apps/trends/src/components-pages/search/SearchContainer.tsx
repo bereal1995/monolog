@@ -64,7 +64,7 @@ function SearchContainer({ initialSearchResult }: Props) {
 
   useEffect(() => {
     router.push({ query: { q: debouncedSearchText } })
-  }, [debouncedSearchText, router])
+  }, [debouncedSearchText])
 
   const items = infiniteData?.pages.flatMap((page) => page.list)
   return (
