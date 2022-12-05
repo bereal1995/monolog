@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "build": "cross-env NODE_ENV=development next build",
+    "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint --fix",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix ."
   },
@@ -28,6 +28,7 @@
     "axios": "^1.2.0",
     "codemirror": "^6.0.1",
     "cookies-next": "^2.1.1",
+    "cross-env": "^7.0.2",
     "date-fns": "^2.28.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",

@@ -1,5 +1,8 @@
 import QueryString from 'qs'
 
+// eslint-disable-next-line turbo/no-undeclared-env-vars
+const baseUrl = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_API_BASE_URL ?? 'http://localhost:8080' : 'http://localhost:8080'
+
 let _cookie = ''
 
 export function setClientCookie(cookie: string) {
@@ -39,7 +42,7 @@ async function rejectIfNeeded(response: Response) {
 }
 
 export const fetchClient = {
-  baseUrl: typeof window === 'undefined' ? 'http://localhost:8080' : window.ENV?.API_BASE_URL ?? 'http://localhost:8080',
+  baseUrl,
   async get<T>(url: string, config: RequestConfig = {}) {
     const query = config?.params ? QueryString.stringify(config.params, { addQueryPrefix: true }) : ''
     const response = await fetch(this.baseUrl.concat(url, query), {

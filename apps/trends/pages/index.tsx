@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({ locale = 'ko', qu
     end?: string
   } = query
 
-  const fallbackMode = mode ?? 'recent'
+  const fallbackMode = mode ?? 'trending'
 
   const range = mode === 'past' ? getWeekRangeFromDate(new Date()) : undefined
   const startDate = start ?? range?.[0]

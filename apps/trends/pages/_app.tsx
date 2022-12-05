@@ -15,30 +15,24 @@ import Core from '@/components-shared/base/Core'
 const App = ({ Component, pageProps }: AppProps<{ initialSession: Session; dehydratedState: any }>) => {
   const [queryClient] = useState(
     () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 1000 * 5,
-          },
-        },
-      }),
+      new QueryClient(),
   )
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
   return (
     <>
       <Global styles={GlobalStyle} />
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Hydrate state={pageProps?.dehydratedState}>
-          <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps?.initialSession}>
+      <SessionContextProvider supabaseClient={supabaseClient} initialSession={pageProps?.initialSession}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />
             <GlobalDialog />
             <GlobalBottomSheetModal />
             <Core />
-          </SessionContextProvider>
-        </Hydrate>
-      </QueryClientProvider>
+          </Hydrate>
+        </QueryClientProvider>
+      </SessionContextProvider>
     </>
   )
 }
