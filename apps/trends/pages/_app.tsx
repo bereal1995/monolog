@@ -14,7 +14,7 @@ import { setClientCookie } from '@/lib/api/client'
 import GlobalBottomSheetModal from '@/components-shared/base/GlobalBottomSheetModal'
 import Core from '@/components-shared/base/Core'
 
-const App = ({ Component, pageProps, cookie }: AppProps<{ initialSession: Session; dehydratedState: any; cookie: any }>) => {
+const App = ({ Component, pageProps, cookie }: AppProps<{ initialSession: Session; dehydratedState: any }> & { cookie: any }) => {
   const [queryClient] = useState(() => new QueryClient())
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
