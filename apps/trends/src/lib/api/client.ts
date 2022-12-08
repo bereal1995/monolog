@@ -103,7 +103,9 @@ export const fetchClient = {
     }
   },
   async delete<T>(url: string, config: RequestConfig = {}) {
-    const response = await fetch(this.baseUrl.concat(url), {
+    const query = config?.params ? QueryString.stringify(config?.params, { addQueryPrefix: true }) : ''
+
+    const response = await fetch(this.baseUrl.concat(url, query), {
       method: 'DELETE',
       ...(typeof window === 'undefined' ? {} : { credentials: 'include' }),
       headers: {
