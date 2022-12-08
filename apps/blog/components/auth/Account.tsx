@@ -8,14 +8,14 @@ import { Database } from '../types/database.types'
 import Avatar from './Avatar'
 import { useRouter } from 'next/router'
 import { useSupabaseProfile } from 'hooks/useSupabaseProfile'
-export type Users = Database['public']['Tables']['User']['Row']
+export type Profiles = Database['public']['Tables']['profiles']['Row']
 
 export default function Account({ session }: { session: Session }) {
   const supabase = useSupabaseClient<Database>()
   const user = useUser()
-  const [username, setUsername] = useState<Users['username']>(null)
+  const [username, setUsername] = useState<Profiles['username']>(null)
   // const [website, setWebsite] = useState<Users['website']>(null)
-  const [avatarUrl, setAvatarUrl] = useState<Users['avatarUrl']>(null)
+  const [avatarUrl, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
   const router = useRouter()
   const { getProfile, updateProfile, loading } = useSupabaseProfile()
 
