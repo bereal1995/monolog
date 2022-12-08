@@ -63,6 +63,7 @@ export const fetchClient = {
     }
   },
   async post<T>(url: string, body?: any, config: RequestConfig = {}) {
+    console.log('_cookie', _cookie)
     const response = await fetch(this.baseUrl.concat(url), {
       method: 'POST',
       ...(typeof window === 'undefined' ? {} : { credentials: 'include' }),

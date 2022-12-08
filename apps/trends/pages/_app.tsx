@@ -18,7 +18,7 @@ const App = ({ Component, pageProps, cookie }: AppProps<{ initialSession: Sessio
   const [queryClient] = useState(() => new QueryClient())
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
-  console.log('cookie', cookie)
+  setClientCookie(cookie)
   return (
     <>
       <Global styles={GlobalStyle} />
