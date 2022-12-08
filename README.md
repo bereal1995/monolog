@@ -4,4 +4,3 @@
 
 - blog
 - examples
-- trends
