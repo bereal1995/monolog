@@ -1,5 +1,3 @@
-import Global from '../Global'
-
 interface Props {
   children: React.ReactNode
 }
@@ -7,7 +5,7 @@ interface Props {
 function DefaultLayout({ children }: Props) {
   return (
     <>
-      <Global />
+      {/* <Global /> */}
       {children}
     </>
   )
