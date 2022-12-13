@@ -8,7 +8,5 @@ export const useTodoList = (limit: number, errorType: TodoErrorType = 'none') =>
     queryFn: () => getTodoList(limit, errorType),
     suspense: true,
     useErrorBoundary: true,
-    staleTime: 0,
-    cacheTime: 0,
   })
 }

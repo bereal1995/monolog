@@ -1,8 +1,5 @@
 import Image from 'next/image'
-
 import styled from '@emotion/styled'
-
-import { themedPalette } from 'ui/theme'
 
 import { Pokemon } from '@/src/types/pokemon'
 
@@ -70,7 +67,7 @@ const Bottom = styled.div`
   padding: 20px;
   margin-top: 30px;
 
-  background-color: ${themedPalette.hover};
+  background-color: #000;
   border-radius: 10px;
   color: #fff;
   text-align: center;

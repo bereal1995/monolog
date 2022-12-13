@@ -1,10 +1,13 @@
-import ky from 'ky-universal'
-import type { KyInstance } from 'ky/distribution/types/ky'
+import axios from 'axios'
 
-export const kyClient: KyInstance = ky
-  .create({
-    prefixUrl: 'http://localhost:3000/api',
-  })
-  .extend({
-    timeout: 10000,
-  })
+import { handleAxiosError } from '../lib/error'
+
+export const axiosClient = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  timeout: 1000,
+})
+
+axiosClient.interceptors.response.use(
+  (res) => res,
+  (error) => handleAxiosError(error),
+)
