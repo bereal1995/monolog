@@ -1,5 +1,4 @@
 import { css, Global } from '@emotion/react'
-import { themedPalette } from 'ui/theme'
 import facepaint from 'facepaint'
 
 import resetStyle from './resetStyle'
@@ -16,11 +15,6 @@ export default function GlobalStyle(props: Props) {
       <Global
         styles={css`
           body {
-            background-color: ${themedPalette.background};
-            color: ${themedPalette.textPrimary};
-            a {
-              color: ${themedPalette.textSecondary};
-            }
             transition: background-color 0.3s ease-in-out;
             ${mq({
               fontSize: ['14px', '14px', '16px'],

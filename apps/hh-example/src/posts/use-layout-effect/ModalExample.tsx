@@ -1,11 +1,13 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
+import useIsomorphicLayoutEffect from '@/src/hooks/useIsomorphicLayoutEffect'
 
 function ModalExample() {
   const [showModal, setShowModal] = useState(false)
   const popup = useRef<HTMLDivElement>(null)
   const button = useRef<HTMLButtonElement>(null)
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (popup.current === null || button.current === null) return
 
     const { bottom } = button.current.getBoundingClientRect()

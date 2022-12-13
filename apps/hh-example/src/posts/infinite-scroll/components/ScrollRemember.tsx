@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
-import React, { useCallback, useLayoutEffect } from 'react'
+import React, { useCallback } from 'react'
+
+import useIsomorphicLayoutEffect from '@/src/hooks/useIsomorphicLayoutEffect'
 
 interface Props {
   children?: React.ReactNode
@@ -21,7 +23,7 @@ function ScrollRemember({ children }: Props) {
     window.scrollTo(0, scrollPosition[router.asPath] || 0)
   }, [router.asPath])
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     router.events.on('routeChangeStart', handleRouteChange)
     router.events.on('routeChangeComplete', handleRouteComplete)
     return () => {
