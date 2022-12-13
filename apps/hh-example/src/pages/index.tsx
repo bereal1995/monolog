@@ -18,6 +18,11 @@ const posts = [
     path: '/use-transition',
     tags: ['react'],
   },
+  {
+    title: 'error boundary',
+    path: '/error-boundary',
+    tags: ['next', 'react-query', 'error-boundary'],
+  },
 ]
 
 const Home: NextPage = () => {

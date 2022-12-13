@@ -2,8 +2,6 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { themedPalette } from 'ui/theme'
-
 import { PokemonItem } from '../hooks'
 
 interface Props extends PokemonItem {
@@ -42,8 +40,8 @@ const Block = styled.li`
     font-weight: 600;
   }
   &:hover {
-    background-color: ${themedPalette.textPrimary};
-    color: ${themedPalette.hover};
+    background-color: #f5f5f5;
+    color: #000;
   }
 `
 
