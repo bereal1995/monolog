@@ -4,11 +4,26 @@ function delay(time: number) {
   return new Promise((resolve) => setTimeout(resolve, time))
 }
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  await delay(2000)
+interface ExtendsNextApiRequest extends NextApiRequest {
+  query: {
+    errorType: 'timeout' | 'network' | 'none'
+  }
+}
+
+export default async function handler(req: ExtendsNextApiRequest, res: NextApiResponse) {
+  // await delay(2000)
+  const { errorType } = req.query
+
+  if (errorType === 'timeout') {
+    res.status(408).json({ message: 'timeout' })
+    return
+  }
+  if (errorType === 'network') {
+    res.status(505).json({ message: 'Not found' })
+    return
+  }
 
   res.status(200).json(dummyData)
-  // res.status(404).json({ message: 'Not found' })
 }
 
 const dummyData = [

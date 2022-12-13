@@ -11,7 +11,14 @@ interface Props extends Omit<ErrorBoundaryProps, 'renderFallback'> {
 
 function AsyncBoundary({ pendingFallback, RejectedFallback, children, onReset }: Props) {
   return (
-    <ErrorBoundary fallbackRender={({ resetErrorBoundary }) => <RejectedFallback resetErrorBoundary={resetErrorBoundary} />} onReset={onReset}>
+    <ErrorBoundary
+      fallbackRender={({ resetErrorBoundary, error }) => {
+        console.log(error, 'dsadasdsadas')
+
+        return <RejectedFallback resetErrorBoundary={resetErrorBoundary} />
+      }}
+      onReset={onReset}
+    >
       <SSRSafeSuspense fallback={pendingFallback}>{children}</SSRSafeSuspense>
     </ErrorBoundary>
   )

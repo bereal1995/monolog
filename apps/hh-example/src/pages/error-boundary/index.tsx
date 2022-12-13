@@ -1,5 +1,4 @@
 import { dehydrate, QueryClient, QueryErrorResetBoundary } from '@tanstack/react-query'
-
 import styled from '@emotion/styled'
 
 import DefaultLayout from '@/src/layout/DefaultLayout'
