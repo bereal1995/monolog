@@ -17,16 +17,21 @@ function ErrorBoundaryPage() {
             </AsyncBoundary>
           )}
         </QueryErrorResetBoundary>
+        <QueryErrorResetBoundary>
+          {({ reset }) => (
+            <AsyncBoundary onReset={reset} pendingFallback={<PendingFallback />}>
+              <TodoList />
+            </AsyncBoundary>
+          )}
+        </QueryErrorResetBoundary>
       </Block>
     </DefaultLayout>
   )
 }
 
 const Block = styled.div`
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
 `
 
 export const getServerSideProps = async () => {

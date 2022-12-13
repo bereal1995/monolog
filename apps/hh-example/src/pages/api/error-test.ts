@@ -6,7 +6,7 @@ function delay(time: number) {
 
 interface ExtendsNextApiRequest extends NextApiRequest {
   query: {
-    errorType: 'timeout' | 'network' | 'none'
+    errorType: 'timeout' | 'network' | 'none' | 'unknown'
   }
 }
 
@@ -20,6 +20,11 @@ export default async function handler(req: ExtendsNextApiRequest, res: NextApiRe
   }
   if (errorType === 'network') {
     res.status(505).json({ message: 'Not found', errorCode: 505 })
+    return
+  }
+
+  if (errorType === 'unknown') {
+    res.status(500).json({})
     return
   }
 
