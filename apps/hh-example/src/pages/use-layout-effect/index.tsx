@@ -1,17 +1,12 @@
-import styled from '@emotion/styled'
-
 import ModalExample from '@/src/posts/use-layout-effect/ModalExample'
+import DefaultLayout from '@/src/layout/DefaultLayout'
 
-function Home() {
+function LayoutEffectPage() {
   return (
-    <Block>
+    <DefaultLayout title="useLayoutEffect">
       <ModalExample />
-    </Block>
+    </DefaultLayout>
   )
 }
 
-const Block = styled.div`
-  padding: 10px;
-`
-
-export default Home
+export default LayoutEffectPage

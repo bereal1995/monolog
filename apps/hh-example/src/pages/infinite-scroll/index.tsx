@@ -2,13 +2,13 @@ import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 
 import PokemonList from '@/src/posts/infinite-scroll/components/PokemonList'
+import DefaultLayout from '@/src/layout/DefaultLayout'
 
-const Home: NextPage = () => {
+const InfiniteScrollPage: NextPage = () => {
   return (
-    <Block>
-      <h2>무한스크롤 + 스크롤 유지 (포켓몬)</h2>
+    <DefaultLayout title="무한스크롤 + 스크롤 유지 (포켓몬)">
       <PokemonList />
-    </Block>
+    </DefaultLayout>
   )
 }
 
@@ -32,4 +32,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home
+export default InfiniteScrollPage
