@@ -147,6 +147,8 @@ importers:
       next-transpile-modules: 9.0.0
       react: 18.2.0
       react-dom: 18.2.0
+      react-error-boundary: ^3.1.4
+      react-icons: ^4.7.1
       tsconfig: workspace:*
       typescript: 4.8.4
       ui: workspace:*
@@ -163,6 +165,8 @@ importers:
       next: 12.3.0_672uxklweod7ene3nqtsh262ca
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-error-boundary: 3.1.4_react@18.2.0
+      react-icons: 4.7.1_react@18.2.0
       ui: link:../../packages/ui
     devDependencies:
       '@types/facepaint': 1.2.2
@@ -5123,6 +5127,16 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-error-boundary/3.1.4_react@18.2.0:
+    resolution: {integrity: sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.20.6
+      react: 18.2.0
+    dev: false
+
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
@@ -5136,6 +5150,14 @@ packages:
       hotkeys-js: 3.9.4
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-image/4.0.3_4qun53zsjcqvu7p2nxatidngoa:

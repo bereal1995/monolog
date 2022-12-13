@@ -8,6 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   await delay(2000)
 
   res.status(200).json(dummyData)
+  // res.status(404).json({ message: 'Not found' })
 }
 
 const dummyData = [
