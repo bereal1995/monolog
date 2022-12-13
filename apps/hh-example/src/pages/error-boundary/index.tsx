@@ -5,7 +5,6 @@ import DefaultLayout from '@/src/layout/DefaultLayout'
 import TodoList from '@/src/posts/error-boundary/components/TodoList'
 import AsyncBoundary from '@/src/posts/error-boundary/components/AsyncBoundary'
 import PendingFallback from '@/src/posts/error-boundary/components/PendingFallback'
-import RejectedFallback from '@/src/posts/error-boundary/components/RejectedFallback'
 
 function ErrorBoundaryPage() {
   return (
@@ -13,7 +12,7 @@ function ErrorBoundaryPage() {
       <Block>
         <QueryErrorResetBoundary>
           {({ reset }) => (
-            <AsyncBoundary onReset={reset} pendingFallback={<PendingFallback />} RejectedFallback={RejectedFallback}>
+            <AsyncBoundary onReset={reset} pendingFallback={<PendingFallback />}>
               <TodoList />
             </AsyncBoundary>
           )}

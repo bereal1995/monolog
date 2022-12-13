@@ -15,11 +15,11 @@ export default async function handler(req: ExtendsNextApiRequest, res: NextApiRe
   const { errorType } = req.query
 
   if (errorType === 'timeout') {
-    res.status(408).json({ message: 'timeout' })
+    res.status(408).json({ message: 'timeout', errorCode: 408 })
     return
   }
   if (errorType === 'network') {
-    res.status(505).json({ message: 'Not found' })
+    res.status(505).json({ message: 'Not found', errorCode: 505 })
     return
   }
 
