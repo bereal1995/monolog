@@ -1,13 +1,15 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 
 import DefaultLayout from '@/src/layout/DefaultLayout'
-import { useTodoList } from '@/src/posts/error-boundary/hooks/useTodoList'
+import TodoList from '@/src/posts/error-boundary/components/TodoList'
+import SSRSafeSuspense from '@/src/posts/error-boundary/components/SSRSafeSuspense'
 
 function ErrorBoundaryPage() {
-  const { data } = useTodoList(10)
   return (
     <DefaultLayout title="에러 바운더리">
-      <div>에러 바운더리</div>
+      <SSRSafeSuspense fallback={<div>loading...</div>}>
+        <TodoList />
+      </SSRSafeSuspense>
     </DefaultLayout>
   )
 }
@@ -18,8 +20,6 @@ export const getServerSideProps = async () => {
   // await queryClient.prefetchQuery({
   //   queryKey: ['todoList', 10],
   //   queryFn: () => getTodoList(10),
-  //   staleTime: 1000 * 60 * 60 * 24,
-  //   cacheTime: 1000 * 60 * 60 * 24,
   // })
 
   return {

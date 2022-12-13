@@ -6,7 +6,8 @@ export const useTodoList = (limit: number) => {
   return useQuery({
     queryKey: ['todoList', limit],
     queryFn: () => getTodoList(limit),
-    staleTime: 1000 * 60 * 5,
-    cacheTime: 1000 * 60 * 5,
+    suspense: true,
+    staleTime: 0,
+    cacheTime: 0,
   })
 }
