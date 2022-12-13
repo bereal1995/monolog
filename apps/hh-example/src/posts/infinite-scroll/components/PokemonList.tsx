@@ -38,7 +38,9 @@ function PokemonList() {
 }
 
 const Block = styled.section`
+  max-width: 800px;
   padding-bottom: 20px;
+  margin: 0 auto;
   a {
     text-decoration: none;
   }
