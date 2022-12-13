@@ -2,6 +2,7 @@ import React from 'react'
 import { ErrorBoundary, ErrorBoundaryProps } from 'react-error-boundary'
 
 import ExpectedError from '../lib/error'
+import { captureExpected, captureUnhandledRejection } from '../lib/sentry'
 
 import RejectedFallback from './RejectedFallback'
 import SSRSafeSuspense from './SSRSafeSuspense'
@@ -17,6 +18,12 @@ function AsyncBoundary({ pendingFallback, children, onReset }: Props) {
       onReset={onReset}
       fallbackRender={({ resetErrorBoundary, error }) => {
         const isExpectedError = error instanceof ExpectedError
+
+        if (isExpectedError) {
+          captureExpected(error)
+        } else {
+          captureUnhandledRejection(error)
+        }
 
         return <RejectedFallback resetErrorBoundary={resetErrorBoundary} isRetry={isExpectedError} />
       }}

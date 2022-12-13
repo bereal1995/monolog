@@ -8,6 +8,8 @@ import ScrollRemember from '../posts/infinite-scroll/components/ScrollRemember'
 
 import useUnhandledRejectionError from '../posts/error-boundary/hooks/useUnhandledRejectionError'
 
+import { captureUnhandledRejection } from '../posts/error-boundary/lib/sentry'
+
 import GlobalStyle from '@/styles/GlobalStyle'
 
 type PageProps = {
@@ -22,6 +24,7 @@ function MyApp({ Component, pageProps }: ExtendedAppProps<PageProps>) {
   const [queryClient] = useState(() => new QueryClient())
 
   useUnhandledRejectionError(({ reason: error }) => {
+    captureUnhandledRejection(error)
     alert(`알수없는 에러가 발생하였습니다.: ${error.message}`)
   })
 

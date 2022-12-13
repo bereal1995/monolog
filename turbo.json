@@ -12,6 +12,7 @@
     },
     "hh-example#build": {
       "dependsOn": ["^build"],
+      "env": ["SENTRY_DSN", "NEXT_PUBLIC_SENTRY_DSN"],
       "outputs": [".next/**"]
     },
     "lint": {
