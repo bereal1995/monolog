@@ -1,29 +1,20 @@
-import { dehydrate, QueryClient, QueryErrorResetBoundary } from '@tanstack/react-query'
+import { dehydrate, QueryClient } from '@tanstack/react-query'
 import styled from '@emotion/styled'
 
 import DefaultLayout from '@/src/layout/DefaultLayout'
 import TodoList from '@/src/posts/error-boundary/components/TodoList'
-import AsyncBoundary from '@/src/posts/error-boundary/components/AsyncBoundary'
-import PendingFallback from '@/src/posts/error-boundary/components/PendingFallback'
+import AsyncBoundaryWithQuery from '@/src/posts/error-boundary/components/AsyncBoundaryWithQuery'
 
 function ErrorBoundaryPage() {
   return (
     <DefaultLayout title="에러 바운더리">
       <Block>
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <AsyncBoundary onReset={reset} pendingFallback={<PendingFallback />}>
-              <TodoList />
-            </AsyncBoundary>
-          )}
-        </QueryErrorResetBoundary>
-        <QueryErrorResetBoundary>
-          {({ reset }) => (
-            <AsyncBoundary onReset={reset} pendingFallback={<PendingFallback />}>
-              <TodoList />
-            </AsyncBoundary>
-          )}
-        </QueryErrorResetBoundary>
+        <AsyncBoundaryWithQuery>
+          <TodoList />
+        </AsyncBoundaryWithQuery>
+        <AsyncBoundaryWithQuery>
+          <TodoList />
+        </AsyncBoundaryWithQuery>
       </Block>
     </DefaultLayout>
   )
