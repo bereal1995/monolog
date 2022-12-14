@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { Layout } from 'antd'
+import Link from 'next/link'
 
 const { Header, Content } = Layout
 interface Props {
@@ -11,22 +12,32 @@ interface Props {
 function DefaultLayout({ title, children }: Props) {
   return (
     <Block>
-      <Header>
+      <StyledHeader>
+        <Link href="/">
+          <a>hhxdragon</a>
+        </Link>
         <h2>{title}</h2>
-      </Header>
-      <Content>{children}</Content>
+      </StyledHeader>
+      <StyledContent>{children}</StyledContent>
     </Block>
   )
 }
 
 const Block = styled(Layout)`
+  height: 100%;
+`
+
+const StyledHeader = styled(Header)`
+  display: flex;
+  gap: 10px;
   h2 {
     color: #fff;
   }
-  a {
-    width: 100%;
-    height: 100%;
-  }
+`
+
+const StyledContent = styled(Content)`
+  overflow: auto;
+  flex: 1 !important;
 `
 
 export default DefaultLayout

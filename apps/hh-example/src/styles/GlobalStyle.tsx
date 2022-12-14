@@ -14,6 +14,11 @@ export default function GlobalStyle(props: Props) {
       <Global styles={resetStyle} />
       <Global
         styles={css`
+          html,
+          body,
+          #__next {
+            height: 100%;
+          }
           body {
             transition: background-color 0.3s ease-in-out;
             ${mq({
