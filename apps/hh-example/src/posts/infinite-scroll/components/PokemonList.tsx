@@ -1,7 +1,9 @@
 import styled from '@emotion/styled'
+import { Card, List } from 'antd'
+import Link from 'next/link'
 import React from 'react'
 
-import { OFFSET, useInfinitePokemon, useIntersect } from '../hooks'
+import { PokemonItem, useInfinitePokemon, useIntersect } from '../hooks'
 
 import PokemonListItem from './PokemonListItem'
 
@@ -14,23 +16,34 @@ function PokemonList() {
     }
   })
 
+  const listData = data?.pages.reduce((acc, page) => [...acc, ...page.results], [] as PokemonItem[])
+
   return (
     <Block>
-      <ul>
-        {isLoading && <p>불러오는 중</p>}
-        {status === 'error' && <p>에러 발생!</p>}
-        {status === 'success' && (
-          <ItemList>
-            {data.pages.map((group, pageIndex) => (
-              <React.Fragment key={pageIndex}>
-                {group.results.map((pokemonItem, index) => {
-                  return <PokemonListItem key={pokemonItem.name + index} index={OFFSET * pageIndex + index + 1} {...pokemonItem} />
-                })}
-              </React.Fragment>
-            ))}
-          </ItemList>
-        )}
-      </ul>
+      <List
+        grid={{
+          gutter: 16,
+          xs: 1,
+          sm: 2,
+          md: 4,
+          lg: 4,
+        }}
+        dataSource={listData ?? []}
+        renderItem={(pokemonItem) => {
+          const id = pokemonItem.url.split('/').at(-2)
+          return (
+            <List.Item>
+              <Link href={`/${id}`}>
+                <a>
+                  <Card title={pokemonItem.name} hoverable>
+                    <PokemonListItem {...pokemonItem} />
+                  </Card>
+                </a>
+              </Link>
+            </List.Item>
+          )
+        }}
+      />
       <Target ref={ref} />
       {isFetchingNextPage && <p>계속 불러오는 중</p>}
     </Block>
@@ -39,17 +52,11 @@ function PokemonList() {
 
 const Block = styled.section`
   max-width: 800px;
-  padding-bottom: 20px;
+  padding: 20px 0;
   margin: 0 auto;
   a {
     text-decoration: none;
   }
-`
-
-const ItemList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 `
 
 const Target = styled.div`

@@ -73,7 +73,7 @@ const Bottom = styled.div`
   text-align: center;
 
   & > div {
-    width: 200px;
+    max-width: 200px;
     text-align: left;
     font-size: 18px;
   }

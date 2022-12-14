@@ -3,7 +3,7 @@ import type { NextPage } from 'next'
 import Link from 'next/link'
 import { Layout, List } from 'antd'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Header, Content } = Layout
 
 const posts = [
   {

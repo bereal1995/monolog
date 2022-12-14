@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import { Layout } from 'antd'
 
+const { Header, Content } = Layout
 interface Props {
   title: string
   children: React.ReactNode
@@ -9,23 +11,21 @@ interface Props {
 function DefaultLayout({ title, children }: Props) {
   return (
     <Block>
-      <h2>{title}</h2>
-      {children}
+      <Header>
+        <h2>{title}</h2>
+      </Header>
+      <Content>{children}</Content>
     </Block>
   )
 }
 
-const Block = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-
+const Block = styled(Layout)`
   h2 {
-    padding: 5px 10px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #fcf;
-    font-size: 20px;
-    font-weight: 600;
+    color: #fff;
+  }
+  a {
+    width: 100%;
+    height: 100%;
   }
 `
 
