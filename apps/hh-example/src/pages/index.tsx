@@ -1,6 +1,9 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import Link from 'next/link'
+import { Layout, List } from 'antd'
+
+const { Header, Content, Footer, Sider } = Layout
 
 const posts = [
   {
@@ -28,51 +31,39 @@ const posts = [
 const Home: NextPage = () => {
   return (
     <Block>
-      <h2>hhxdragon</h2>
-      <ul>
-        {posts.map((post, index) => {
-          return (
-            <Link href={post.path} key={post.title}>
-              <li>
-                <span>{`${index + 1}. `}</span>
-                <a>
-                  <h3>{post.title}</h3>
-                  <div>Tag: {post.tags.join(', ')}</div>
-                </a>
-              </li>
-            </Link>
-          )
-        })}
-      </ul>
+      <StyledHeader>
+        <h2>hhxdragon</h2>
+      </StyledHeader>
+      <Content>
+        <List
+          size="large"
+          bordered
+          dataSource={posts}
+          renderItem={(item, index) => (
+            <List.Item>
+              <Link href={item.path}>
+                <a>{item.title}</a>
+              </Link>
+            </List.Item>
+          )}
+        />
+      </Content>
     </Block>
   )
 }
 
-const Block = styled.div`
+const Block = styled(Layout)`
   h2 {
-    padding: 5px 10px;
-    border-bottom: 1px solid #fcf;
-  }
-  ul {
-    padding: 10px;
-    li {
-      display: flex;
-      padding: 5px 0;
-      cursor: pointer;
-      &:hover {
-        color: #000;
-      }
-    }
+    color: #fff;
   }
   a {
-    text-decoration: none;
-    color: inherit;
-    font-size: 12px;
-    h3 {
-      font-size: 16px;
-      font-weight: 600;
-    }
+    width: 100%;
+    height: 100%;
   }
+`
+
+const StyledHeader = styled(Header)`
+  background-color: #70a0ce !important;
 `
 
 export async function getStaticProps() {
