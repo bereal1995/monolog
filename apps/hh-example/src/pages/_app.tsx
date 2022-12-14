@@ -10,6 +10,8 @@ import useUnhandledRejectionError from '../posts/error-boundary/hooks/useUnhandl
 
 import { captureUnhandledRejection } from '../posts/error-boundary/lib/sentry'
 
+import useAntdNotification from '../hooks/useAntdNotification'
+
 import GlobalStyle from '@/styles/GlobalStyle'
 
 type PageProps = {
@@ -22,10 +24,14 @@ type ExtendedAppProps<P = {}> = {
 
 function MyApp({ Component, pageProps }: ExtendedAppProps<PageProps>) {
   const [queryClient] = useState(() => new QueryClient())
+  const { contextHolder, openNotification } = useAntdNotification()
 
   useUnhandledRejectionError(({ reason: error }) => {
     captureUnhandledRejection(error)
-    alert(`알수없는 에러가 발생하였습니다.: ${error.message}`)
+    openNotification({
+      message: '알수없는 에러가 발생하였습니다.',
+      description: error.message,
+    })
   })
 
   return (
@@ -33,6 +39,7 @@ function MyApp({ Component, pageProps }: ExtendedAppProps<PageProps>) {
       <Hydrate state={pageProps.dehydratedState}>
         <GlobalStyle />
         <ScrollRemember />
+        {contextHolder}
         <Component {...pageProps} />
       </Hydrate>
       <ReactQueryDevtools />
