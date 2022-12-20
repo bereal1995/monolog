@@ -1,7 +1,7 @@
+import React from 'react'
 import styled from '@emotion/styled'
 import { Card, List } from 'antd'
 import Link from 'next/link'
-import React from 'react'
 
 import { PokemonItem, useInfinitePokemon, useIntersect } from '../hooks'
 
@@ -29,11 +29,12 @@ function PokemonList() {
           lg: 4,
         }}
         dataSource={listData ?? []}
+        loading={isLoading}
         renderItem={(pokemonItem) => {
           const id = pokemonItem.url.split('/').at(-2)
           return (
             <List.Item>
-              <Link href={`/${id}`}>
+              <Link href={`infinite-scroll/${id}`}>
                 <a>
                   <Card title={pokemonItem.name} hoverable>
                     <PokemonListItem {...pokemonItem} />
@@ -51,11 +52,16 @@ function PokemonList() {
 }
 
 const Block = styled.section`
-  max-width: 800px;
+  max-width: 900px;
   padding: 20px 0;
   margin: 0 auto;
   a {
     text-decoration: none;
+  }
+
+  .ant-card-head {
+    padding: 0 5px;
+    text-align: center;
   }
 `
 

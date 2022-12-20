@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 
-import PokemonDetail from '../posts/infinite-scroll/components/PokemonDetail'
+import PokemonDetail from '../../posts/infinite-scroll/components/PokemonDetail'
 
-import { Pokemon } from '../types/pokemon'
+import { Pokemon } from '../../types/pokemon'
 
 interface Props {
   pokemon: Pokemon

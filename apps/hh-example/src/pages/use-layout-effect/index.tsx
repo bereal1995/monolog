@@ -9,4 +9,10 @@ function LayoutEffectPage() {
   )
 }
 
+export const getStaticProps = () => {
+  return {
+    props: {},
+  }
+}
+
 export default LayoutEffectPage

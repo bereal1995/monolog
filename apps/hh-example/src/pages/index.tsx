@@ -66,7 +66,7 @@ const StyledHeader = styled(Header)`
   background-color: #70a0ce !important;
 `
 
-export async function getStaticProps() {
+export const getStaticProps = () => {
   return {
     props: {},
   }

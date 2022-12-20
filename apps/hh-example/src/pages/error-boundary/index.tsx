@@ -4,6 +4,7 @@ import { Col, Row } from 'antd'
 import DefaultLayout from '@/src/layout/DefaultLayout'
 import TodoList from '@/src/posts/error-boundary/components/TodoList'
 import AsyncBoundaryWithQuery from '@/src/posts/error-boundary/components/AsyncBoundaryWithQuery'
+import { getTodoList } from '@/src/posts/error-boundary/api'
 
 function ErrorBoundaryPage() {
   return (
@@ -27,10 +28,10 @@ function ErrorBoundaryPage() {
 export const getServerSideProps = async () => {
   const queryClient = new QueryClient()
 
-  // await queryClient.prefetchQuery({
-  //   queryKey: ['todoList', 10],
-  //   queryFn: () => getTodoList(10),
-  // })
+  await queryClient.prefetchQuery({
+    queryKey: ['todoList', 10],
+    queryFn: () => getTodoList(10),
+  })
 
   return {
     props: {

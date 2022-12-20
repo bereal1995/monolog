@@ -13,7 +13,11 @@ function PokemonListItem({ url, name, index }: Props) {
   return (
     <Block>
       <Thumbnail>
-        <Image src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`} alt={name} layout="fill" />
+        <Image
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+          alt={name}
+          layout="fill"
+        />
       </Thumbnail>
       {/* <span>{name}</span> */}
       {/* <span>{`${index}. ${name}`}</span> */}

@@ -41,5 +41,10 @@ const Block = styled.div`
   grid-template-columns: 1fr 1fr;
   padding: 10px;
 `
+export const getStaticProps = () => {
+  return {
+    props: {},
+  }
+}
 
 export default Home
