@@ -10,7 +10,7 @@ export default siteConfig({
 
   // basic site info (required)
   name: 'HH | 블로그',
-  domain: 'https://www.hhxdragon.com/',
+  domain: 'hhxdragon.com',
   author: 'hhxdragon',
 
   // open graph metadata (optional)
