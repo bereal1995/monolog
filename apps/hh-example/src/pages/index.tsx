@@ -26,6 +26,11 @@ const posts = [
     path: '/error-boundary',
     tags: ['next', 'react-query', 'error-boundary'],
   },
+  {
+    title: 'marquee',
+    path: '/marquee',
+    tags: ['react', 'animation'],
+  },
 ]
 
 const Home: NextPage = () => {
